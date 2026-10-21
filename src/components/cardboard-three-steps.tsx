@@ -63,7 +63,7 @@ export function CardboardThreeSteps() {
   const [isUserInteracting, setIsUserInteracting] = useState(false);
   const currentScenario = SCENARIOS[scenarioIdx];
 
-  // Automatic Typewriter Effect loop
+  // Automatic Typewriter Effect loop: types scenario, auto-submits, pauses, then advances
   useEffect(() => {
     if (isUserInteracting) return;
 
@@ -91,10 +91,20 @@ export function CardboardThreeSteps() {
           }, 3800);
         }, 600);
       }
-    }, 45);
+    }, 40);
 
     return () => clearInterval(typeInterval);
   }, [scenarioIdx, isUserInteracting]);
+
+  // Auto-resume timer: if user clicks or inputs manually, resume automatic cycle after 8.5s
+  useEffect(() => {
+    if (!isUserInteracting) return;
+    const timeout = setTimeout(() => {
+      setIsUserInteracting(false);
+      setScenarioIdx((prev) => (prev + 1) % SCENARIOS.length);
+    }, 8500);
+    return () => clearTimeout(timeout);
+  }, [isUserInteracting, scenarioIdx]);
 
   const handleSelectPreset = (idx: number) => {
     setIsUserInteracting(true);
@@ -138,6 +148,11 @@ export function CardboardThreeSteps() {
   const currentStage =
     TIMELINE_STAGES.slice().reverse().find((s) => playheadPos >= s.at) ||
     TIMELINE_STAGES[0];
+
+  const currentTotalSeconds = Math.round((playheadPos / 100) * 135);
+  const formattedMinutes = Math.floor(currentTotalSeconds / 60);
+  const formattedSeconds = (currentTotalSeconds % 60).toString().padStart(2, "0");
+  const timecodeDisplay = `0${formattedMinutes}:${formattedSeconds}`;
 
   const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!timelineRef.current) return;
@@ -308,14 +323,28 @@ export function CardboardThreeSteps() {
                 </div>
               </div>
 
-              {/* Sound Waveform / Audio track */}
+              {/* Sound Waveform / Animated Equalizer Audio track */}
               <div className="timeline-audio-track">
-                <motion.div
-                  className="waveform-line"
-                  animate={{ opacity: isPlaying ? [0.35, 0.7, 0.35] : 0.35 }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                <span className="audio-label">compliance_sync.wav · Active</span>
+                <div style={{ display: "flex", gap: 3, alignItems: "center", height: "100%", marginRight: 8 }}>
+                  {[14, 8, 12, 10, 6, 13, 9, 11, 7, 14, 8, 12].map((h, i) => (
+                    <motion.span
+                      key={i}
+                      style={{ width: 2, background: "#5be0a0", borderRadius: 1 }}
+                      animate={
+                        isPlaying
+                          ? { height: [h * 0.35, h, h * 0.45] }
+                          : { height: h * 0.4 }
+                      }
+                      transition={{
+                        duration: 0.5 + (i % 4) * 0.15,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                </div>
+                <span className="audio-label">compliance_timeline.sync · {timecodeDisplay}</span>
               </div>
 
               {/* Auto-moving & Draggable Playhead Scrubber */}
@@ -324,7 +353,7 @@ export function CardboardThreeSteps() {
                 style={{ left: `${playheadPos}%` }}
               >
                 <div className="playhead-handle">
-                  <span>{currentStage.label.split(" · ")[0]}</span>
+                  <span>{timecodeDisplay} · {currentStage.clip.toUpperCase()}</span>
                 </div>
               </div>
             </div>
