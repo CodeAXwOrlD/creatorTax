@@ -16,11 +16,9 @@ import {
   Users,
   TrendingUp,
   Clock,
-  Star,
   Zap,
 } from "lucide-react";
 import { articles } from "@/lib/articles";
-import { GuideCard } from "@/components/guide-card";
 import { Reveal } from "@/components/reveal";
 import { TaxPreview } from "@/components/tax-preview";
 import { HeroAurora } from "@/components/hero-aurora";
@@ -28,10 +26,9 @@ import { InfiniteTicker } from "@/components/infinite-ticker";
 import { TestimonialsBento } from "@/components/testimonials-bento";
 import { PersonasGrid } from "@/components/personas-grid";
 import { HeroArtInteractive } from "@/components/hero-art-interactive";
-import { ProcessTimeline } from "@/components/process-timeline";
 import { TiltCard } from "@/components/tilt-card";
 import { FeaturedGuidesCreative } from "@/components/featured-guides-creative";
-import { CardboardThreeSteps } from "@/components/cardboard-three-steps";
+import { ComplianceWorkflow } from "@/components/compliance-workflow";
 
 const TOPICS = [
   { title: "GST & LUT Renewal", desc: "Export services without 18% IGST under Form RFD-11", href: "/guides/renew-gst-lut-online", icon: FileText },
@@ -39,27 +36,6 @@ const TOPICS = [
   { title: "TDS 194J Refunds", desc: "Reconcile 26AS/AIS and claim excess TDS credits", href: "/guides/claim-tds-refund-freelancers", icon: ChartNoAxesColumnIncreasing },
   { title: "USD Remittances", desc: "Wise, Stripe, PayPal purpose codes & BRC", href: "/guides/paypal-wise-stripe-firc-guide", icon: Globe2 },
   { title: "Advance Tax", desc: "March 15th single payment rule for 44ADA", href: "/guides/advance-tax-deadlines-penalties", icon: Wallet },
-];
-
-const HOW = [
-  {
-    num: "01",
-    icon: BookOpen,
-    title: "Find your exact scenario",
-    body: "Browse 8+ source-cited guides covering GST LUT, TDS refunds, Section 44ADA, international remittances, and expense deductions — all written for Indian digital professionals."
-  },
-  {
-    num: "02",
-    icon: Calculator,
-    title: "Run the numbers yourself",
-    body: "Use our 100% private, client-side 44ADA calculator. No server, no account — your income figures never leave your device. Instantly compare New vs Old Regime tax outcomes."
-  },
-  {
-    num: "03",
-    icon: CheckCircle2,
-    title: "File with confidence",
-    body: "Every guide links directly to the Income Tax Act, GST circulars, and RBI Master Directions. Statutory citations mean you can verify every claim before taking action."
-  },
 ];
 
 const STATS = [
@@ -73,30 +49,6 @@ const TRUST = [
   { icon: ShieldCheck, title: "Primary-Source Backed", body: "Every legal statement cites the Income Tax Act, GST circulars, or RBI Master Directions directly. Not blog opinions — statute-level accuracy." },
   { icon: BookOpen, title: "Plain-Language Explanations", body: "Actionable steps for real freelancer challenges: e-FIRAs, LUT renewal, Form 15G/15H, TDS reconciliations, and advance tax planning." },
   { icon: Calculator, title: "100% Private Tools", body: "Calculations run locally in your browser. No income data, PAN, or financial numbers are ever sent to a server — by architecture, not just policy." },
-];
-
-const TESTIMONIALS = [
-  {
-    initials: "AK",
-    name: "Aditya Kulkarni",
-    role: "Senior Software Engineer · Bengaluru",
-    text: "I was confused about whether to opt for the New or Old regime. The 44ADA guide and calculator made it crystal clear. Saved me about ₹54,000 in unnecessary tax.",
-    stars: 5,
-  },
-  {
-    initials: "PS",
-    name: "Priya Sharma",
-    role: "Freelance Video Editor · Mumbai",
-    text: "The PayPal e-FIRA guide is a lifesaver. I spent weeks trying to figure out FIRC and BRC. This guide had everything in one place with actual links to the HDFC portal.",
-    stars: 5,
-  },
-  {
-    initials: "RN",
-    name: "Rahul Nair",
-    role: "Independent Consultant · Hyderabad",
-    text: "Finally, a site that doesn't just say 'consult a CA' for everything. Real statutory thresholds, real step-by-step instructions. Bookmarked every guide.",
-    stars: 5,
-  },
 ];
 
 const FAQS = [
@@ -139,7 +91,7 @@ export default function HomePage() {
     <main>
       {/* ── Hero ────────────────────────────────────────────────── */}
       <section className="hero">
-        {/* Aceternity / ReactBits style Cloud Shader Aurora Mesh & Floating References */}
+        {/* Ambient Cloud Shader Atmosphere */}
         <HeroAurora />
 
         <div className="container hero-grid" style={{ position: "relative", zIndex: 2 }}>
@@ -190,7 +142,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Interactive Hero Art (Cardboard.ai magnetic 3D tilt & clickable) */}
+          {/* Interactive Hero Art with 4 Satellite Motion Chips & Auto-Simulation */}
           <HeroArtInteractive />
         </div>
 
@@ -253,7 +205,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Your Freelance Tax Clarity in Three Steps (Cardboard.ai Exact 3 Interactive Formats) ── */}
+      {/* ── Your Freelance Tax Clarity in Three Steps ── */}
       <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 96 }}>
         <div className="container">
           <Reveal direction="blur">
@@ -262,13 +214,13 @@ export default function HomePage() {
               <h2 className="serif" style={{ marginTop: 14 }}>
                 Your freelance tax clarity in three steps.
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 560, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
-                Describe it, direct it, and share it. Here&apos;s how your first statutory filing comes together.
+              <p style={{ color: "var(--muted)", maxWidth: 580, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
+                Classify your income under Section 44ADA, protect foreign receipts with Form RFD-11 LUT, and compute your single March 15 advance tax payment.
               </p>
             </div>
           </Reveal>
 
-          <CardboardThreeSteps />
+          <ComplianceWorkflow />
         </div>
       </section>
 

@@ -1,20 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import {
   FileText,
   Percent,
   Globe2,
-  ChartNoAxesColumnIncreasing,
   Wallet,
   ShieldCheck,
   ArrowRight,
   Clock,
   Sparkles,
   ArrowUpRight,
-  BookOpen,
   CheckCircle,
 } from "lucide-react";
 import { articles } from "@/lib/articles";
@@ -48,7 +45,7 @@ export function FeaturedGuidesCreative() {
             key={tab.key}
             type="button"
             className={`guide-filter-chip ${activeCategory === tab.key ? "active" : ""}`}
-            onClick={() => setActiveCategory(tab.key as any)}
+            onClick={() => setActiveCategory(tab.key as CategoryFilter)}
           >
             {tab.label}
           </button>
@@ -121,7 +118,7 @@ export function FeaturedGuidesCreative() {
         <div className={`guides-sub-grid ${activeCategory !== "all" ? "full-width" : ""}`}>
           {filteredGuides
             .filter((g) => (activeCategory === "all" ? g.slug !== masterGuide.slug : true))
-            .map((guide, idx) => {
+            .map((guide) => {
               // Custom category badges & accent colors
               let iconColor = "#10b981";
               let Icon = FileText;

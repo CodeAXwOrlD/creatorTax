@@ -1,0 +1,340 @@
+/* ─── Compliance Workflow (Bespoke Editorial & Financial Dossier) ───── */
+.compliance-workflow-root {
+  margin-top: 48px;
+}
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+/* Individual Workflow Card (Warm Ivory Paper Aesthetic) */
+.workflow-card {
+  background: var(--paper-card);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 26px;
+  box-shadow: 0 10px 30px rgba(18, 61, 52, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s, border-color 0.25s;
+}
+.workflow-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(18, 61, 52, 0.35);
+  box-shadow: 0 20px 48px rgba(18, 61, 52, 0.1);
+}
+
+/* Header with Elegant Serif Step Numeral */
+.card-top-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.step-numeral {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--terra);
+  flex-shrink: 0;
+}
+.step-tag-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.statute-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.card-editorial-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0;
+}
+.card-editorial-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+
+/* Clean Editorial Tabs (Warm Linen Pills, Not Dark Crypto Buttons) */
+.editorial-tabs-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.editorial-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.editorial-tab:hover {
+  background: #e4ded0;
+  color: var(--ink);
+}
+.editorial-tab.selected {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fffdf7;
+}
+
+/* Editorial Memo Sheet (Simulating an Authentic Tax Advisory Slip) */
+.editorial-memo-sheet {
+  background: var(--paper);
+  border: 1px solid rgba(222, 216, 202, 0.9);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+.memo-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(222, 216, 202, 0.8);
+}
+.memo-key {
+  color: var(--muted);
+  font-weight: 500;
+}
+.memo-value {
+  color: var(--ink);
+  font-weight: 700;
+}
+.memo-value.text-emerald {
+  color: #0f766e;
+}
+.memo-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #0f766e;
+  background: #e6f4ea;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #b7e1cd;
+}
+.memo-verdict-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fffdf7;
+  border-radius: 8px;
+  border-left: 3px solid var(--green);
+  margin-top: 4px;
+}
+.verdict-icon {
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.memo-verdict-box p {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.memo-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  text-decoration: none;
+  margin-top: 6px;
+}
+.memo-action-link:hover {
+  text-decoration: underline;
+}
+
+/* Card 2: Certificate Sheet */
+.editorial-memo-sheet.certificate {
+  gap: 12px;
+}
+.certificate-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.certificate-seal {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.cert-heading {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.cert-sub {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+}
+.arn-status-badge {
+  padding: 6px 10px;
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.cert-summary-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+.cert-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 6px;
+}
+.cert-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+.cert-copy-btn:hover {
+  background: var(--green-light);
+  border-color: var(--green);
+}
+.cert-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+}
+.cert-guide-link:hover {
+  color: var(--green);
+}
+
+/* Card 3: CA Computation Schedule */
+.editorial-memo-sheet.computation {
+  gap: 12px;
+}
+.computation-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.comp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed rgba(222, 216, 202, 0.7);
+}
+.comp-row span {
+  color: var(--muted);
+}
+.comp-row strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.comp-row strong.text-emerald {
+  color: #0f766e;
+}
+.comp-row.strike {
+  opacity: 0.7;
+}
+.comp-row.strike .old-tax {
+  text-decoration: line-through;
+  color: #991b1b;
+  font-size: 11.5px;
+}
+.comp-row.total-saving {
+  border-bottom: none;
+  padding-top: 4px;
+}
+.comp-row.total-saving span {
+  color: var(--ink);
+  font-weight: 700;
+}
+.saving-badge {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.advance-tax-note {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+  background: #fffdf7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+.advance-tax-note strong {
+  color: var(--ink-2);
+}
+.comp-cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fffdf7;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.18s;
+  margin-top: 4px;
+}
+.comp-cta-btn:hover {
+  background: var(--green-2);
+  transform: translateY(-1px);
+}

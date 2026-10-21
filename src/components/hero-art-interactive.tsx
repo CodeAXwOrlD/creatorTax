@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   TrendingDown,
-  Sparkles,
   Percent,
   FileText,
   Globe2,
@@ -68,13 +67,13 @@ export function HeroArtInteractive() {
   const [activeProfileIdx, setActiveProfileIdx] = useState(0);
   const [isManuallyControlled, setIsManuallyControlled] = useState(false);
 
-  // Automatic simulation cycle: rotates realistic creator figures every 3.8s
+  // Automatic simulation cycle: rotates realistic creator figures every 4s
   useEffect(() => {
     if (isManuallyControlled) return;
 
     const interval = setInterval(() => {
       setActiveProfileIdx((prev) => (prev + 1) % PROFILES.length);
-    }, 3800);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isManuallyControlled]);
@@ -102,18 +101,6 @@ export function HeroArtInteractive() {
       onMouseEnter={() => setIsClusteredHovered(true)}
       onMouseLeave={() => setIsClusteredHovered(false)}
     >
-      {/* Floating live indicator */}
-      <motion.div
-        className="floating-badge is-clickable"
-        whileHover={{ scale: 1.08, y: -4 }}
-        whileTap={{ scale: 0.96 }}
-        title="AY 2025-26 is active for Section 44ADA filings"
-      >
-        <span className="pulse-dot" />
-        AY 2025-26 Live
-        <Sparkles size={11} className="text-gold" style={{ marginLeft: 3 }} />
-      </motion.div>
-
       <div className="art-ring" />
       <div className="art-ring-2" />
       <div className="glass-blob" />
@@ -121,24 +108,24 @@ export function HeroArtInteractive() {
       {/* ── CARD 1: Gross Receipts Card (Continuous Levitation & Auto-Simulating) ── */}
       <motion.div
         className="hero-card-interactive-wrap receipt-wrap"
-        initial={shouldReduceMotion ? false : { opacity: 0, x: 25, y: -15, rotate: -4 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, x: 20, y: -15, rotate: -3 }}
         animate={
           shouldReduceMotion
             ? { opacity: 1 }
             : {
                 opacity: 1,
                 x: 0,
-                y: [0, -7, 0],
-                rotate: [-4, -3, -4],
+                y: [0, -6, 0],
+                rotate: [-3, -2, -3],
               }
         }
         transition={{
           y: { duration: 5.5, repeat: Infinity, ease: "easeInOut" },
           rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-          opacity: { duration: 0.7, delay: 0.15 },
+          opacity: { duration: 0.6, delay: 0.15 },
         }}
         whileHover={{
-          scale: 1.06,
+          scale: 1.05,
           rotate: 0,
           y: -8,
           zIndex: 25,
@@ -151,7 +138,7 @@ export function HeroArtInteractive() {
           className="hero-card receipt is-interactive-card"
           title="Click to simulate in full 44ADA estimator"
         >
-          {/* Live Simulator Status Bar */}
+          {/* Header Status Bar with Live AY indicator */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
             <span
               style={{
@@ -162,12 +149,12 @@ export function HeroArtInteractive() {
                 fontWeight: 700,
                 color: "#123d34",
                 background: "rgba(18, 61, 52, 0.08)",
-                padding: "2px 7px",
+                padding: "2px 8px",
                 borderRadius: 999,
               }}
             >
               <span className="pulse-dot-sm" />
-              Live Demo
+              AY 2025-26 Live
             </span>
 
             <button
@@ -196,10 +183,10 @@ export function HeroArtInteractive() {
           <AnimatePresence mode="wait">
             <motion.div
               key={profile.turnover}
-              initial={{ opacity: 0, y: 6 }}
+              initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.25 }}
             >
               <strong>{profile.turnover}</strong>
               <hr />
@@ -217,24 +204,24 @@ export function HeroArtInteractive() {
       {/* ── CARD 2: Presumptive Profit & Tax Card (Continuous Levitation & Auto-Calculating) ── */}
       <motion.div
         className="hero-card-interactive-wrap tax-wrap"
-        initial={shouldReduceMotion ? false : { opacity: 0, x: -25, y: 25, rotate: 3 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, x: -20, y: 20, rotate: 2 }}
         animate={
           shouldReduceMotion
             ? { opacity: 1 }
             : {
                 opacity: 1,
                 x: 0,
-                y: [0, 7, 0],
-                rotate: [3, 4, 3],
+                y: [0, 6, 0],
+                rotate: [2, 3, 2],
               }
         }
         transition={{
           y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
           rotate: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
-          opacity: { duration: 0.7, delay: 0.3 },
+          opacity: { duration: 0.6, delay: 0.3 },
         }}
         whileHover={{
-          scale: 1.07,
+          scale: 1.06,
           rotate: 0,
           y: -10,
           zIndex: 26,
@@ -257,10 +244,10 @@ export function HeroArtInteractive() {
           <AnimatePresence mode="wait">
             <motion.div
               key={profile.profit}
-              initial={{ opacity: 0, y: 6 }}
+              initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.25 }}
             >
               <strong>{profile.profit}</strong>
               <small style={{ color: "#a7f3d0" }}>
@@ -273,7 +260,7 @@ export function HeroArtInteractive() {
             <motion.div
               className="mini-bar-fill"
               animate={{ width: profile.barPercent }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             />
           </div>
 
@@ -283,25 +270,19 @@ export function HeroArtInteractive() {
         </Link>
       </motion.div>
 
-      {/* ── 4 SATELLITE CHIPS: CLOSE TO CARDS & BLOOM ON HOVER ── */}
-      {/*
-        Design logic requested by user:
-        - When unhovered: sit tightly close to the cards (hugging them snugly).
-        - When cursor hovers / approaches: scatter/bloom outward smoothly.
-        - When cursor leaves: spring back to compact position.
-      */}
+      {/* ── 4 SATELLITE CHIPS: BALANCED SYMMETRICAL FRAME & BLOOM ── */}
       {!shouldReduceMotion && (
         <div className="satellite-chips-orbit" aria-hidden="false">
-          {/* Satellite 1: Section 44ADA (Top-Left quadrant of Cards) */}
+          {/* Satellite 1: Section 44ADA (Top-Left) */}
           <motion.div
             className="satellite-chip sat-top-left"
             animate={
               isClusteredHovered
-                ? { x: -85, y: -45, scale: 1.08, opacity: 1 }
-                : { x: 42, y: 32, scale: 0.95, opacity: 0.94 }
+                ? { x: -24, y: -16, scale: 1.05, opacity: 1 }
+                : { x: 26, y: 20, scale: 0.94, opacity: 0.95 }
             }
-            transition={{ type: "spring", stiffness: 320, damping: 20, mass: 0.8 }}
-            whileHover={{ scale: 1.15, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.8 }}
+            whileHover={{ scale: 1.12, zIndex: 40 }}
             whileTap={{ scale: 0.96 }}
           >
             <Link
@@ -320,16 +301,16 @@ export function HeroArtInteractive() {
             </Link>
           </motion.div>
 
-          {/* Satellite 2: Wise · Stripe USD FIRC (Top-Right quadrant of Cards) */}
+          {/* Satellite 2: Wise · Stripe USD FIRC (Top-Right) */}
           <motion.div
             className="satellite-chip sat-top-right"
             animate={
               isClusteredHovered
-                ? { x: 75, y: -40, scale: 1.08, opacity: 1 }
-                : { x: -38, y: 30, scale: 0.95, opacity: 0.94 }
+                ? { x: 24, y: -16, scale: 1.05, opacity: 1 }
+                : { x: -26, y: 20, scale: 0.94, opacity: 0.95 }
             }
-            transition={{ type: "spring", stiffness: 320, damping: 20, mass: 0.8 }}
-            whileHover={{ scale: 1.15, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.8 }}
+            whileHover={{ scale: 1.12, zIndex: 40 }}
             whileTap={{ scale: 0.96 }}
           >
             <Link
@@ -348,16 +329,16 @@ export function HeroArtInteractive() {
             </Link>
           </motion.div>
 
-          {/* Satellite 3: Form RFD-11 LUT (Bottom-Left quadrant of Cards) */}
+          {/* Satellite 3: Form RFD-11 LUT (Bottom-Left) */}
           <motion.div
             className="satellite-chip sat-bot-left"
             animate={
               isClusteredHovered
-                ? { x: -80, y: 50, scale: 1.08, opacity: 1 }
-                : { x: 45, y: -28, scale: 0.95, opacity: 0.94 }
+                ? { x: -24, y: 16, scale: 1.05, opacity: 1 }
+                : { x: 26, y: -18, scale: 0.94, opacity: 0.95 }
             }
-            transition={{ type: "spring", stiffness: 320, damping: 20, mass: 0.8 }}
-            whileHover={{ scale: 1.15, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.8 }}
+            whileHover={{ scale: 1.12, zIndex: 40 }}
             whileTap={{ scale: 0.96 }}
           >
             <Link
@@ -376,16 +357,16 @@ export function HeroArtInteractive() {
             </Link>
           </motion.div>
 
-          {/* Satellite 4: TDS 194J Reconcile (Bottom-Right quadrant of Cards) */}
+          {/* Satellite 4: TDS 194J Reconcile (Bottom-Right) */}
           <motion.div
             className="satellite-chip sat-bot-right"
             animate={
               isClusteredHovered
-                ? { x: 75, y: 50, scale: 1.08, opacity: 1 }
-                : { x: -38, y: -28, scale: 0.95, opacity: 0.94 }
+                ? { x: 24, y: 16, scale: 1.05, opacity: 1 }
+                : { x: -26, y: -18, scale: 0.94, opacity: 0.95 }
             }
-            transition={{ type: "spring", stiffness: 320, damping: 20, mass: 0.8 }}
-            whileHover={{ scale: 1.15, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.8 }}
+            whileHover={{ scale: 1.12, zIndex: 40 }}
             whileTap={{ scale: 0.96 }}
           >
             <Link

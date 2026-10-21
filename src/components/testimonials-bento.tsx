@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import {
   Star,
   ShieldCheck,
@@ -10,81 +10,14 @@ import {
   ArrowUpRight,
   FileCheck,
   Sparkles,
-  Quote,
   Zap,
 } from "lucide-react";
 import { BorderBeam } from "./border-beam";
 
-interface TestimonialItem {
-  id: string;
-  category: "all" | "dev" | "video" | "consulting";
-  name: string;
-  role: string;
-  location: string;
-  platform: string;
-  badge: string;
-  savedAmount?: string;
-  comparison?: { oldTax: string; newTax: string };
-  quote: string;
-  highlightPhrase: string;
-  metric: string;
-  avatarColor: string;
-}
-
-const TESTIMONIALS_DATA: TestimonialItem[] = [
-  {
-    id: "aditya",
-    category: "dev",
-    name: "Aditya Kulkarni",
-    role: "Senior Cloud & Fullstack Contractor",
-    location: "Bengaluru",
-    platform: "Upwork Top Rated Plus · US Remote",
-    badge: "Section 44ADA Presumptive Tax",
-    savedAmount: "₹54,600",
-    comparison: { oldTax: "₹96,200", newTax: "₹41,600" },
-    quote:
-      "I used to dread tax season because my local CA kept filing my freelance earnings as business income with complex balance sheets. CreatorTax walked me through Section 44ADA and AY 2025-26 New Regime step-by-step. The 50% presumptive profit rule slashed my tax liability legally and saved me over ₹54,000.",
-    highlightPhrase: "slashed my tax liability legally and saved me over ₹54,000",
-    metric: "57% Tax Reduction",
-    avatarColor: "from-emerald-600 to-teal-800",
-  },
-  {
-    id: "priya",
-    category: "video",
-    name: "Priya Sharma",
-    role: "Motion Graphics Director & Video Editor",
-    location: "Mumbai",
-    platform: "Agencies in California & Berlin",
-    badge: "GST LUT Form RFD-11 & Wise e-FIRA",
-    quote:
-      "The Wise and PayPal e-FIRA guide is an absolute masterclass. My CA told me I had to pay 18% IGST and wait 8 months for a refund. Following CreatorTax's LUT renewal tutorial took me 12 minutes on the GST portal, and I've exported zero-rated invoices ever since.",
-    highlightPhrase: "took me 12 minutes on the GST portal, zero-rated invoices ever since",
-    metric: "18% Working Capital Preserved",
-    avatarColor: "from-amber-600 to-rose-700",
-  },
-  {
-    id: "rahul",
-    category: "consulting",
-    name: "Rahul Nair",
-    role: "Independent Distributed Systems Architect",
-    location: "Hyderabad",
-    platform: "Direct Foreign B2B Wire Contracts",
-    badge: "TDS 194J & AIS Reconciliation",
-    quote:
-      "What sets this platform apart is the statutory rigor. Every recommendation cites exact Sections of the Income Tax Act 1961 and RBI Master Directions. When an Indian domestic client deducted 10% instead of 1% under 194J, I cited CreatorTax's guide and got them to correct my Form 16A.",
-    highlightPhrase: "Every recommendation cites exact Sections of the Income Tax Act",
-    metric: "100% AIS Verification",
-    avatarColor: "from-blue-600 to-indigo-900",
-  },
-];
+type CategoryTab = "all" | "dev" | "video" | "consulting";
 
 export function TestimonialsBento() {
-  const [activeTab, setActiveTab] = useState<"all" | "dev" | "video" | "consulting">("all");
-
-  const filtered =
-    activeTab === "all"
-      ? TESTIMONIALS_DATA
-      : TESTIMONIALS_DATA.filter((t) => t.category === activeTab);
+  const [activeTab, setActiveTab] = useState<CategoryTab>("all");
 
   return (
     <div className="testimonials-bento-root">
@@ -102,7 +35,7 @@ export function TestimonialsBento() {
               role="tab"
               aria-selected={activeTab === tab.key}
               className={`bento-tab-btn ${activeTab === tab.key ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.key as any)}
+              onClick={() => setActiveTab(tab.key as CategoryTab)}
             >
               {tab.label}
               {activeTab === tab.key && (

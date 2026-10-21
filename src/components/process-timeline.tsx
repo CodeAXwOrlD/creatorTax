@@ -11,7 +11,6 @@ import {
   FileText,
   Percent,
   Sparkles,
-  ArrowUpRight,
 } from "lucide-react";
 import Link from "next/link";
 import { BorderBeam } from "./border-beam";
@@ -110,7 +109,7 @@ export function ProcessTimeline() {
           />
         </div>
 
-        <div className="timeline-steps-nav">
+        <div className="timeline-steps-nav" role="tablist" aria-label="Process steps navigation">
           {STEPS.map((step, idx) => {
             const isCurrent = activeStepIndex === idx;
             const isCompleted = activeStepIndex > idx;
@@ -119,6 +118,7 @@ export function ProcessTimeline() {
               <button
                 key={step.id}
                 type="button"
+                role="tab"
                 className={`timeline-step-btn ${isCurrent ? "active" : ""} ${isCompleted ? "completed" : ""}`}
                 onClick={() => setActiveStepIndex(idx)}
                 aria-selected={isCurrent}
@@ -143,7 +143,7 @@ export function ProcessTimeline() {
         </div>
       </div>
 
-      {/* ── Active Stage Dynamic Card Presentation (Cardboard.ai style) ── */}
+      {/* ── Active Stage Dynamic Card Presentation ── */}
       <div className="timeline-stage-viewport">
         <AnimatePresence mode="wait">
           <motion.div

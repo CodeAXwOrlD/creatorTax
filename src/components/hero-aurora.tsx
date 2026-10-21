@@ -5,6 +5,8 @@ import { useReducedMotion } from "motion/react";
 export function HeroAurora() {
   const shouldReduceMotion = useReducedMotion();
 
+  if (shouldReduceMotion) return null;
+
   return (
     <div className="hero-motion-root" aria-hidden="true">
       {/* ── Background Aurora / Cloud Mesh Waves (Full Width Ambient Atmosphere) ── */}

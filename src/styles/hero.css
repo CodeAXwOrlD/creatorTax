@@ -1,0 +1,401 @@
+/* ─── Hero Section & Layout ─────────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 88px 0 56px;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 70% 40%, rgba(18, 61, 52, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 15% 80%, rgba(193, 107, 67, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: 48px;
+}
+.hero h1 {
+  max-width: 680px;
+  margin: 18px 0 20px;
+  font-family: var(--font-serif);
+  font-size: clamp(42px, 5.2vw, 72px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.hero-copy {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+.trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper-card);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.trust-pill-icon {
+  color: var(--green);
+}
+
+/* ─── Ambient Cloud Shader Aurora Mesh ───────────────────────────────── */
+.hero-motion-root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+.aurora-container {
+  position: absolute;
+  inset: -100px -50px;
+  opacity: 0.85;
+  filter: blur(60px);
+}
+.aurora-mesh {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+.aurora-mesh.mesh-1 {
+  top: 10%;
+  left: 35%;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(200, 230, 215, 0.7) 0%, transparent 70%);
+  animation: auroraDrift1 18s ease-in-out infinite alternate;
+}
+.aurora-mesh.mesh-2 {
+  top: 30%;
+  right: 10%;
+  width: 480px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(235, 215, 185, 0.55) 0%, transparent 70%);
+  animation: auroraDrift2 22s ease-in-out infinite alternate;
+}
+.aurora-mesh.mesh-3 {
+  bottom: 10%;
+  left: 20%;
+  width: 520px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(167, 243, 208, 0.45) 0%, transparent 70%);
+  animation: auroraDrift1 26s ease-in-out infinite alternate-reverse;
+}
+.aurora-mesh.mesh-4 {
+  top: 50%;
+  left: 55%;
+  width: 420px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(193, 107, 67, 0.22) 0%, transparent 70%);
+  animation: auroraDrift2 20s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.08); }
+  100% { transform: translate(-30px, 40px) scale(0.96); }
+}
+@keyframes auroraDrift2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 35px) scale(1.1); }
+  100% { transform: translate(30px, -45px) scale(0.94); }
+}
+.aurora-noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: radial-gradient(#123d34 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* ─── Hero Art Interactive Canvas & Background Orbits ────────────────── */
+.hero-art {
+  min-height: 470px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.art-ring {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border: 1px dashed rgba(18, 61, 52, 0.18);
+  border-radius: 50%;
+  animation: spin 32s linear infinite;
+  pointer-events: none;
+}
+.art-ring-2 {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border: 1px dashed rgba(18, 61, 52, 0.12);
+  border-radius: 50%;
+  animation: spin 20s linear infinite reverse;
+  pointer-events: none;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.glass-blob {
+  position: absolute;
+  width: 250px;
+  height: 290px;
+  border: 1px solid rgba(200, 230, 215, 0.6);
+  border-radius: 42% 58% 48% 52% / 40% 38% 62% 60%;
+  background: linear-gradient(135deg, rgba(216, 238, 227, 0.85), rgba(76, 138, 119, 0.45) 55%, rgba(248, 245, 230, 0.82));
+  box-shadow:
+    inset 10px 10px 28px rgba(255, 255, 255, 0.7),
+    inset -12px -16px 28px rgba(18, 61, 52, 0.18),
+    0 40px 80px rgba(18, 61, 52, 0.18);
+  transform: rotate(14deg);
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(14deg); }
+  50%       { transform: translateY(-12px) rotate(10deg); }
+}
+
+/* ─── Hero Dual-Card Cluster (Non-Colliding Geometry) ─────────────────── */
+.hero-card-interactive-wrap {
+  position: absolute;
+  cursor: pointer;
+}
+.hero-card-interactive-wrap.receipt-wrap {
+  top: 14%;
+  right: 10%;
+  z-index: 12;
+}
+.hero-card-interactive-wrap.tax-wrap {
+  bottom: 10%;
+  left: 8%;
+  z-index: 14;
+}
+
+.hero-card {
+  position: relative;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 45px rgba(18, 61, 52, 0.12);
+  transition: box-shadow 0.28s, border-color 0.28s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.hero-card.receipt {
+  width: 236px;
+}
+.hero-card.tax {
+  width: 242px;
+  background: var(--green);
+  color: #fffdf7;
+  box-shadow: 0 24px 55px rgba(18, 61, 52, 0.28);
+}
+.hero-card.is-interactive-card:hover {
+  border-color: rgba(91, 224, 160, 0.5);
+  box-shadow: 0 28px 60px rgba(18, 61, 52, 0.22);
+}
+.hero-card small {
+  display: block;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.hero-card.tax small {
+  color: #9ec8b8;
+}
+.hero-card strong {
+  display: block;
+  margin: 8px 0 4px;
+  font-family: var(--font-serif);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.hero-card.tax strong {
+  color: #fffdf7;
+}
+.hero-card hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 10px 0;
+}
+.card-top-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.card-click-arrow {
+  color: var(--green);
+  transition: transform 0.2s;
+}
+.hero-card.is-interactive-card:hover .card-click-arrow {
+  transform: translate(2px, -2px);
+}
+.card-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(91, 224, 160, 0.2);
+  color: #72f0b4;
+  font-size: 10px;
+  font-weight: 700;
+}
+.card-click-hint {
+  margin-top: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--green);
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-click-hint.dark {
+  color: #a7f3d0;
+}
+.mini-bar {
+  height: 4px;
+  border-radius: 4px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+.mini-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5be0a0, #c8962a);
+  border-radius: 999px;
+}
+
+/* ─── Hero Art Satellite Motion Chips (Symmetrical Frame & Bloom) ─────── */
+.satellite-chips-orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+.satellite-chip {
+  position: absolute;
+  pointer-events: auto;
+  user-select: none;
+  z-index: 22;
+}
+.sat-top-left {
+  top: 6%;
+  left: 4%;
+}
+.sat-top-right {
+  top: 6%;
+  right: 4%;
+}
+.sat-bot-left {
+  bottom: 4%;
+  left: 2%;
+}
+.sat-bot-right {
+  bottom: 4%;
+  right: 2%;
+}
+
+.sat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(18, 61, 52, 0.16);
+  box-shadow: 0 10px 22px rgba(18, 61, 52, 0.11), 0 2px 6px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  color: var(--ink);
+  transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s, background 0.22s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sat-pill:hover {
+  background: #ffffff;
+  border-color: rgba(91, 224, 160, 0.6);
+  box-shadow: 0 16px 36px rgba(18, 61, 52, 0.18), 0 0 0 2px rgba(91, 224, 160, 0.25);
+}
+.sat-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sat-pill.green .sat-icon {
+  background: rgba(16, 185, 129, 0.14);
+  color: #059669;
+}
+.sat-pill.blue .sat-icon {
+  background: rgba(2, 132, 199, 0.14);
+  color: #0284c7;
+}
+.sat-pill.gold .sat-icon {
+  background: rgba(217, 119, 6, 0.14);
+  color: #d97706;
+}
+.sat-pill.emerald .sat-icon {
+  background: rgba(18, 61, 52, 0.14);
+  color: #123d34;
+}
+.sat-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.sat-text strong {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sat-text small {
+  font-size: 9px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.sat-arrow {
+  color: var(--muted);
+  transition: transform 0.18s, color 0.18s;
+  margin-left: 2px;
+}
+.sat-pill:hover .sat-arrow {
+  color: var(--green);
+  transform: translate(1.5px, -1.5px);
+}

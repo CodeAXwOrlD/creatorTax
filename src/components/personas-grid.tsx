@@ -10,9 +10,6 @@ import {
   Cpu,
   Smartphone,
   ArrowRight,
-  ShieldCheck,
-  Percent,
-  CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
 
