@@ -11,8 +11,10 @@ import {
   ExternalLink,
   ChevronRight,
   Calculator,
-  HelpCircle
+  HelpCircle,
+  Sparkles
 } from "lucide-react";
+import { CopyableDisputeTemplate } from "@/components/copyable-dispute-template";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -124,6 +126,27 @@ export default async function ArticlePage({
     ]
   };
 
+  // HowTo JSON-LD Schema for Google Rich Snippets (e.g. LUT renewal, e-FIRA download)
+  const howToSchema = article.howTo ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: article.howTo.name,
+    description: article.howTo.description,
+    totalTime: article.howTo.totalTime || "PT10M",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: "INR",
+      value: "0"
+    },
+    step: article.howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: step.url ? `${site}${step.url}` : `${articleUrl}#step-${index + 1}`
+    }))
+  } : null;
+
   return (
     <main>
       {/* Page Header */}
@@ -183,11 +206,16 @@ export default async function ArticlePage({
       {/* Main Content Layout */}
       <div className="container article-layout">
         <article className="article-content">
-          {/* Quick Answer Callout */}
-          <div className="quick-answer" style={{ marginBottom: 28 }}>
-            <strong style={{ display: "block", color: "var(--green)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
-              ⚡ Quick Summary (AEO)
-            </strong>
+          {/* Quick Summary AEO Definition Block */}
+          <div className="quick-summary quick-answer" data-aeo="direct-answer" style={{ marginBottom: 28 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
+              <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--green)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                <Sparkles size={14} /> Quick Summary (AEO Definition)
+              </strong>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "#e8f2ec", color: "var(--green)", letterSpacing: "0.02em" }}>
+                40-Word Direct Answer
+              </span>
+            </div>
             <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: "var(--ink)" }}>
               {article.quickAnswer}
             </p>
@@ -298,6 +326,10 @@ export default async function ArticlePage({
                     </tbody>
                   </table>
                 </div>
+              )}
+
+              {article.showDisputeTemplate && section.heading.toLowerCase().includes("section 194j") && (
+                <CopyableDisputeTemplate />
               )}
             </section>
           ))}
@@ -464,6 +496,12 @@ export default async function ArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
       />
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema).replace(/</g, "\\u003c") }}
+        />
+      )}
     </main>
   );
 }

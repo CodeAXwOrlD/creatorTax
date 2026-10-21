@@ -9,6 +9,19 @@ export interface ArticleFAQ {
   answer: string;
 }
 
+export interface ArticleHowToStep {
+  name: string;
+  text: string;
+  url?: string;
+}
+
+export interface ArticleHowTo {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: ArticleHowToStep[];
+}
+
 export interface ArticleSection {
   heading: string;
   paragraphs: string[];
@@ -35,6 +48,8 @@ export interface Article {
   commonTraps: string[];
   primarySources: ArticleSource[];
   faqs: ArticleFAQ[];
+  howTo?: ArticleHowTo;
+  showDisputeTemplate?: boolean;
 }
 
 export const articles: Article[] = [
@@ -47,7 +62,7 @@ export const articles: Article[] = [
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against CGST Rules & GST Portal circulars",
-    quickAnswer: "Eligible registered service exporters can furnish a Letter of Undertaking (LUT) in Form GST RFD-11 on the GST portal before April 1st of every financial year. This allows you to supply zero-rated export of services without paying integrated GST (IGST) upfront.",
+    quickAnswer: "Eligible registered service exporters can furnish a Letter of Undertaking (LUT) in Form GST RFD-11 on the GST portal before April 1st of every financial year. This allows supplying zero-rated export services without paying 18% integrated GST (IGST) tax upfront.",
     whoItAppliesTo: "Indian freelancers, software engineers, consultants, video editors, and agencies with active GST registration who invoice foreign clients in convertible foreign exchange.",
     statutoryLimits: "Valid for one complete financial year (April 1 to March 31). Requires dual witnesses and no prior prosecution for tax evasion exceeding ₹2.5 Crore under CGST Act Section 132.",
     sections: [
@@ -129,7 +144,44 @@ export const articles: Article[] = [
         question: "Can I file an LUT if my turnover is below ₹20 Lakhs?",
         answer: "If you have opted for voluntary GST registration or are registered for cross-border export of services, you can and should file an LUT to ensure your invoices remain zero-rated."
       }
-    ]
+    ],
+    howTo: {
+      name: "How to Renew GST LUT (Form RFD-11) Online for FY 2025-26",
+      description: "Step-by-step procedure to furnish and renew Form GST RFD-11 Letter of Undertaking on the official GST portal to export freelance services without paying 18% IGST upfront.",
+      totalTime: "PT10M",
+      steps: [
+        {
+          name: "Step 1: Log in to GST Portal",
+          text: "Visit gst.gov.in and log in using your valid GSTIN username, password, and captcha.",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        },
+        {
+          name: "Step 2: Navigate to Furnish LUT Form",
+          text: "From the dashboard menu, navigate to Services → User Services → Furnish Letter of Undertaking (LUT).",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        },
+        {
+          name: "Step 3: Select the Applicable Financial Year",
+          text: "Select the upcoming Financial Year (e.g. 2025-2026) from the LUT application dropdown list.",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        },
+        {
+          name: "Step 4: Accept Rule 96A Statutory Undertakings",
+          text: "Read and select all three statutory declaration checkboxes agreeing to export compliance conditions under CGST Rule 96A.",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        },
+        {
+          name: "Step 5: Provide Independent Witness Details",
+          text: "Enter full legal names, residential addresses, and occupations for two independent adult witnesses.",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        },
+        {
+          name: "Step 6: Sign with EVC OTP or DSC and Download ARN",
+          text: "Select the authorized signatory, enter the filing place, verify using mobile/email EVC OTP, and download your instant Application Reference Number (ARN) acknowledgment slip.",
+          url: "/guides/renew-gst-lut-online#step-by-step-portal-navigation"
+        }
+      ]
+    }
   },
   {
     slug: "section-44ada-presumptive-tax-guide",
@@ -140,7 +192,7 @@ export const articles: Article[] = [
     readTime: "11 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Section 44ADA, Section 44AA & Finance Act amendments",
-    quickAnswer: "Section 44ADA allows eligible Indian professionals with gross annual receipts up to ₹75 Lakhs (provided cash receipts <= 5%) to declare 50% of their gross turnover as taxable profit, freeing them from maintaining burdensome accounting books and statutory tax audits under Section 44AB.",
+    quickAnswer: "Section 44ADA allows eligible Indian professionals with annual gross receipts up to ₹75 Lakhs to declare 50% of turnover as taxable profit, legally exempting them from maintaining burdensome accounting books and undergoing statutory tax audits under Section 44AB audit provisions.",
     whoItAppliesTo: "Resident individual freelancers, software developers, technical consultants, UI/UX designers, film artists, and video editors rendering professional services.",
     statutoryLimits: "Turnover ceiling of ₹75 Lakhs (if cash <= 5%) or ₹50 Lakhs (if cash > 5%). Minimum 50% profit declaration required; higher profit can be declared voluntarily.",
     sections: [
@@ -221,7 +273,7 @@ export const articles: Article[] = [
     readTime: "9 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against RBI Master Directions on Export of Goods and Services",
-    quickAnswer: "To treat foreign freelance income as zero-rated under GST and prove that foreign currency entered India legally under FEMA regulations, you must obtain an e-FIRA (Foreign Inward Remittance Advice) or NOC from your intermediary bank containing the correct RBI purpose code (e.g., P0802 for software or P1007 for advertising).",
+    quickAnswer: "To export freelance services zero-rated under GST and satisfy FEMA guidelines, Indian professionals must obtain an e-FIRA from their Authorized Dealer bank containing a valid RBI purpose code like P0802 or P0902 proving inward foreign currency remittance into their account.",
     whoItAppliesTo: "Independent software contractors, graphic designers, writers, creators, and consultants receiving USD, EUR, GBP, or other foreign currencies through PayPal, Wise, Stripe, Payoneer, or direct wire transfers.",
     statutoryLimits: "RBI regulations require export proceeds to be realized and repatriated to India within 9 months from the date of invoice.",
     sections: [
@@ -259,6 +311,38 @@ export const articles: Article[] = [
             ["P0902", "Audio, visual & artistic production", "Video editors, animators, music producers"]
           ]
         }
+      },
+      {
+        heading: "HDFC Bank Purpose Code Change for Wise (Step-by-Step)",
+        paragraphs: [
+          "When international clients send funds through Wise directly into an HDFC Bank savings or current account, HDFC frequently halts the auto-credit or flags the transaction under general maintenance code P1301 unless explicitly confirmed.",
+          "Follow this exact NetBanking procedure to rectify and permanently lock your purpose code:",
+          "1. Log into HDFC NetBanking and navigate to: Accounts → Transact → Foreign Inward Remittance.",
+          "2. Locate the pending foreign remittance by its Unique Transaction Reference (UTR) or Inward Reference number.",
+          "3. In the 'Purpose of Remittance' dropdown, change the default code to P0802 (Software Consultancy) or P0902 (Audio-Visual / Creative Services).",
+          "4. Attach your client invoice copy and confirm your GST LUT ARN number in the digital declaration form.",
+          "5. Submit the disposal request. HDFC will convert the funds at the agreed card rate and issue your digitally signed e-FIRA within 24 to 48 banking hours."
+        ],
+        bullets: [
+          "Ensure your Wise recipient profile legal name matches your HDFC account name and PAN exactly.",
+          "Avoid selecting P0000 or general family maintenance P1301, as GST officers routinely disqualify zero-rated export claims lacking an export purpose code.",
+          "For recurring monthly retainers, submit a one-time Standing Instruction mandate with your HDFC branch manager for automatic P0802 disposal."
+        ]
+      },
+      {
+        heading: "ICICI Inward Remittance Certificate (e-FIRA) for P0802",
+        paragraphs: [
+          "ICICI Bank offers a fully digitized e-FIRA issuance pipeline through its Trade Online and Corporate NetBanking portals for freelancers receiving USD SWIFT wires or Stripe exports:",
+          "1. Log into ICICI Corporate NetBanking or Trade Online portal.",
+          "2. Navigate to: Trade Online → Inward Remittance → Disposal of Inward Remittance (DIR) / Request e-FIRA.",
+          "3. Select the unsettled foreign credit and enter your corresponding commercial invoice number and buyer country.",
+          "4. Map the RBI Purpose Code explicitly to P0802 (Software Implementation and IT Services).",
+          "5. Submit the digital FEMA declaration. Once processed, head to: Reports → Remittance Certificates to download your digitally sealed e-FIRA containing the official IRM (Inward Remittance Message) reference."
+        ],
+        bullets: [
+          "The ICICI e-FIRA PDF includes the Authorized Dealer (AD) code, exchange rate, and IRM number required for GSTR-1 Table 6A audits.",
+          "Download and archive your e-FIRA within 90 days of credit, as retrieving historical records beyond 12 months requires a manual branch service request."
+        ]
       }
     ],
     commonTraps: [
@@ -286,8 +370,48 @@ export const articles: Article[] = [
       {
         question: "Is there a fee for getting an e-FIRA?",
         answer: "Direct bank wire transfers from Indian banks often charge ₹100–₹500 + GST per FIRC request. Fintech platforms like Wise provide e-FIRAs free of charge directly within their platform for eligible export purpose codes."
+      },
+      {
+        question: "How do I change the purpose code in HDFC Bank for a Wise transfer?",
+        answer: "Log into HDFC NetBanking → Accounts → Transact → Foreign Inward Remittance, select the pending UTR transaction, and change the purpose code to P0802 (Software) or P0902 (Creative Media) before submitting your export invoice declaration."
+      },
+      {
+        question: "How do I download an ICICI Bank inward remittance certificate (e-FIRA) for P0802?",
+        answer: "Log into ICICI Trade Online → Inward Remittance → Request e-FIRA, select your SWIFT transaction, map Purpose Code P0802, and download the digitally certified e-FIRA PDF with IRM reference from Reports."
       }
-    ]
+    ],
+    howTo: {
+      name: "How to Download and Reconcile e-FIRA / FIRC for Foreign Freelance Payouts",
+      description: "Step-by-step procedure for Indian freelancers to generate, download, and reconcile electronic Foreign Inward Remittance Advices (e-FIRA) across Wise, PayPal, Stripe, and Indian AD-1 banks.",
+      totalTime: "PT8M",
+      steps: [
+        {
+          name: "Step 1: Identify Inward Remittance Transaction",
+          text: "Locate the specific foreign payment in your payment gateway dashboard (Wise, PayPal, Stripe) and record the Unique Transaction Reference (UTR) and currency value.",
+          url: "/guides/paypal-wise-stripe-firc-guide#how-different-payment-rails-handle-remittance-advice"
+        },
+        {
+          name: "Step 2: Confirm Authorized RBI Purpose Code",
+          text: "Verify that the inward remittance is mapped to an authorized export purpose code (P0802 for software, P0902 for video/media, P1007 for advertising).",
+          url: "/guides/paypal-wise-stripe-firc-guide#rbi-purpose-codes-getting-the-classification-right"
+        },
+        {
+          name: "Step 3: Access Partner Bank NetBanking Portal",
+          text: "For direct SWIFT wires, log into your AD-1 bank portal (HDFC NetBanking or ICICI Trade Online) and navigate to the Foreign Inward Remittance section.",
+          url: "/guides/paypal-wise-stripe-firc-guide#hdfc-bank-purpose-code-change-for-wise-step-by-step"
+        },
+        {
+          name: "Step 4: Submit Disposal of Inward Remittance (DIR)",
+          text: "Attach your commercial client invoice and submit the digital FEMA disposal declaration confirming export of professional services.",
+          url: "/guides/paypal-wise-stripe-firc-guide#icici-inward-remittance-certificate-e-fira-for-p0802"
+        },
+        {
+          name: "Step 5: Download and Archive Certified e-FIRA PDF",
+          text: "Download the digitally signed e-FIRA carrying the Bank AD Code, Inward Remittance Message (IRM) reference, foreign currency amount, and conversion rate for GST records.",
+          url: "/guides/paypal-wise-stripe-firc-guide#icici-inward-remittance-certificate-e-fira-for-p0802"
+        }
+      ]
+    }
   },
   {
     slug: "claim-tds-refund-freelancers",
@@ -298,9 +422,10 @@ export const articles: Article[] = [
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Income Tax Return filing rules & AIS portal workflows",
-    quickAnswer: "If domestic clients deducted 10% TDS under Section 194J or 2% under Section 194C, and your final tax liability under Section 44ADA or standard regime is lower than the tax deducted, you are legally entitled to a 100% refund of the excess TDS with interest under Section 244A by filing your ITR.",
+    quickAnswer: "If domestic clients deducted 10% TDS under Section 194J or 2% under 194C exceeding your actual tax liability under Section 44ADA, you are legally entitled to claim a 100% refund of excess tax with interest by filing your annual ITR.",
     whoItAppliesTo: "All Indian freelancers, video editors, designers, and consultants who receive payments from domestic companies after TDS deductions.",
     statutoryLimits: "Refund claims must be filed before the statutory ITR deadline (typically July 31st for non-audit individuals). Interest of 0.5% per month is paid by the IT department on delayed refunds under Section 244A.",
+    showDisputeTemplate: true,
     sections: [
       {
         heading: "Why Do Domestic Clients Deduct TDS?",
@@ -331,6 +456,19 @@ export const articles: Article[] = [
           "• New Tax Regime liability on ₹6,00,000: Base tax is ₹15,000, but Section 87A rebate covers 100% of tax because income is under ₹7,00,000. Final tax liability = ₹0.",
           "• Net tax outcome: Final tax (₹0) minus TDS credit (₹1,20,000) = ₹1,20,000 Full Refund Due directly to your pre-validated bank account!"
         ]
+      },
+      {
+        heading: "Section 194J 10% Deduction Dispute Email Template",
+        paragraphs: [
+          "A frequent grievance among Indian software developers, graphic designers, and video editors is that domestic corporate clients routinely withhold 10% TDS under Section 194J(1), mistaking their contract for high-tier professional legal/medical advisory.",
+          "Under CBDT Circular No. 720 and Section 194J(1)(ba), fees for technical services (FTS) attract a reduced TDS withholding rate of 2%. Furthermore, if your engagement is structured as work contract production (such as bulk video editing or content writing), Section 194C applies with a 1% rate for individuals.",
+          "When clients over-deduct 10%, they needlessly lock up your working capital for up to 14 months until your ITR refund arrives. Use our standardized legal dispute template below to request your client's accounts team to revise Form 26Q or adjust subsequent invoices:"
+        ],
+        bullets: [
+          "Send the dispute notice before the 7th of the following month, when companies deposit TDS with the government.",
+          "If the quarter has already ended, request an adjustment against forthcoming milestones or ask the finance controller to file a correction statement on TRACES.",
+          "Always cite Section 194J(1)(ba) and attach your scope of work proving technical/design services rather than notified specified professions."
+        ]
       }
     ],
     commonTraps: [
@@ -358,8 +496,39 @@ export const articles: Article[] = [
       {
         question: "Can I apply for a Lower or Nil TDS deduction certificate?",
         answer: "Yes. Under Section 197, if you know your final tax liability will be nil or very low, you can submit Form 13 online on the TRACES portal to obtain a Lower TDS Certificate authorizing clients to deduct 0% or 1% TDS."
+      },
+      {
+        question: "What email template should I send to clients who incorrectly deducted 10% TDS under Section 194J?",
+        answer: "Send a formal dispute citing Section 194J(1)(ba) (which mandates 2% for technical services) or Section 194C (1% for individual contracts). Use our copyable dispute template above, requesting Form 26Q revision or upcoming milestone offset."
       }
-    ]
+    ],
+    howTo: {
+      name: "How to Reconcile Form 26AS/AIS and Claim Full TDS Refund",
+      description: "Step-by-step procedure for Indian freelancers to verify client TDS deductions, resolve mismatches, and claim 100% refund in annual ITR.",
+      totalTime: "PT15M",
+      steps: [
+        {
+          name: "Step 1: Download Form 26AS and AIS",
+          text: "Log into incometax.gov.in, navigate to e-File → Income Tax Returns → View Form 26AS and Annual Information Statement (AIS).",
+          url: "/guides/claim-tds-refund-freelancers#reconciling-form-26as-ais-and-your-bank-statements"
+        },
+        {
+          name: "Step 2: Reconcile Client TAN Deductions",
+          text: "Match every TDS deduction in 26AS against your domestic client invoice ledger to identify any missing quarterly credits.",
+          url: "/guides/claim-tds-refund-freelancers#reconciling-form-26as-ais-and-your-bank-statements"
+        },
+        {
+          name: "Step 3: Send Section 194J Dispute Notice for Over-Deductions",
+          text: "If a client erroneously deducted 10% under 194J on contract work, send the formal dispute email template to request Form 26Q correction.",
+          url: "/guides/claim-tds-refund-freelancers#section-194j-10-deduction-dispute-email-template"
+        },
+        {
+          name: "Step 4: File ITR-4 with Pre-Validated Bank Account",
+          text: "Submit ITR-4 declaring 50% presumptive profit under Section 44ADA, apply TDS credits, and trigger an automated refund to your pre-validated bank account.",
+          url: "/guides/claim-tds-refund-freelancers#the-refund-calculation-step-by-step-example"
+        }
+      ]
+    }
   },
   {
     slug: "rent-electricity-business-expenses",
@@ -370,7 +539,7 @@ export const articles: Article[] = [
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Section 30-38 of Income Tax Act",
-    quickAnswer: "If you file ITR-3 under the regular business computation method, you can claim actual expenses wholly and exclusively incurred for your profession (including proportionate home office rent, electricity, depreciation on laptops, and software subscriptions). However, if you opt for Section 44ADA presumptive taxation, you cannot deduct any separate expenses—the 50% profit margin automatically absorbs all deductions.",
+    quickAnswer: "Under regular ITR-3 business computation, Indian freelancers can deduct proportionate home office rent, electricity bills, software licenses, and laptop depreciation. Conversely, under Section 44ADA presumptive taxation, no separate expenses can be claimed because the flat 50% assumption absorbs all deductions.",
     whoItAppliesTo: "Independent creators, video production houses, developers, and consultants evaluating whether to claim actual expenses or opt for presumptive taxation.",
     statutoryLimits: "Expenses must be backed by GST invoices, digital bank payments (cash payments above ₹10,000 per day are disallowed under Section 40A(3)), and reasonable allocation formulas.",
     sections: [
@@ -435,7 +604,7 @@ export const articles: Article[] = [
     readTime: "7 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Indian Contract Act & CGST Invoicing Rules",
-    quickAnswer: "A written master service agreement (MSA) or statement of work (SOW) protects your payment terms, limits revisions, assigns intellectual property only upon full receipt of payment, and provides legal evidence to support zero-rated GST export claims during tax scrutiny.",
+    quickAnswer: "A written master service agreement or statement of work protects freelancer payment terms, caps client revisions, transfers intellectual property solely upon complete invoice settlement, and provides concrete documentary evidence to satisfy tax authorities during scrutiny of zero-rated GST export remittances.",
     whoItAppliesTo: "All independent professionals dealing with domestic and international clients.",
     statutoryLimits: "Governed by the Indian Contract Act, 1872 and Information Technology Act, 2000 (validating digital signatures and email agreements).",
     sections: [
@@ -486,7 +655,7 @@ export const articles: Article[] = [
     readTime: "9 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Section 208, 211, 234B & 234C of Income Tax Act",
-    quickAnswer: "If your estimated net tax liability (after subtracting TDS) exceeds ₹10,000 for the financial year, you must pay advance tax. While regular businesses pay in 4 quarterly installments, professionals opting for Section 44ADA are legally permitted to pay 100% of their advance tax in a single payment on or before March 15th.",
+    quickAnswer: "Indian freelancers whose estimated net tax liability exceeds ₹10,000 must pay advance tax preventing Section 234B and 234C interest penalties. While regular taxpayers pay in four quarterly installments, Section 44ADA professionals pay 100% in a single installment by March 15.",
     whoItAppliesTo: "All Indian freelancers, developers, creators, and professionals earning income without sufficient TDS withholding (especially USD/export earners).",
     statutoryLimits: "Applies when net tax payable exceeds ₹10,000. Interest under Section 234C (1% per month on shortfall) and Section 234B (1% per month on unpaid balance after March 31).",
     sections: [
@@ -554,7 +723,7 @@ export const articles: Article[] = [
     readTime: "10 min read",
     author: "CreatorTax Editorial Team",
     reviewer: "Verified against Finance Act 2024 slab modifications",
-    quickAnswer: "For most freelancers with presumptive profit up to ₹7 Lakhs (gross turnover up to ₹14 Lakhs under 44ADA), the New Tax Regime is an unbeatable winner with ₹0 tax liability due to Section 87A rebate. For higher incomes, the New Regime generally beats the Old Regime unless you have over ₹3.5–₹4 Lakhs in eligible deductions (80C, 80D, home loan interest).",
+    quickAnswer: "For Indian freelancers with presumptive profit up to ₹7 Lakhs, the default New Tax Regime provides ₹0 tax liability via Section 87A rebate. For higher revenues, the New Regime beats Old Regime unless you claim over ₹3.75 Lakhs in deductions.",
     whoItAppliesTo: "All individual Indian freelancers, consultants, and creators choosing their tax regime for AY 2025-26.",
     statutoryLimits: "The New Regime is now the default regime under Section 115BAC. Individuals with professional income must file Form 10-IEA if they wish to opt for the Old Regime.",
     sections: [
