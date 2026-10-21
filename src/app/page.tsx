@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   BookOpen,
   Calculator,
-  Sparkles,
   CheckCircle2,
   ChevronDown,
   Users,
@@ -248,8 +247,7 @@ export default function HomePage() {
         <div className="container feature-grid">
           <Reveal direction="left" distance={45} spring={true}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
-              <Sparkles size={16} color="#f4d03f" />
-              <span className="eyebrow" style={{ color: "#a8c9bc", margin: 0 }}>
+              <span className="eyebrow" style={{ color: "#93c5fd", margin: 0 }}>
                 Interactive Tax Estimator
               </span>
             </div>
@@ -270,8 +268,8 @@ export default function HomePage() {
                 "Single March 15th advance tax for 44ADA professionals",
                 "New regime default from AY 2024-25 onwards",
               ].map((point) => (
-                <li key={point} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13.5, color: "#c0d8ce" }}>
-                  <CheckCircle2 size={16} color="#5be0a0" style={{ flexShrink: 0, marginTop: 2 }} />
+                <li key={point} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13.5, color: "#94a3b8" }}>
+                  <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0, marginTop: 2 }} />
                   {point}
                 </li>
               ))}
@@ -279,7 +277,7 @@ export default function HomePage() {
 
             <Link
               className="btn"
-              style={{ background: "#f6f2e9", color: "#123d34", borderColor: "#f6f2e9" }}
+              style={{ background: "#ffffff", color: "#0f172a", borderColor: "#ffffff", fontWeight: 700 }}
               href="/tools/44ada-calculator"
             >
               Launch Full 44ADA Calculator <ArrowRight size={15} />
@@ -331,12 +329,12 @@ export default function HomePage() {
         <div className="container">
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 52 }}>
-              <span className="eyebrow">Freelance Discipline Matrix</span>
+              <span className="eyebrow">Tailored by Profession</span>
               <h2 className="serif" style={{ marginTop: 14 }}>
-                Choose your discipline.<br />See your exact tax numbers.
+                Select your line of work.<br />See your exact tax &amp; compliance rules.
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 600, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
-                Statutory eligibility under Section 44ADA, AY 2025-26 tax savings ledger, and mandatory compliance shields calibrated to how you actually bill domestic and foreign clients.
+              <p style={{ color: "var(--muted)", maxWidth: 620, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
+                Section 44ADA eligibility, real AY 2025-26 tax savings comparison, and the exact paperwork (GST LUT, e-FIRA, and TDS credits) required for your client invoicing model.
               </p>
             </div>
           </Reveal>
@@ -349,12 +347,12 @@ export default function HomePage() {
       <section className="testimonials-band">
         <div className="container">
           <Reveal>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center", marginBottom: 44 }}>
               <span className="eyebrow">Verified Community Outcomes</span>
               <h2 className="serif" style={{ marginTop: 14 }}>
                 Real numbers. Real filings. Zero CA guesswork.
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 560, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
+              <p style={{ color: "var(--muted)", maxWidth: 580, margin: "14px auto 0", fontSize: 15, lineHeight: 1.75 }}>
                 How Indian software engineers, video editors, and remote contractors eliminate unnecessary taxes and file statutory compliances with 100% confidence.
               </p>
             </div>
@@ -416,11 +414,11 @@ export default function HomePage() {
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 7,
                 padding: "6px 16px", borderRadius: 999,
-                border: "1px solid rgba(255,255,255,.2)",
+                border: "1px solid rgba(255,255,255,.18)",
                 background: "rgba(255,255,255,.08)", fontSize: 11.5,
-                color: "#a8c9bc", fontWeight: 700, letterSpacing: ".06em"
+                color: "#94a3b8", fontWeight: 700, letterSpacing: ".06em"
               }}>
-                <Users size={13} /> 1,000+ Indian freelancers trust this resource
+                <Users size={13} color="#2563EB" /> 1,000+ Indian freelancers trust this resource
               </span>
             </div>
             <h2 className="serif">
@@ -433,7 +431,7 @@ export default function HomePage() {
             <div className="cta-actions">
               <Link
                 className="btn"
-                style={{ background: "#f6f2e9", color: "#123d34", borderColor: "#f6f2e9", minHeight: 52, fontSize: 15 }}
+                style={{ background: "#2563EB", color: "#ffffff", borderColor: "#2563EB", minHeight: 52, fontSize: 15, boxShadow: "0 8px 25px rgba(37,99,235,0.35)" }}
                 href="/tools/44ada-calculator"
               >
                 <TrendingUp size={18} />

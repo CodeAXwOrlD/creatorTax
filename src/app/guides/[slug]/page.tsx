@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Calculator,
   HelpCircle,
-  Sparkles,
+  FileCheck,
   Home,
   CheckCircle2,
   Scale,
@@ -215,8 +215,8 @@ export default async function ArticlePage({
           {/* Quick Summary AEO Definition Block */}
           <div className="quick-summary quick-answer" data-aeo="direct-answer" style={{ marginBottom: 32 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
-              <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--green)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                <Sparkles size={14} /> Quick Summary (AEO Direct Answer)
+              <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--cobalt)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                <FileCheck size={14} /> Quick Summary (AEO Direct Answer)
               </strong>
               <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "#e8f2ec", color: "var(--green)", letterSpacing: "0.02em" }}>
                 40-Word Direct Answer
@@ -511,10 +511,10 @@ export default async function ArticlePage({
           {article.howTo && (
             <a
               href="#step-by-step-procedure"
-              style={{ display: "flex", alignItems: "center", justifyContent: "space-between", color: "var(--green)", fontWeight: 600 }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "space-between", color: "var(--cobalt)", fontWeight: 600 }}
             >
               <span>Step-by-Step Procedure</span>
-              <Sparkles size={11} />
+              <FileCheck size={11} />
             </a>
           )}
 

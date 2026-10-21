@@ -2,22 +2,23 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import { Star } from "lucide-react";
 import {
-  Star,
-  ShieldCheck,
-  CheckCircle2,
-  TrendingUp,
-  ArrowUpRight,
-  FileCheck,
-  Sparkles,
-  Zap,
-} from "lucide-react";
-import { BorderBeam } from "./border-beam";
+  UpworkLogo,
+  GstCertificateIcon,
+  StatutoryShieldIcon,
+  TaxReceiptSlipIcon,
+  FinancialCalcIcon,
+} from "./brand-and-doc-icons";
 
 type CategoryTab = "all" | "dev" | "video" | "consulting";
 
 export function TestimonialsBento() {
   const [activeTab, setActiveTab] = useState<CategoryTab>("all");
+  const [filingMode, setFilingMode] = useState<"44ada" | "itr3">("44ada");
+
+  const isDimmed = (cat: CategoryTab) => activeTab !== "all" && activeTab !== cat;
+  const isFocused = (cat: CategoryTab) => activeTab === cat;
 
   return (
     <div className="testimonials-bento-root">
@@ -52,12 +53,14 @@ export function TestimonialsBento() {
 
       {/* ── Asymmetrical Bento Grid ── */}
       <div className="bento-grid-layout">
-        {/* Featured Hero Bento Card: Aditya (or primary selected) */}
-        <div className="bento-card bento-hero-card">
-          <BorderBeam size={280} duration={14} colorFrom="#5be0a0" colorTo="#c8962a" />
-          
-          {/* Subtle Ambient Aura */}
-          <div className="card-ambient-glow" />
+        {/* Featured Hero Bento Card: Aditya Kulkarni */}
+        <div
+          className={`bento-card bento-hero-card ${isDimmed("dev") ? "is-dimmed" : ""} ${
+            isFocused("dev") ? "is-focused" : ""
+          }`}
+        >
+          {/* Subtle Fintech Dot Matrix Overlay */}
+          <div className="card-tech-grid" aria-hidden="true" />
           <div className="quote-watermark" aria-hidden="true">
             “
           </div>
@@ -65,16 +68,19 @@ export function TestimonialsBento() {
           <div className="bento-card-inner">
             <div className="bento-header-row">
               <div className="bento-tag-wrap">
-                <span className="bento-pill green">
-                  <span className="pulse-dot-sm" />
-                  Verified Freelance Case Study
+                <span className="bento-pill cobalt">
+                  <StatutoryShieldIcon size={12} />
+                  Verified Case Study
                 </span>
-                <span className="bento-pill platform">Upwork Top Rated Plus</span>
+                <span className="bento-pill platform" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <UpworkLogo size={13} />
+                  Upwork Top Rated Plus
+                </span>
               </div>
 
-              {/* Tax Savings Metric Highlight */}
+              {/* Tax Savings Metric Highlight (Replaced AI sparkles with Tax Receipt Slip) */}
               <div className="savings-badge">
-                <Sparkles size={13} className="text-gold" />
+                <TaxReceiptSlipIcon size={13} className="text-gold" />
                 <span>Saved <strong>₹54,600</strong> in Tax</span>
               </div>
             </div>
@@ -83,25 +89,60 @@ export function TestimonialsBento() {
             <div className="bento-quote-box">
               <p className="bento-quote-text">
                 &ldquo;I used to dread tax season because my local CA kept filing my freelance earnings as business income with complex balance sheets. CreatorTax walked me through Section 44ADA and AY 2025-26 New Regime step-by-step. The 50% presumptive profit rule{" "}
-                <mark className="highlight-mark">slashed my tax liability legally and saved me over ₹54,000</mark>.&rdquo;
+                <mark className="highlight-mark cobalt">slashed my tax liability legally and saved me over ₹54,000</mark>.&rdquo;
               </p>
             </div>
 
-            {/* Tax Comparison Visual Breakdown */}
-            <div className="tax-comparison-pill">
-              <div className="comp-item">
-                <span className="comp-label">Old Regular ITR-3</span>
-                <strong className="comp-value strike">₹96,200</strong>
+            {/* Creative Interactive Tax Filing Comparison Ledger */}
+            <div className="interactive-ledger-slip" aria-label="Interactive Tax Comparison Ledger">
+              <div className="ledger-top-bar">
+                <div className="ledger-title-group">
+                  <FinancialCalcIcon size={14} className="text-cobalt" />
+                  <span>Statutory Filing Comparison (Gross: ₹24,00,000)</span>
+                </div>
+                <div className="ledger-toggle-switch" role="group" aria-label="Select filing method">
+                  <button
+                    type="button"
+                    className={`ledger-switch-btn ${filingMode === "44ada" ? "active" : ""}`}
+                    onClick={() => setFilingMode("44ada")}
+                  >
+                    Sec 44ADA
+                  </button>
+                  <button
+                    type="button"
+                    className={`ledger-switch-btn ${filingMode === "itr3" ? "active" : ""}`}
+                    onClick={() => setFilingMode("itr3")}
+                  >
+                    Regular ITR-3
+                  </button>
+                </div>
               </div>
-              <div className="comp-divider">
-                <ArrowUpRight size={14} className="text-green-accent" />
-              </div>
-              <div className="comp-item">
-                <span className="comp-label">Sec 44ADA (AY 25-26)</span>
-                <strong className="comp-value green">₹41,600</strong>
-              </div>
-              <div className="comp-pill-badge">
-                <TrendingUp size={11} /> 57% Tax Saved
+
+              <div className="ledger-data-grid">
+                <div className="ledger-data-col">
+                  <span className="ledger-data-lbl">Taxable Profit</span>
+                  <strong className={`ledger-data-val ${filingMode === "44ada" ? "highlight-emerald" : ""}`}>
+                    {filingMode === "44ada" ? "₹12,00,000 (Flat 50%)" : "₹18,50,000 (Assessed)"}
+                  </strong>
+                </div>
+                <div className="ledger-data-col">
+                  <span className="ledger-data-lbl">Final Tax Liability</span>
+                  <strong className={`ledger-data-val ${filingMode === "44ada" ? "highlight-emerald" : "strike-muted"}`}>
+                    {filingMode === "44ada" ? "₹41,600 (AY 25-26)" : "₹96,200 (Old Slabs)"}
+                  </strong>
+                </div>
+                <div className="ledger-data-col">
+                  <span className="ledger-data-lbl">Books of Accounts</span>
+                  <strong className="ledger-data-val">
+                    {filingMode === "44ada" ? "0 Required (Sec 44AA Exempt)" : "Mandatory P&L + Balance Sheet"}
+                  </strong>
+                </div>
+                <div className="ledger-data-col">
+                  <span className="ledger-data-lbl">Verified Outcome</span>
+                  <span className={`ledger-verdict-pill ${filingMode === "44ada" ? "emerald" : "amber"}`}>
+                    {filingMode === "44ada" ? "✓ 57% Tax Saved legally (₹54,600)" : "⚠ ₹54,600 Excess Tax + Audit Costs"}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -112,7 +153,7 @@ export function TestimonialsBento() {
                   <span>AK</span>
                 </div>
                 <div className="author-verified-badge" title="Verified Independent Worker">
-                  <CheckCircle2 size={12} />
+                  <StatutoryShieldIcon size={10} />
                 </div>
               </div>
               <div className="author-info">
@@ -129,11 +170,15 @@ export function TestimonialsBento() {
         </div>
 
         {/* Bento Card 2: Priya Sharma (GST LUT & Foreign Inward) */}
-        <div className="bento-card bento-card-compact bento-card-light">
+        <div
+          className={`bento-card bento-card-compact bento-card-light ${
+            isDimmed("video") ? "is-dimmed" : ""
+          } ${isFocused("video") ? "is-focused" : ""}`}
+        >
           <div className="bento-card-inner">
             <div className="bento-header-row">
               <span className="bento-pill gold">
-                <FileCheck size={12} />
+                <GstCertificateIcon size={13} />
                 GST LUT · Zero IGST
               </span>
               <span className="bento-pill-mini">Export of Services</span>
@@ -146,10 +191,10 @@ export function TestimonialsBento() {
               </p>
             </div>
 
-            {/* Interactive LUT Document Badge */}
+            {/* Interactive LUT Document Badge with Official SVG */}
             <div className="mini-doc-preview">
               <div className="doc-icon-wrap">
-                <FileCheck size={16} className="text-emerald" />
+                <GstCertificateIcon size={17} className="text-emerald" />
               </div>
               <div className="doc-meta">
                 <strong>Form GST RFD-11</strong>
@@ -172,11 +217,15 @@ export function TestimonialsBento() {
         </div>
 
         {/* Bento Card 3: Rahul Nair (TDS 194J & Rigor) */}
-        <div className="bento-card bento-card-compact bento-card-dark">
+        <div
+          className={`bento-card bento-card-compact bento-card-dark ${
+            isDimmed("consulting") ? "is-dimmed" : ""
+          } ${isFocused("consulting") ? "is-focused" : ""}`}
+        >
           <div className="bento-card-inner">
             <div className="bento-header-row">
-              <span className="bento-pill emerald">
-                <ShieldCheck size={12} />
+              <span className="bento-pill cobalt">
+                <StatutoryShieldIcon size={13} />
                 Primary Statute Citations
               </span>
               <span className="bento-pill-mini">Sec 194J &amp; 44ADA</span>
@@ -185,7 +234,7 @@ export function TestimonialsBento() {
             <div className="bento-quote-box compact">
               <p className="bento-quote-text small">
                 &ldquo;What sets this platform apart is statutory rigor. Every claim links to the Income Tax Act or RBI Master Directions. When a client deducted 10% instead of 1%,{" "}
-                <mark className="highlight-mark green">I cited CreatorTax and got my Form 16A corrected instantly</mark>.&rdquo;
+                <mark className="highlight-mark emerald">I cited CreatorTax and got my Form 16A corrected instantly</mark>.&rdquo;
               </p>
             </div>
 
@@ -196,7 +245,7 @@ export function TestimonialsBento() {
               </div>
               <div className="mini-stat-cell">
                 <span className="mini-stat-label">Audit Notices</span>
-                <strong className="mini-stat-val text-green">0 in 4 Years</strong>
+                <strong className="mini-stat-val text-emerald">0 in 4 Years</strong>
               </div>
             </div>
 
@@ -219,7 +268,7 @@ export function TestimonialsBento() {
           <div className="bento-card-inner">
             <div className="metrics-bento-header">
               <div className="metrics-icon-badge">
-                <Zap size={18} />
+                <TaxReceiptSlipIcon size={20} />
               </div>
               <div>
                 <strong>By the Numbers</strong>

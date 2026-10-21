@@ -10,7 +10,7 @@ import {
   ShieldCheck,
   ArrowRight,
   Clock,
-  Sparkles,
+  BookOpen,
   ArrowUpRight,
   CheckCircle,
 } from "lucide-react";
@@ -63,7 +63,7 @@ export function FeaturedGuidesCreative() {
                 <div className="guide-hero-header">
                   <div className="guide-tag-group">
                     <span className="guide-badge-pill popular">
-                      <Sparkles size={11} /> MOST READ MASTER GUIDE
+                      <BookOpen size={11} /> MOST READ MASTER GUIDE
                     </span>
                     <span className="guide-badge-pill statute">
                       CBDT &amp; IT Act § 44ADA

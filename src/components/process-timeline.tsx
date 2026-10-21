@@ -10,10 +10,8 @@ import {
   ShieldCheck,
   FileText,
   Percent,
-  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
-import { BorderBeam } from "./border-beam";
 
 interface ProcessStep {
   id: string;
@@ -154,8 +152,6 @@ export function ProcessTimeline() {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="timeline-stage-card"
           >
-            <BorderBeam size={220} duration={10} colorFrom="#5be0a0" colorTo="#c8962a" />
-
             <div className="timeline-stage-grid">
               {/* Left Column: Details & Step Execution */}
               <div className="stage-content">
@@ -218,7 +214,7 @@ export function ProcessTimeline() {
                 >
                   <div className="stage-visual-header">
                     <span className="stage-visual-badge">
-                      <Sparkles size={11} className="text-gold" />
+                      <ShieldCheck size={11} className="text-gold" />
                       {active.visualPreview.badge}
                     </span>
                     <span className="pulse-dot-sm" />

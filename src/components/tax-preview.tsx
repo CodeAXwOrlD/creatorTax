@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { formatINR, calculateSection44ADA } from "@/lib/tax";
-import { Sparkles } from "lucide-react";
+import { FinancialCalcIcon } from "./brand-and-doc-icons";
 
 export function TaxPreview() {
   const [gross, setGross] = useState(1800000);
@@ -31,27 +31,27 @@ export function TaxPreview() {
         aria-label="Gross professional receipts in rupees"
       />
 
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#d3ded7", marginTop: 8 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#94a3b8", marginTop: 8, fontWeight: 500 }}>
         <span>₹2 Lakh</span>
         <span>₹75 Lakh (Digital Limit)</span>
       </div>
 
-      <div style={{ marginTop: 22, paddingTop: 18, borderTop: "1px solid rgba(255,255,255,0.2)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+      <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div>
-            <label style={{ fontSize: 11, color: "#c9d8d0", display: "block" }}>
+            <label style={{ fontSize: 11.5, color: "#94a3b8", display: "block", fontWeight: 600 }}>
               Presumptive Profit (50%)
             </label>
-            <div style={{ fontFamily: "Georgia, serif", fontSize: 24, fontWeight: 700, margin: "6px 0 0" }}>
+            <div style={{ fontFamily: "var(--font-serif, Georgia, serif)", fontSize: 26, fontWeight: 700, margin: "6px 0 0", color: "#f8fafc" }}>
               {formatINR(result.presumptiveProfit)}
             </div>
           </div>
 
           <div>
-            <label style={{ fontSize: 11, color: "#c9d8d0", display: "block" }}>
+            <label style={{ fontSize: 11.5, color: "#94a3b8", display: "block", fontWeight: 600 }}>
               New Regime Tax (AY 25-26)
             </label>
-            <div style={{ fontFamily: "Georgia, serif", fontSize: 24, fontWeight: 700, margin: "6px 0 0", color: "#a7f3d0" }}>
+            <div style={{ fontFamily: "var(--font-serif, Georgia, serif)", fontSize: 26, fontWeight: 700, margin: "6px 0 0", color: "#10B981" }}>
               {formatINR(result.newRegime.totalTaxLiability)}
             </div>
           </div>
@@ -60,17 +60,20 @@ export function TaxPreview() {
 
       <div
         style={{
-          marginTop: 18,
-          padding: "10px 12px",
-          background: "rgba(255,255,255,0.1)",
-          borderRadius: 6,
-          fontSize: 11,
+          marginTop: 20,
+          padding: "11px 14px",
+          background: "rgba(37, 99, 235, 0.12)",
+          border: "1px solid rgba(37, 99, 235, 0.28)",
+          borderRadius: 8,
+          fontSize: 11.5,
           display: "flex",
           alignItems: "center",
-          gap: 6
+          gap: 8,
+          color: "#bfdbfe",
+          lineHeight: 1.5,
         }}
       >
-        <Sparkles size={14} color="#f4d03f" style={{ flexShrink: 0 }} />
+        <FinancialCalcIcon size={14} className="text-cobalt" />
         <span>
           {result.presumptiveProfit <= 700000
             ? "Zero tax payable thanks to Section 87A full rebate under New Regime!"

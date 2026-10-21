@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import type { Article } from "@/lib/articles";
 import { GuideCard } from "@/components/guide-card";
-import { Search, BookOpen, X, ArrowUpDown, Sparkles } from "lucide-react";
+import { Search, BookOpen, X, ArrowUpDown } from "lucide-react";
 
 const CATEGORIES = [
   "All Guides",
@@ -109,8 +109,8 @@ export function GuidesDirectory({ allArticles }: { allArticles: Article[] }) {
 
         {/* Quick query chips */}
         <div className="guide-search-suggestions">
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 700, fontSize: 11, color: "var(--green)" }}>
-            <Sparkles size={11} /> Popular:
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontWeight: 700, fontSize: 11, color: "var(--cobalt)" }}>
+            <BookOpen size={12} /> Popular:
           </span>
           {QUICK_SUGGESTIONS.map((suggestion) => (
             <button

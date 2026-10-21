@@ -12,24 +12,24 @@ export function CTLogo({ size = 34, ...props }: { size?: number } & SVGProps<SVG
       aria-hidden="true"
       {...props}
     >
-      <rect width="40" height="40" rx="10" fill="#123d34" />
+      <rect width="40" height="40" rx="10" fill="#0F172A" />
       <text
-        x="5"
+        x="6"
         y="28"
-        fontFamily="Georgia, serif"
+        fontFamily="var(--font-sans, system-ui)"
         fontSize="21"
-        fontWeight="700"
-        fill="white"
+        fontWeight="800"
+        fill="#FFFFFF"
       >
         C
       </text>
       <text
-        x="20"
+        x="21"
         y="28"
-        fontFamily="Georgia, serif"
+        fontFamily="var(--font-sans, system-ui)"
         fontSize="21"
-        fontWeight="700"
-        fill="#c16b43"
+        fontWeight="800"
+        fill="#2563EB"
       >
         T
       </text>
@@ -39,8 +39,8 @@ export function CTLogo({ size = 34, ...props }: { size?: number } & SVGProps<SVG
 
 /** Full logo wordmark */
 export function CTLogoFull({ dark = false }: { dark?: boolean }) {
-  const textColor = dark ? "#f6f2e9" : "#123d34";
-  const subColor = dark ? "#9eb3a8" : "#686b61";
+  const textColor = dark ? "#F8FAFC" : "#0F172A";
+  const subColor = dark ? "#94A3B8" : "#64748B";
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 11 }}>
       <CTLogo />
@@ -56,7 +56,7 @@ export function CTLogoFull({ dark = false }: { dark?: boolean }) {
             lineHeight: 1,
           }}
         >
-          Creator<span style={{ color: "#c16b43" }}>Tax</span>{" "}
+          Creator<span style={{ color: "#2563EB" }}>Tax</span>{" "}
           <span style={{ fontWeight: 500 }}>India</span>
         </span>
         <span
@@ -68,6 +68,7 @@ export function CTLogoFull({ dark = false }: { dark?: boolean }) {
             color: subColor,
             textTransform: "uppercase",
             marginTop: 2,
+            fontWeight: 600,
           }}
         >
           Tax · Finance · Freelance

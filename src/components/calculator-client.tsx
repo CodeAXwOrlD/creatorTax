@@ -11,7 +11,7 @@ import {
   Calendar,
   AlertTriangle,
   Scale,
-  Sparkles
+  CheckCircle2
 } from "lucide-react";
 
 export function CalculatorClient() {
@@ -326,7 +326,7 @@ export function CalculatorClient() {
                 gap: 8
               }}
             >
-              <Sparkles size={16} color="#f4d03f" />
+              <CheckCircle2 size={16} color="#10b981" />
               <span>
                 <strong>Recommendation:</strong> {result.recommendedRegime === "Equal"
                   ? "Both regimes yield identical tax for this income level."

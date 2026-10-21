@@ -8,7 +8,7 @@ import {
   Globe2,
   Wallet,
   Scale,
-  Sparkles
+  FileCheck
 } from "lucide-react";
 import { TiltCard } from "./tilt-card";
 
@@ -85,8 +85,8 @@ export function GuideCard({
         <p>{article.description}</p>
 
         {article.howTo && (
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 700, color: "var(--green)", marginBottom: 14 }}>
-            <Sparkles size={12} color="#059669" /> Includes Step-by-Step Rich HowTo
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 700, color: "var(--cobalt)", marginBottom: 14 }}>
+            <FileCheck size={12} color="#2563eb" /> Includes Step-by-Step Rich HowTo
           </div>
         )}
 

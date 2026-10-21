@@ -33,11 +33,12 @@
   margin-bottom: 16px;
 }
 .step-numeral {
-  font-family: var(--font-serif);
-  font-size: 28px;
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 800;
   line-height: 1;
-  color: var(--terra);
+  color: var(--cobalt);
+  letter-spacing: -0.03em;
   flex-shrink: 0;
 }
 .step-tag-block {
@@ -48,9 +49,9 @@
 .statute-label {
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--cobalt);
 }
 .card-editorial-title {
   font-family: var(--font-serif);
@@ -300,10 +301,10 @@
   font-weight: 700;
 }
 .saving-badge {
-  background: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
-  padding: 2px 8px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 3px 10px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 800;
@@ -312,29 +313,31 @@
   font-size: 11px;
   color: var(--muted);
   line-height: 1.5;
-  background: #fffdf7;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--line);
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 7px;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--emerald);
 }
 .advance-tax-note strong {
-  color: var(--ink-2);
+  color: var(--ink);
 }
 .comp-cta-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 14px;
+  padding: 10px 14px;
   border-radius: 8px;
-  background: var(--green);
-  color: #fffdf7;
+  background: #2563eb;
+  color: #ffffff;
   font-size: 12.5px;
   font-weight: 700;
   text-decoration: none;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
   transition: background 0.18s, transform 0.18s;
   margin-top: 4px;
 }
 .comp-cta-btn:hover {
-  background: var(--green-2);
+  background: #1d4ed8;
   transform: translateY(-1px);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, ShieldCheck, Zap, Globe2, FileCheck2, Calculator, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Zap, Globe2, FileCheck2, Calculator, CheckCircle2 } from "lucide-react";
 
 const TICKER_ITEMS = [
   { icon: ShieldCheck, label: "Section 44ADA Presumptive Scheme" },
@@ -10,7 +10,7 @@ const TICKER_ITEMS = [
   { icon: Calculator, label: "100% Client-Side Private Computation" },
   { icon: Zap, label: "Section 194J TDS Reconciliations" },
   { icon: CheckCircle2, label: "AY 2025-26 & Finance Act Compliant" },
-  { icon: Sparkles, label: "Upwork, Toptal & Deel Remote Contractors" },
+  { icon: Globe2, label: "Upwork, Toptal & Deel Remote Contractors" },
 ];
 
 export function InfiniteTicker() {
