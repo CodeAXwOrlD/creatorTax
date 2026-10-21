@@ -330,13 +330,13 @@ export default function HomePage() {
       <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 90 }}>
         <div className="container">
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 52 }}>
-              <span className="eyebrow">Who Benefits Most</span>
+            <div style={{ textAlign: "center", marginBottom: 38 }}>
+              <span className="eyebrow">Freelance Discipline Matrix</span>
               <h2 className="serif" style={{ marginTop: 14 }}>
-                Tailored for India&apos;s digital workforce.
+                Choose your discipline.<br />See your exact tax numbers.
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 560, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
-                Statutory schemes, GST zero-rating, and expense optimizations calibrated to how you actually bill domestic and foreign clients.
+              <p style={{ color: "var(--muted)", maxWidth: 600, margin: "14px auto 0", fontSize: 14.5, lineHeight: 1.75 }}>
+                Statutory eligibility under Section 44ADA, AY 2025-26 tax savings ledger, and mandatory compliance shields calibrated to how you actually bill domestic and foreign clients.
               </p>
             </div>
           </Reveal>
