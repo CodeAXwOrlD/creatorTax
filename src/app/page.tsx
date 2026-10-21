@@ -206,10 +206,10 @@ export default function HomePage() {
       </section>
 
       {/* ── Your Freelance Tax Clarity in Three Steps ── */}
-      <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 96 }}>
+      <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 112 }}>
         <div className="container">
           <Reveal direction="blur">
-            <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <div style={{ textAlign: "center", marginBottom: 52 }}>
               <span className="eyebrow">Three-Step Compliance Flow</span>
               <h2 className="serif" style={{ marginTop: 14 }}>
                 Your freelance tax clarity in three steps.
@@ -327,10 +327,10 @@ export default function HomePage() {
       </section>
 
       {/* ── Who This Is For ─────────────────────────────────────── */}
-      <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 90 }}>
+      <section className="section" style={{ background: "var(--paper-deep)", paddingBlock: 112 }}>
         <div className="container">
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 38 }}>
+            <div style={{ textAlign: "center", marginBottom: 52 }}>
               <span className="eyebrow">Freelance Discipline Matrix</span>
               <h2 className="serif" style={{ marginTop: 14 }}>
                 Choose your discipline.<br />See your exact tax numbers.

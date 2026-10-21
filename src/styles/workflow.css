@@ -1,11 +1,11 @@
 /* ─── Compliance Workflow (Bespoke Editorial & Financial Dossier) ───── */
 .compliance-workflow-root {
-  margin-top: 48px;
+  margin-top: 56px;
 }
 .workflow-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 30px;
 }
 
 /* Individual Workflow Card (Warm Ivory Paper Aesthetic) */
@@ -13,7 +13,7 @@
   background: var(--paper-card);
   border: 1.5px solid var(--line);
   border-radius: 16px;
-  padding: 30px 26px;
+  padding: 36px 30px;
   box-shadow: 0 10px 30px rgba(18, 61, 52, 0.05);
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .step-numeral {
   font-family: var(--font-serif);
@@ -63,15 +63,15 @@
 .card-editorial-desc {
   font-size: 13.5px;
   color: var(--muted);
-  line-height: 1.65;
-  margin: 0 0 20px;
+  line-height: 1.7;
+  margin: 0 0 24px;
 }
 
 /* Clean Editorial Tabs (Warm Linen Pills, Not Dark Crypto Buttons) */
 .editorial-tabs-row {
   display: flex;
-  gap: 6px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 22px;
   flex-wrap: wrap;
 }
 .editorial-tab {
