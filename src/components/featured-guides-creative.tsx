@@ -36,10 +36,11 @@ export function FeaturedGuidesCreative() {
       <div className="guides-filter-bar">
         {[
           { key: "all", label: "All Master Guides (8)" },
-          { key: "Income Tax", label: "Income Tax & 44ADA" },
-          { key: "GST & Invoicing", label: "GST & LUT Zero-Rating" },
-          { key: "USD & Remittances", label: "USD, Wise & PayPal FIRC" },
-          { key: "Expenses & Deductions", label: "Deductions & Expenses" },
+          { key: "Income Tax", label: "Income Tax & 44ADA (4)" },
+          { key: "GST & Invoicing", label: "GST & LUT Zero-Rating (1)" },
+          { key: "USD & Remittances", label: "USD, Wise & PayPal FIRC (1)" },
+          { key: "Expenses & Deductions", label: "Deductions & Expenses (1)" },
+          { key: "Legal & Compliance", label: "Contracts & IP (1)" }
         ].map((tab) => (
           <button
             key={tab.key}
@@ -140,6 +141,10 @@ export function FeaturedGuidesCreative() {
                 iconColor = "#10b981";
                 Icon = Percent;
                 statuteTag = "Sec 194J & 44ADA";
+              } else if (guide.category === "Legal & Compliance") {
+                iconColor = "#8b5cf6";
+                Icon = ShieldCheck;
+                statuteTag = "Contract Act · IP Shield";
               }
 
               return (

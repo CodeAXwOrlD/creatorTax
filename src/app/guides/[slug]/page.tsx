@@ -4,6 +4,7 @@ import Link from "next/link";
 import { articles, getArticle } from "@/lib/articles";
 import {
   ArrowLeft,
+  ArrowRight,
   CalendarDays,
   Clock3,
   UserCheck,
@@ -12,9 +13,15 @@ import {
   ChevronRight,
   Calculator,
   HelpCircle,
-  Sparkles
+  Sparkles,
+  Home,
+  CheckCircle2,
+  Scale,
+  ListOrdered
 } from "lucide-react";
 import { CopyableDisputeTemplate } from "@/components/copyable-dispute-template";
+import { ReadingProgressBar } from "@/components/reading-progress-bar";
+import { GuideShareButton } from "@/components/guide-share-button";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -33,7 +40,7 @@ export async function generateMetadata({
   const url = `${site}/guides/${article.slug}`;
 
   return {
-    title: article.title,
+    title: `${article.title} | CreatorTax India`,
     description: article.description,
     alternates: { canonical: `/guides/${article.slug}` },
     openGraph: {
@@ -64,6 +71,11 @@ export default async function ArticlePage({
 
   const site = process.env.NEXT_PUBLIC_SITE_URL || "https://creatortax.in";
   const articleUrl = `${site}/guides/${article.slug}`;
+
+  // Find previous and next articles for bottom navigation
+  const currentIndex = articles.findIndex((a) => a.slug === article.slug);
+  const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
+  const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
   // Article JSON-LD Schema
   const articleSchema = {
@@ -149,56 +161,50 @@ export default async function ArticlePage({
 
   return (
     <main>
-      {/* Page Header */}
-      <div className="page-hero">
-        <div className="container">
-          <Link
-            href="/guides"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              fontSize: 12,
-              color: "var(--muted)",
-              marginBottom: 16
-            }}
-          >
-            <ArrowLeft size={14} /> Back to all guides
-          </Link>
+      {/* Scroll-Linked Reading Progress Bar */}
+      <ReadingProgressBar />
 
-          <div>
+      {/* Editorial Page Hero */}
+      <div className="guide-hero-banner">
+        <div className="container">
+          {/* Breadcrumb Bar */}
+          <nav aria-label="Breadcrumb" className="guide-breadcrumbs">
+            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+              <Home size={12} /> Home
+            </Link>
+            <ChevronRight size={11} style={{ opacity: 0.5 }} />
+            <Link href="/guides">Guides</Link>
+            <ChevronRight size={11} style={{ opacity: 0.5 }} />
+            <span style={{ color: "var(--ink-2)", fontWeight: 600 }}>{article.category}</span>
+          </nav>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
             <span className="tag">{article.category}</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 10px", borderRadius: 999, background: "#e8f5ee", color: "var(--green)", fontSize: 11, fontWeight: 700 }}>
+              <CheckCircle2 size={12} color="#059669" /> AY 2025-26 &amp; Finance Act 2025 Verified
+            </span>
           </div>
 
-          <h1 className="serif" style={{ maxWidth: 880, margin: "14px 0" }}>
+          <h1 className="serif" style={{ fontSize: "clamp(26px, 3.8vw, 38px)", lineHeight: 1.22, maxWidth: 880, margin: "10px 0 16px" }}>
             {article.title}
           </h1>
 
-          <p style={{ fontSize: 16, lineHeight: 1.7, maxWidth: 760 }}>
+          <p style={{ fontSize: 16, lineHeight: 1.75, maxWidth: 780, color: "var(--muted)", margin: 0 }}>
             {article.description}
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 20,
-              fontSize: 12,
-              color: "var(--muted)",
-              marginTop: 20,
-              paddingTop: 16,
-              borderTop: "1px solid var(--line)"
-            }}
-          >
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          {/* Meta & Share Actions Bar */}
+          <div className="guide-hero-meta-bar">
+            <span className="guide-hero-meta-pill">
               <CalendarDays size={14} color="var(--green)" /> Updated {article.date}
             </span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <span className="guide-hero-meta-pill">
               <Clock3 size={14} color="var(--green)" /> {article.readTime}
             </span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <UserCheck size={14} color="var(--green)" /> Review: {article.reviewer}
+            <span className="guide-hero-meta-pill">
+              <UserCheck size={14} color="var(--green)" /> {article.reviewer}
             </span>
+            <GuideShareButton title={article.title} />
           </div>
         </div>
       </div>
@@ -207,61 +213,93 @@ export default async function ArticlePage({
       <div className="container article-layout">
         <article className="article-content">
           {/* Quick Summary AEO Definition Block */}
-          <div className="quick-summary quick-answer" data-aeo="direct-answer" style={{ marginBottom: 28 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
+          <div className="quick-summary quick-answer" data-aeo="direct-answer" style={{ marginBottom: 32 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
               <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--green)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                <Sparkles size={14} /> Quick Summary (AEO Definition)
+                <Sparkles size={14} /> Quick Summary (AEO Direct Answer)
               </strong>
               <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "#e8f2ec", color: "var(--green)", letterSpacing: "0.02em" }}>
                 40-Word Direct Answer
               </span>
             </div>
-            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: "var(--ink)" }}>
+            <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.8, color: "var(--ink)", fontWeight: 450 }}>
               {article.quickAnswer}
             </p>
           </div>
 
-          {/* Scope and Limits Badges */}
+          {/* Scope and Statutory Limits Badges */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: 16,
-              marginBottom: 34,
-              padding: "16px 18px",
+              marginBottom: 36,
+              padding: "18px 20px",
               background: "#faf6ee",
-              border: "1px solid var(--line)",
-              borderRadius: 8
+              border: "1.5px solid var(--line)",
+              borderRadius: 10
             }}
           >
             <div>
-              <strong style={{ fontSize: 12, color: "var(--green)", display: "block", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                Who This Applies To
+              <strong style={{ fontSize: 12, color: "var(--green)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+                <UserCheck size={14} /> Who This Applies To
               </strong>
-              <p style={{ fontSize: 13, color: "var(--ink)", margin: "4px 0 0", lineHeight: 1.6 }}>
+              <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>
                 {article.whoItAppliesTo}
               </p>
             </div>
             {article.statutoryLimits && (
               <div>
-                <strong style={{ fontSize: 12, color: "var(--terracotta)", display: "block", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                  Statutory Limits &amp; Rules
+                <strong style={{ fontSize: 12, color: "var(--terracotta)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+                  <Scale size={14} /> Statutory Limits &amp; Rules
                 </strong>
-                <p style={{ fontSize: 13, color: "var(--ink)", margin: "4px 0 0", lineHeight: 1.6 }}>
+                <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>
                   {article.statutoryLimits}
                 </p>
               </div>
             )}
           </div>
 
-          {/* Article Main Sections */}
-          {article.sections.map((section) => (
-            <section key={section.heading} style={{ marginBottom: 40 }}>
+          {/* Visual Step-by-Step HowTo Procedure Card (if HowTo schema exists) */}
+          {article.howTo && (
+            <div className="guide-howto-section">
+              <div className="guide-howto-header">
+                <div>
+                  <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--green)", display: "block", marginBottom: 4 }}>
+                    Step-by-Step Procedure
+                  </span>
+                  <h3 className="guide-howto-title">{article.howTo.name}</h3>
+                </div>
+                {article.howTo.totalTime && (
+                  <span className="guide-howto-time-pill">
+                    <Clock3 size={12} /> Approx {article.howTo.totalTime.replace("PT", "").toLowerCase()}
+                  </span>
+                )}
+              </div>
+
+              <div className="guide-howto-steps-list">
+                {article.howTo.steps.map((s, idx) => (
+                  <div key={idx} className="guide-howto-step-item">
+                    <span className="guide-howto-step-num">{idx + 1}</span>
+                    <div className="guide-howto-step-content">
+                      <strong>{s.name}</strong>
+                      <p>{s.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Article Main Sections with Numbered Pills */}
+          {article.sections.map((section, sectionIdx) => (
+            <section key={section.heading} style={{ marginBottom: 44 }}>
               <h2
                 id={section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
-                style={{ scrollMarginTop: 100 }}
+                style={{ scrollMarginTop: 100, display: "flex", alignItems: "center" }}
               >
-                {section.heading}
+                <span className="section-num-pill">{String(sectionIdx + 1).padStart(2, "0")}</span>
+                <span>{section.heading}</span>
               </h2>
 
               {section.paragraphs.map((p, i) => (
@@ -269,9 +307,9 @@ export default async function ArticlePage({
               ))}
 
               {section.bullets && (
-                <ul style={{ paddingLeft: 22, margin: "16px 0" }}>
+                <ul style={{ paddingLeft: 22, margin: "18px 0" }}>
                   {section.bullets.map((b) => (
-                    <li key={b} style={{ marginBottom: 8 }}>
+                    <li key={b} style={{ marginBottom: 10 }}>
                       {b}
                     </li>
                   ))}
@@ -279,27 +317,29 @@ export default async function ArticlePage({
               )}
 
               {section.table && (
-                <div style={{ overflowX: "auto", margin: "22px 0" }}>
+                <div style={{ overflowX: "auto", margin: "24px 0" }}>
                   <table
                     style={{
                       width: "100%",
                       borderCollapse: "collapse",
-                      fontSize: 13,
-                      border: "1px solid var(--line)",
-                      borderRadius: 6,
-                      background: "#fff"
+                      fontSize: 13.5,
+                      border: "1.5px solid var(--line)",
+                      borderRadius: 8,
+                      background: "#fff",
+                      overflow: "hidden"
                     }}
                   >
                     <thead>
-                      <tr style={{ background: "var(--paper-deep)", borderBottom: "1px solid var(--line)" }}>
+                      <tr style={{ background: "var(--paper-deep)", borderBottom: "1.5px solid var(--line)" }}>
                         {section.table.headers.map((h) => (
                           <th
                             key={h}
                             style={{
-                              padding: "12px 14px",
+                              padding: "13px 16px",
                               textAlign: "left",
-                              fontWeight: 650,
-                              color: "var(--ink)"
+                              fontWeight: 700,
+                              color: "var(--ink)",
+                              letterSpacing: "0.02em"
                             }}
                           >
                             {h}
@@ -313,11 +353,11 @@ export default async function ArticlePage({
                           key={rowIdx}
                           style={{
                             borderBottom: "1px solid var(--line)",
-                            background: rowIdx % 2 === 0 ? "transparent" : "#faf8f2"
+                            background: rowIdx % 2 === 0 ? "#ffffff" : "#fbf9f4"
                           }}
                         >
                           {row.map((cell, cellIdx) => (
-                            <td key={cellIdx} style={{ padding: "11px 14px" }}>
+                            <td key={cellIdx} style={{ padding: "12px 16px" }}>
                               {cell}
                             </td>
                           ))}
@@ -338,20 +378,21 @@ export default async function ArticlePage({
           {article.commonTraps && article.commonTraps.length > 0 && (
             <section
               style={{
-                margin: "40px 0",
-                padding: "20px 22px",
-                borderRadius: 8,
+                margin: "44px 0",
+                padding: "22px 24px",
+                borderRadius: 10,
                 background: "#fef6f5",
-                border: "1px solid #fbd5d0"
+                border: "1.5px solid #fbd5d0",
+                boxShadow: "0 4px 16px rgba(192, 57, 43, 0.05)"
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                <AlertOctagon size={20} color="#c0392b" />
-                <h3 style={{ margin: 0, color: "#922b21", fontSize: 18 }}>Common Traps to Avoid</h3>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                <AlertOctagon size={22} color="#c0392b" />
+                <h3 style={{ margin: 0, color: "#922b21", fontSize: 19 }}>Statutory Pitfalls &amp; Common Audit Traps</h3>
               </div>
               <ul style={{ paddingLeft: 20, margin: 0, color: "#641e16" }}>
                 {article.commonTraps.map((trap) => (
-                  <li key={trap} style={{ marginBottom: 8, fontSize: 14 }}>
+                  <li key={trap} style={{ marginBottom: 10, fontSize: 14.5, lineHeight: 1.65 }}>
                     {trap}
                   </li>
                 ))}
@@ -361,8 +402,8 @@ export default async function ArticlePage({
 
           {/* Frequently Asked Questions */}
           {article.faqs && article.faqs.length > 0 && (
-            <section style={{ margin: "40px 0" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+            <section style={{ margin: "44px 0" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
                 <HelpCircle size={22} color="var(--green)" />
                 <h2 id="faqs" style={{ margin: 0 }}>Frequently Asked Questions</h2>
               </div>
@@ -371,16 +412,17 @@ export default async function ArticlePage({
                   <div
                     key={faq.question}
                     style={{
-                      padding: "16px 18px",
-                      background: "var(--surface)",
-                      border: "1px solid var(--line)",
-                      borderRadius: 8
+                      padding: "18px 20px",
+                      background: "var(--paper-card)",
+                      border: "1.5px solid var(--line)",
+                      borderRadius: 10,
+                      boxShadow: "0 2px 8px rgba(18, 61, 52, 0.03)"
                     }}
                   >
-                    <strong style={{ fontSize: 15, display: "block", color: "var(--ink)", marginBottom: 6 }}>
+                    <strong style={{ fontSize: 15.5, display: "block", color: "var(--ink)", marginBottom: 8 }}>
                       {faq.question}
                     </strong>
-                    <p style={{ margin: 0, fontSize: 13.5, color: "var(--muted)", lineHeight: 1.7 }}>
+                    <p style={{ margin: 0, fontSize: 14, color: "var(--muted)", lineHeight: 1.75 }}>
                       {faq.answer}
                     </p>
                   </div>
@@ -391,11 +433,11 @@ export default async function ArticlePage({
 
           {/* Primary Sources & Citations */}
           {article.primarySources && article.primarySources.length > 0 && (
-            <section style={{ marginTop: 45, paddingTop: 25, borderTop: "1px solid var(--line)" }}>
-              <h3 style={{ fontSize: 16, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--muted)" }}>
-                Authoritative Primary Sources
+            <section style={{ marginTop: 50, paddingTop: 28, borderTop: "1.5px solid var(--line)" }}>
+              <h3 style={{ fontSize: 15, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--muted)", marginBottom: 14 }}>
+                Authoritative Primary Sources &amp; Circulars
               </h3>
-              <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
+              <div style={{ display: "grid", gap: 10 }}>
                 {article.primarySources.map((source) => (
                   <a
                     key={source.url}
@@ -406,38 +448,75 @@ export default async function ArticlePage({
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      padding: "10px 14px",
+                      padding: "12px 16px",
                       background: "#fff",
                       border: "1px solid var(--line)",
-                      borderRadius: 6,
-                      fontSize: 13,
-                      color: "var(--green)"
+                      borderRadius: 8,
+                      fontSize: 13.5,
+                      color: "var(--green)",
+                      textDecoration: "none",
+                      transition: "border-color 0.18s, box-shadow 0.18s"
                     }}
                   >
                     <span>
-                      <strong>{source.title}</strong> — <span style={{ color: "var(--muted)" }}>{source.publisher}</span>
+                      <strong style={{ color: "var(--ink)" }}>{source.title}</strong> — <span style={{ color: "var(--muted)" }}>{source.publisher}</span>
                     </span>
-                    <ExternalLink size={14} style={{ flexShrink: 0, marginLeft: 8 }} />
+                    <ExternalLink size={14} style={{ flexShrink: 0, marginLeft: 10 }} />
                   </a>
                 ))}
               </div>
             </section>
           )}
 
+          {/* Next & Previous Guide Navigation */}
+          {(prevArticle || nextArticle) && (
+            <nav aria-label="Adjacent Guides" className="guide-nav-grid">
+              {prevArticle ? (
+                <Link href={`/guides/${prevArticle.slug}`} className="guide-nav-card">
+                  <span className="nav-label">
+                    <ArrowLeft size={12} /> Previous Guide
+                  </span>
+                  <span className="nav-title">{prevArticle.title}</span>
+                </Link>
+              ) : <div />}
+
+              {nextArticle ? (
+                <Link href={`/guides/${nextArticle.slug}`} className="guide-nav-card" style={{ textAlign: "right", alignItems: "flex-end" }}>
+                  <span className="nav-label">
+                    Next Guide <ArrowRight size={12} />
+                  </span>
+                  <span className="nav-title">{nextArticle.title}</span>
+                </Link>
+              ) : <div />}
+            </nav>
+          )}
+
           {/* Disclaimer & Policies Footer */}
-          <div style={{ marginTop: 35, padding: "16px 18px", background: "var(--paper-deep)", borderRadius: 6, fontSize: 12, color: "var(--muted)", lineHeight: 1.7 }}>
+          <div style={{ marginTop: 40, padding: "18px 20px", background: "var(--paper-deep)", borderRadius: 8, fontSize: 12.5, color: "var(--muted)", lineHeight: 1.75 }}>
             <strong>Legal Notice:</strong> This article is published for educational and informational purposes only and does not constitute individualized tax, accounting, or legal advice. Tax provisions and portal workflows evolve; verify details with a qualified Indian Chartered Accountant before filing.
-            <div style={{ marginTop: 8 }}>
-              <Link href="/disclaimer" style={{ color: "var(--green)", fontWeight: 600 }}>Financial Disclaimer</Link> · <Link href="/editorial-policy" style={{ color: "var(--green)", fontWeight: 600 }}>Editorial Policy</Link> · <Link href="/corrections" style={{ color: "var(--green)", fontWeight: 600 }}>Report Correction</Link>
+            <div style={{ marginTop: 10, display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <Link href="/disclaimer" style={{ color: "var(--green)", fontWeight: 600 }}>Financial Disclaimer</Link>
+              <Link href="/editorial-policy" style={{ color: "var(--green)", fontWeight: 600 }}>Editorial Policy</Link>
+              <Link href="/corrections" style={{ color: "var(--green)", fontWeight: 600 }}>Report Correction</Link>
             </div>
           </div>
         </article>
 
         {/* Right Sidebar Table of Contents */}
         <aside className="article-aside">
-          <strong style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--green)", display: "block", marginBottom: 12 }}>
-            Guide Outline
+          <strong style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--green)", display: "flex", alignItems: "center", gap: 6, marginBottom: 14 }}>
+            <ListOrdered size={14} /> Guide Outline
           </strong>
+
+          {article.howTo && (
+            <a
+              href="#step-by-step-procedure"
+              style={{ display: "flex", alignItems: "center", justifyContent: "space-between", color: "var(--green)", fontWeight: 600 }}
+            >
+              <span>Step-by-Step Procedure</span>
+              <Sparkles size={11} />
+            </a>
+          )}
 
           {article.sections.map((s) => (
             <a
@@ -457,11 +536,12 @@ export default async function ArticlePage({
             </a>
           )}
 
-          <div style={{ marginTop: 28, padding: 18, background: "var(--green)", color: "#fff", borderRadius: 8 }}>
-            <Calculator size={22} style={{ marginBottom: 8 }} />
-            <strong style={{ display: "block", fontSize: 14 }}>Try Section 44ADA Calculator</strong>
-            <p style={{ fontSize: 11, color: "#d1ded6", margin: "6px 0 14px", lineHeight: 1.5 }}>
-              Test your gross receipts under New and Old regimes with instant TDS credit offsetting.
+          {/* Interactive Calculator Sidebar Card */}
+          <div style={{ marginTop: 28, padding: 20, background: "var(--green)", color: "#fff", borderRadius: 10, boxShadow: "0 6px 20px rgba(18, 61, 52, 0.15)" }}>
+            <Calculator size={24} style={{ marginBottom: 10 }} />
+            <strong style={{ display: "block", fontSize: 15 }}>Section 44ADA Calculator</strong>
+            <p style={{ fontSize: 11.5, color: "#d1ded6", margin: "6px 0 16px", lineHeight: 1.6 }}>
+              Compute your net tax under New vs Old regimes with 50% presumptive profit and instant TDS offsets.
             </p>
             <Link
               href="/tools/44ada-calculator"
@@ -472,10 +552,12 @@ export default async function ArticlePage({
                 color: "var(--green)",
                 borderColor: "#f6f2e9",
                 minHeight: 38,
-                fontSize: 12
+                fontSize: 12,
+                fontWeight: 700,
+                boxShadow: "none"
               }}
             >
-              Launch Calculator
+              Calculate Your Tax Free
             </Link>
           </div>
         </aside>
