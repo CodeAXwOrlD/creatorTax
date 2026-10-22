@@ -180,7 +180,7 @@ export default async function ArticlePage({
 
           <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
             <span className="tag">{article.category}</span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 10px", borderRadius: 999, background: "#e8f5ee", color: "var(--green)", fontSize: 11, fontWeight: 700 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 10px", borderRadius: 999, background: "var(--emerald-light)", color: "var(--emerald-hover)", fontSize: 11, fontWeight: 700 }}>
               <CheckCircle2 size={12} color="#059669" /> AY 2025-26 &amp; Finance Act 2025 Verified
             </span>
           </div>
@@ -196,13 +196,13 @@ export default async function ArticlePage({
           {/* Meta & Share Actions Bar */}
           <div className="guide-hero-meta-bar">
             <span className="guide-hero-meta-pill">
-              <CalendarDays size={14} color="var(--green)" /> Updated {article.date}
+              <CalendarDays size={14} color="var(--cobalt)" /> Updated {article.date}
             </span>
             <span className="guide-hero-meta-pill">
-              <Clock3 size={14} color="var(--green)" /> {article.readTime}
+              <Clock3 size={14} color="var(--cobalt)" /> {article.readTime}
             </span>
             <span className="guide-hero-meta-pill">
-              <UserCheck size={14} color="var(--green)" /> {article.reviewer}
+              <UserCheck size={14} color="var(--cobalt)" /> {article.reviewer}
             </span>
             <GuideShareButton title={article.title} />
           </div>
@@ -218,7 +218,7 @@ export default async function ArticlePage({
               <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--cobalt)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
                 <FileCheck size={14} /> Quick Summary (AEO Direct Answer)
               </strong>
-              <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "#e8f2ec", color: "var(--green)", letterSpacing: "0.02em" }}>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "var(--cobalt-light)", color: "var(--cobalt)", letterSpacing: "0.02em" }}>
                 40-Word Direct Answer
               </span>
             </div>
@@ -235,13 +235,13 @@ export default async function ArticlePage({
               gap: 16,
               marginBottom: 36,
               padding: "18px 20px",
-              background: "#faf6ee",
+              background: "var(--paper-deep)",
               border: "1.5px solid var(--line)",
-              borderRadius: 10
+              borderRadius: 12
             }}
           >
             <div>
-              <strong style={{ fontSize: 12, color: "var(--green)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+              <strong style={{ fontSize: 12, color: "var(--emerald-hover)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
                 <UserCheck size={14} /> Who This Applies To
               </strong>
               <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>
@@ -250,7 +250,7 @@ export default async function ArticlePage({
             </div>
             {article.statutoryLimits && (
               <div>
-                <strong style={{ fontSize: 12, color: "var(--terracotta)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+                <strong style={{ fontSize: 12, color: "var(--cobalt)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
                   <Scale size={14} /> Statutory Limits &amp; Rules
                 </strong>
                 <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>
@@ -492,19 +492,19 @@ export default async function ArticlePage({
           )}
 
           {/* Disclaimer & Policies Footer */}
-          <div style={{ marginTop: 40, padding: "18px 20px", background: "var(--paper-deep)", borderRadius: 8, fontSize: 12.5, color: "var(--muted)", lineHeight: 1.75 }}>
-            <strong>Legal Notice:</strong> This article is published for educational and informational purposes only and does not constitute individualized tax, accounting, or legal advice. Tax provisions and portal workflows evolve; verify details with a qualified Indian Chartered Accountant before filing.
-            <div style={{ marginTop: 10, display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <Link href="/disclaimer" style={{ color: "var(--green)", fontWeight: 600 }}>Financial Disclaimer</Link>
-              <Link href="/editorial-policy" style={{ color: "var(--green)", fontWeight: 600 }}>Editorial Policy</Link>
-              <Link href="/corrections" style={{ color: "var(--green)", fontWeight: 600 }}>Report Correction</Link>
+          <div style={{ marginTop: 40, padding: "20px 22px", background: "var(--paper-deep)", borderRadius: 12, border: "1px solid var(--line)", fontSize: 13, color: "var(--muted)", lineHeight: 1.75 }}>
+            <strong style={{ color: "var(--ink)" }}>Legal Notice:</strong> This article is published for educational and informational purposes only and does not constitute individualized tax, accounting, or legal advice. Tax provisions and portal workflows evolve; verify details with a qualified Indian Chartered Accountant before filing.
+            <div style={{ marginTop: 12, display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <Link href="/disclaimer" style={{ color: "var(--cobalt)", fontWeight: 600 }}>Financial Disclaimer</Link>
+              <Link href="/editorial-policy" style={{ color: "var(--cobalt)", fontWeight: 600 }}>Editorial Policy</Link>
+              <Link href="/corrections" style={{ color: "var(--cobalt)", fontWeight: 600 }}>Report Correction</Link>
             </div>
           </div>
         </article>
 
         {/* Right Sidebar Table of Contents */}
         <aside className="article-aside">
-          <strong style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--green)", display: "flex", alignItems: "center", gap: 6, marginBottom: 14 }}>
+          <strong style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--cobalt)", display: "flex", alignItems: "center", gap: 6, marginBottom: 14 }}>
             <ListOrdered size={14} /> Guide Outline
           </strong>
 
@@ -537,10 +537,29 @@ export default async function ArticlePage({
           )}
 
           {/* Interactive Calculator Sidebar Card */}
-          <div style={{ marginTop: 28, padding: 20, background: "var(--green)", color: "#fff", borderRadius: 10, boxShadow: "0 6px 20px rgba(18, 61, 52, 0.15)" }}>
-            <Calculator size={24} style={{ marginBottom: 10 }} />
-            <strong style={{ display: "block", fontSize: 15 }}>Section 44ADA Calculator</strong>
-            <p style={{ fontSize: 11.5, color: "#d1ded6", margin: "6px 0 16px", lineHeight: 1.6 }}>
+          <div style={{
+            marginTop: 28,
+            padding: 22,
+            background: "linear-gradient(150deg, #0f172a 0%, #0a0f1d 100%)",
+            border: "1.5px solid rgba(37, 99, 235, 0.35)",
+            color: "#ffffff",
+            borderRadius: 14,
+            boxShadow: "0 12px 32px rgba(10, 15, 29, 0.25)"
+          }}>
+            <div style={{
+              width: 38,
+              height: 38,
+              borderRadius: 8,
+              background: "rgba(37, 99, 235, 0.25)",
+              color: "#60a5fa",
+              display: "grid",
+              placeItems: "center",
+              marginBottom: 12
+            }}>
+              <Calculator size={20} />
+            </div>
+            <strong style={{ display: "block", fontSize: 15, color: "#ffffff" }}>Section 44ADA Calculator</strong>
+            <p style={{ fontSize: 12, color: "#94a3b8", margin: "6px 0 16px", lineHeight: 1.6 }}>
               Compute your net tax under New vs Old regimes with 50% presumptive profit and instant TDS offsets.
             </p>
             <Link
@@ -548,13 +567,13 @@ export default async function ArticlePage({
               className="btn"
               style={{
                 width: "100%",
-                background: "#f6f2e9",
-                color: "var(--green)",
-                borderColor: "#f6f2e9",
+                background: "var(--cobalt)",
+                color: "#ffffff",
+                borderColor: "var(--cobalt)",
                 minHeight: 38,
                 fontSize: 12,
                 fontWeight: 700,
-                boxShadow: "none"
+                boxShadow: "0 4px 14px rgba(37, 99, 235, 0.35)"
               }}
             >
               Calculate Your Tax Free

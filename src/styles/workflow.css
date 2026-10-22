@@ -1,28 +1,34 @@
 /* ─── Compliance Workflow (Bespoke Editorial & Financial Dossier) ───── */
 .compliance-workflow-root {
-  margin-top: 56px;
+  margin-top: 64px;
 }
 .workflow-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 32px;
+}
+@media (max-width: 1024px) {
+  .workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 /* Individual Workflow Card (Warm Ivory Paper Aesthetic) */
 .workflow-card {
-  background: var(--paper-card);
-  border: 1.5px solid var(--line);
-  border-radius: 16px;
-  padding: 36px 30px;
-  box-shadow: 0 10px 30px rgba(18, 61, 52, 0.05);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s, border-color 0.25s;
 }
 .workflow-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(18, 61, 52, 0.35);
-  box-shadow: 0 20px 48px rgba(18, 61, 52, 0.1);
+  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
 }
 
 /* Header with Elegant Serif Step Numeral */
@@ -257,57 +263,161 @@
   color: var(--green);
 }
 
-/* Card 3: CA Computation Schedule */
-.editorial-memo-sheet.computation {
-  gap: 12px;
+/* Card 02 Top: Savings Hero Block */
+.persona-savings-hero-block {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(37, 99, 235, 0.04) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  padding: 13px 15px;
+  margin-bottom: 14px;
 }
-.computation-table {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.comp-row {
+.savings-hero-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
-  padding-bottom: 5px;
-  border-bottom: 1px dashed rgba(222, 216, 202, 0.7);
+  margin-bottom: 3px;
 }
-.comp-row span {
+.savings-hero-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
-.comp-row strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-.comp-row strong.text-emerald {
-  color: #0f766e;
-}
-.comp-row.strike {
-  opacity: 0.7;
-}
-.comp-row.strike .old-tax {
-  text-decoration: line-through;
-  color: #991b1b;
-  font-size: 11.5px;
-}
-.comp-row.total-saving {
-  border-bottom: none;
-  padding-top: 4px;
-}
-.comp-row.total-saving span {
-  color: var(--ink);
-  font-weight: 700;
-}
-.saving-badge {
-  background: rgba(16, 185, 129, 0.12);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 11px;
+.savings-hero-badge {
+  font-size: 10px;
   font-weight: 800;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.savings-hero-amount-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.savings-hero-currency {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: #059669;
+}
+.savings-hero-number {
+  font-family: var(--font-serif);
+  font-size: 25px;
+  font-weight: 800;
+  color: #047857;
+  letter-spacing: -0.02em;
+}
+.savings-hero-suffix {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.savings-hero-sub {
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+.savings-hero-sub strong {
+  color: #059669;
+}
+
+/* 3-Column Comparative Financial Ledger */
+.fintech-comparison-ledger {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+.ledger-matrix-header {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1.25fr;
+  padding: 7px 11px;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--line);
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.ledger-matrix-header .presumptive {
+  color: var(--cobalt);
+  text-align: right;
+  font-weight: 800;
+}
+.ledger-matrix-header .regular {
+  text-align: right;
+}
+.ledger-matrix-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1.25fr;
+  padding: 7px 11px;
+  align-items: center;
+  font-size: 11.5px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+.ledger-matrix-row:last-child {
+  border-bottom: none;
+}
+.matrix-row-lbl {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+}
+.matrix-row-val {
+  text-align: right;
+  color: var(--ink);
+  font-weight: 600;
+}
+.matrix-row-val.highlight {
+  color: #059669;
+  font-weight: 700;
+}
+.matrix-row-val.strike-tax {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 11px;
+}
+.matrix-row-val.final-tax {
+  color: #059669;
+  font-weight: 800;
+  font-size: 12.5px;
+}
+.matrix-row-val.text-red {
+  color: #b91c1c;
+  font-size: 10px;
+  font-weight: 600;
+}
+.matrix-row-val.highlight-badge {
+  color: #059669;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.matrix-total-row {
+  background: rgba(16, 185, 129, 0.07);
+  border-top: 1px solid rgba(16, 185, 129, 0.22);
+  padding-block: 8px;
+}
+.matrix-total-row .matrix-row-lbl {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Card 3: CA Computation Schedule */
+.editorial-memo-sheet.computation {
+  gap: 10px;
+  padding: 12px 14px;
 }
 .advance-tax-note {
   font-size: 11px;
@@ -318,9 +428,11 @@
   border-radius: 7px;
   border: 1px solid #e2e8f0;
   border-left: 3px solid var(--emerald);
+  margin-top: auto;
 }
 .advance-tax-note strong {
   color: var(--ink);
+  font-weight: 700;
 }
 .comp-cta-btn {
   display: flex;

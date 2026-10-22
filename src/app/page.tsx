@@ -347,13 +347,14 @@ export default function HomePage() {
       <section className="testimonials-band">
         <div className="container">
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 44 }}>
+            <div className="section-center-head">
               <span className="eyebrow">Verified Community Outcomes</span>
-              <h2 className="serif" style={{ marginTop: 14 }}>
-                Real numbers. Real filings. Zero CA guesswork.
+              <h2 className="serif">
+                Real numbers. Real filings.<br />Zero CA guesswork.
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 580, margin: "14px auto 0", fontSize: 15, lineHeight: 1.75 }}>
-                How Indian software engineers, video editors, and remote contractors eliminate unnecessary taxes and file statutory compliances with 100% confidence.
+              <p>
+                How Indian software engineers, video editors, and remote contractors eliminate
+                unnecessary taxes and file statutory compliances with 100% confidence.
               </p>
             </div>
           </Reveal>
@@ -366,14 +367,14 @@ export default function HomePage() {
       <section className="faq-band">
         <div className="container">
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 0 }}>
+            <div className="faq-band-header">
               <span className="eyebrow">Common Questions</span>
-              <h2 className="serif" style={{ marginTop: 14 }}>
+              <h2 className="serif">
                 Frequently Asked Questions
               </h2>
-              <p style={{ color: "var(--muted)", maxWidth: 520, margin: "14px auto 0", fontSize: 14, lineHeight: 1.7 }}>
-                The most common questions Indian freelancers ask about 44ADA, GST, TDS, and
-                international payment compliance.
+              <p>
+                The most common questions Indian freelancers ask about 44ADA, GST, TDS,
+                and international payment compliance.
               </p>
             </div>
           </Reveal>

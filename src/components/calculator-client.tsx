@@ -6,20 +6,14 @@ import {
   formatINR,
   type SpecifiedProfession
 } from "@/lib/tax";
-import {
-  Info,
-  Calendar,
-  AlertTriangle,
-  Scale,
-  CheckCircle2
-} from "lucide-react";
+import { AlertCircle, Check } from "lucide-react";
 
 export function CalculatorClient() {
   const [grossInput, setGrossInput] = useState("1800000");
   const [tdsInput, setTdsInput] = useState("90000");
   const [cashPercent, setCashPercent] = useState<number>(0);
   const [profession, setProfession] = useState<SpecifiedProfession>("software_development_it");
-  const [chapter6A, setChapter6A] = useState("150000"); // 80C default for comparison
+  const [chapter6A, setChapter6A] = useState("150000");
   const [activeTab, setActiveTab] = useState<"new" | "old" | "compare">("compare");
 
   const gross = Number(grossInput) || 0;
@@ -37,14 +31,25 @@ export function CalculatorClient() {
   }, [gross, tds, cashPercent, profession, deductions]);
 
   const isEligibleProfession = profession !== "content_creator_other";
+  const isRefund = result.newRegime.netBalancePayableOrRefund <= 0;
+  const netAmount = Math.abs(result.newRegime.netBalancePayableOrRefund);
 
   return (
     <section className="container calculator-grid" aria-label="Section 44ADA Tax Calculator">
-      {/* Left Input Column */}
+      {/* Left Input Panel */}
       <div className="panel">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
-          <h2 style={{ margin: 0 }}>Your Financial Inputs</h2>
-          <span className="tag">AY 2025-26</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, paddingBottom: 16, borderBottom: "1px solid var(--line)" }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)" }}>
+              Financial Parameters
+            </h2>
+            <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--muted)" }}>
+              Enter your professional receipts and tax credits
+            </p>
+          </div>
+          <span style={{ fontSize: 11, fontWeight: 700, background: "var(--paper-deep)", color: "var(--ink-2)", padding: "4px 10px", borderRadius: 6, border: "1px solid var(--line)" }}>
+            AY 2025–26
+          </span>
         </div>
 
         {/* Gross Professional Receipts */}
@@ -52,48 +57,77 @@ export function CalculatorClient() {
           <label htmlFor="gross-receipts">
             Annual Gross Professional Receipts (₹)
           </label>
-          <input
-            className="field"
-            id="gross-receipts"
-            type="number"
-            min="0"
-            step="10000"
-            inputMode="numeric"
-            value={grossInput}
-            onChange={(e) => setGrossInput(e.target.value)}
-            placeholder="e.g. 1800000"
-          />
-          <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-            {[1000000, 1800000, 2500000, 4500000, 6500000].map((val) => (
-              <button
-                key={val}
-                type="button"
-                onClick={() => setGrossInput(val.toString())}
-                style={{
-                  fontSize: 10,
-                  padding: "4px 8px",
-                  borderRadius: 4,
-                  border: "1px solid var(--line)",
-                  background: gross === val ? "var(--green)" : "#fff",
-                  color: gross === val ? "#fff" : "var(--ink)",
-                  cursor: "pointer"
-                }}
-              >
-                ₹{(val / 100000).toFixed(0)}L
-              </button>
-            ))}
+          <div style={{ position: "relative" }}>
+            <span style={{
+              position: "absolute",
+              left: 14,
+              top: "50%",
+              transform: "translateY(-50%)",
+              fontSize: 16,
+              fontWeight: 600,
+              color: "var(--muted)",
+              pointerEvents: "none"
+            }}>
+              ₹
+            </span>
+            <input
+              className="field"
+              id="gross-receipts"
+              type="number"
+              min="0"
+              step="10000"
+              inputMode="numeric"
+              value={grossInput}
+              onChange={(e) => setGrossInput(e.target.value)}
+              placeholder="1800000"
+              style={{ paddingLeft: 30, fontSize: 16, fontWeight: 600, color: "var(--ink)" }}
+            />
+          </div>
+
+          {/* Quick preset chips */}
+          <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+            {[1000000, 1800000, 2500000, 5000000, 7500000].map((val) => {
+              const active = gross === val;
+              return (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => setGrossInput(val.toString())}
+                  style={{
+                    fontSize: 12,
+                    fontWeight: active ? 700 : 500,
+                    padding: "5px 12px",
+                    borderRadius: 6,
+                    border: active ? "1px solid #0f172a" : "1px solid var(--line)",
+                    background: active ? "#0f172a" : "#ffffff",
+                    color: active ? "#ffffff" : "var(--ink-2)",
+                    cursor: "pointer",
+                    transition: "all 0.15s ease"
+                  }}
+                >
+                  ₹{(val / 100000).toFixed(0)}L
+                </button>
+              );
+            })}
           </div>
           <small>
-            Total gross professional fees credited before any platform fees or business expenses.
+            Total gross professional fees received before platform fees or business expenses.
           </small>
         </div>
 
         {/* Cash Receipts Percentage */}
         <div className="form-row">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <label htmlFor="cash-percent">Percentage Received in Physical Cash: {cashPercent}%</label>
-            <span style={{ fontSize: 11, color: cashPercent <= 5 ? "var(--green)" : "var(--terracotta)", fontWeight: 600 }}>
-              {cashPercent <= 5 ? "Eligible for ₹75L Limit" : "Capped at ₹50L Limit"}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <label htmlFor="cash-percent" style={{ margin: 0 }}>Physical Cash Receipts: {cashPercent}%</label>
+            <span style={{
+              fontSize: 11,
+              fontWeight: 600,
+              color: cashPercent <= 5 ? "#065f46" : "#92400e",
+              background: cashPercent <= 5 ? "#ecfdf5" : "#fef3c7",
+              padding: "2px 8px",
+              borderRadius: 4
+            }}>
+              {cashPercent <= 5 ? "₹75L Limit Eligible" : "Capped at ₹50L Limit"}
             </span>
           </div>
           <input
@@ -104,10 +138,10 @@ export function CalculatorClient() {
             step="1"
             value={cashPercent}
             onChange={(e) => setCashPercent(Number(e.target.value))}
-            style={{ width: "100%", accentColor: "var(--green)" }}
+            style={{ width: "100%", accentColor: "#0f172a", cursor: "pointer" }}
           />
           <small>
-            Under Section 44ADA(1B), if cash receipts do not exceed 5%, the turnover ceiling increases from ₹50 Lakhs to ₹75 Lakhs.
+            Section 44ADA(1B): Turnover ceiling is ₹75 Lakhs if cash receipts do not exceed 5%.
           </small>
         </div>
 
@@ -119,88 +153,133 @@ export function CalculatorClient() {
             id="profession-select"
             value={profession}
             onChange={(e) => setProfession(e.target.value as SpecifiedProfession)}
+            style={{ fontSize: 13.5 }}
           >
             <option value="software_development_it">Software Developer / IT Consultant (Sec 44AA)</option>
             <option value="technical_consultancy">Technical Consultant / Engineer</option>
-            <option value="film_artist_video_editor">Film Artist / Video Editor / Animator (Notification 18/2001)</option>
+            <option value="film_artist_video_editor">Film Artist / Video Editor / Animator</option>
             <option value="interior_decoration">Interior Decorator / Architect</option>
             <option value="legal_consulting">Legal Professional</option>
             <option value="accountancy">Accountant / Auditor</option>
-            <option value="content_creator_other">YouTuber / Content Creator / Influencer (Non-specified)</option>
+            <option value="content_creator_other">YouTuber / Digital Creator (Non-specified)</option>
           </select>
           <small>
             {!isEligibleProfession
-              ? "Note: General influencers or content creators may not fall directly within specified professions under Section 44AA unless classified under technical consultancy or film/artistic services. Section 44AD or normal bookkeeping might apply."
-              : "Recognized as an eligible specified profession under Section 44AA / Central Board of Direct Taxes notifications."}
+              ? "General creators may require classification under technical consultancy or film/artistic services under Section 44AA."
+              : "Eligible specified profession under Section 44AA of the Income Tax Act, 1961."}
           </small>
         </div>
 
         {/* TDS Deducted */}
         <div className="form-row">
-          <label htmlFor="tds-deducted">TDS Already Deducted by Clients / Platforms (₹)</label>
-          <input
-            className="field"
-            id="tds-deducted"
-            type="number"
-            min="0"
-            inputMode="numeric"
-            value={tdsInput}
-            onChange={(e) => setTdsInput(e.target.value)}
-            placeholder="e.g. 90000"
-          />
-          <div style={{ display: "flex", gap: 6, marginTop: 8 }}>
-            <button
-              type="button"
-              onClick={() => setTdsInput(Math.round(gross * 0.10).toString())}
-              style={{ fontSize: 10, padding: "3px 8px", borderRadius: 4, border: "1px solid var(--line)", background: "#fff", cursor: "pointer" }}
-            >
-              10% (Sec 194J)
-            </button>
-            <button
-              type="button"
-              onClick={() => setTdsInput(Math.round(gross * 0.02).toString())}
-              style={{ fontSize: 10, padding: "3px 8px", borderRadius: 4, border: "1px solid var(--line)", background: "#fff", cursor: "pointer" }}
-            >
-              2% (Sec 194C)
-            </button>
-            <button
-              type="button"
-              onClick={() => setTdsInput("0")}
-              style={{ fontSize: 10, padding: "3px 8px", borderRadius: 4, border: "1px solid var(--line)", background: "#fff", cursor: "pointer" }}
-            >
-              Zero TDS (Export/LUT)
-            </button>
+          <label htmlFor="tds-deducted">TDS Already Deducted by Clients (₹)</label>
+          <div style={{ position: "relative" }}>
+            <span style={{
+              position: "absolute",
+              left: 14,
+              top: "50%",
+              transform: "translateY(-50%)",
+              fontSize: 16,
+              fontWeight: 600,
+              color: "var(--muted)",
+              pointerEvents: "none"
+            }}>
+              ₹
+            </span>
+            <input
+              className="field"
+              id="tds-deducted"
+              type="number"
+              min="0"
+              inputMode="numeric"
+              value={tdsInput}
+              onChange={(e) => setTdsInput(e.target.value)}
+              placeholder="90000"
+              style={{ paddingLeft: 30, fontSize: 16, fontWeight: 600, color: "var(--ink)" }}
+            />
           </div>
-          <small>TDS reflected in your Form 26AS / AIS acts as tax credit against your final liability.</small>
+
+          <div style={{ display: "flex", gap: 6, marginTop: 8 }}>
+            {[
+              { label: "10% (Sec 194J)", rate: 0.10 },
+              { label: "2% (Sec 194C/J)", rate: 0.02 },
+              { label: "Zero TDS (Export)", rate: 0 }
+            ].map(({ label, rate }) => {
+              const calcVal = Math.round(gross * rate);
+              const active = tds === calcVal;
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => setTdsInput(calcVal.toString())}
+                  style={{
+                    fontSize: 11,
+                    fontWeight: active ? 700 : 500,
+                    padding: "5px 10px",
+                    borderRadius: 6,
+                    border: active ? "1px solid #0f172a" : "1px solid var(--line)",
+                    background: active ? "#0f172a" : "#ffffff",
+                    color: active ? "#ffffff" : "var(--ink-2)",
+                    cursor: "pointer"
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+          <small>TDS reflected in your Form 26AS / AIS acts as direct tax credit.</small>
         </div>
 
-        {/* Chapter VI-A Deductions for Old Regime Comparison */}
+        {/* Chapter VI-A Deductions */}
         <div className="form-row" style={{ marginBottom: 0 }}>
           <label htmlFor="chapter-6a">
-            Eligible Chapter VI-A Deductions for Old Regime (80C, 80D, etc.) (₹)
+            Chapter VI-A Deductions for Old Regime (80C, 80D) (₹)
           </label>
-          <input
-            className="field"
-            id="chapter-6a"
-            type="number"
-            min="0"
-            max="500000"
-            inputMode="numeric"
-            value={chapter6A}
-            onChange={(e) => setChapter6A(e.target.value)}
-          />
+          <div style={{ position: "relative" }}>
+            <span style={{
+              position: "absolute",
+              left: 14,
+              top: "50%",
+              transform: "translateY(-50%)",
+              fontSize: 16,
+              fontWeight: 600,
+              color: "var(--muted)",
+              pointerEvents: "none"
+            }}>
+              ₹
+            </span>
+            <input
+              className="field"
+              id="chapter-6a"
+              type="number"
+              min="0"
+              max="500000"
+              inputMode="numeric"
+              value={chapter6A}
+              onChange={(e) => setChapter6A(e.target.value)}
+              style={{ paddingLeft: 30, fontSize: 16, fontWeight: 600, color: "var(--ink)" }}
+            />
+          </div>
           <small>
-            Under New Regime (Sec 115BAC), Chapter VI-A deductions are not available. They are used here only to compare whether Old Regime could save you more tax.
+            Used exclusively to compute whether Old Regime could save you more tax.
           </small>
         </div>
       </div>
 
-      {/* Right Output Panel */}
-      <div className="panel result-panel" aria-live="polite">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2 style={{ color: "#fffdf7", margin: 0 }}>Tax Computation</h2>
-          <span style={{ fontSize: 11, background: "rgba(255,255,255,0.15)", padding: "3px 8px", borderRadius: 4, color: "#fff" }}>
-            FY 2024-25 (AY 2025-26)
+      {/* Right Output Panel: Executive Financial Statement */}
+      <div className="result-panel" aria-live="polite">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, paddingBottom: 16, borderBottom: "1px solid var(--line)" }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)" }}>
+              Tax Computation
+            </h2>
+            <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--muted)" }}>
+              Presumptive assessment under Section 44ADA
+            </p>
+          </div>
+          <span style={{ fontSize: 11, fontWeight: 600, color: "var(--muted)", background: "var(--paper-deep)", padding: "4px 10px", borderRadius: 6, border: "1px solid var(--line)" }}>
+            FY 2024–25
           </span>
         </div>
 
@@ -210,63 +289,68 @@ export function CalculatorClient() {
             role="alert"
             style={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: 10,
               padding: "12px 14px",
-              margin: "16px 0",
-              borderRadius: 6,
-              background: "#ffedd5",
-              color: "#9a3412",
-              fontSize: 12
+              marginBottom: 18,
+              borderRadius: 8,
+              background: "#fef3c7",
+              border: "1px solid #fde68a",
+              color: "#92400e",
+              fontSize: 12.5,
+              lineHeight: 1.5
             }}
           >
-            <AlertTriangle size={18} style={{ flexShrink: 0 }} />
+            <AlertCircle size={16} style={{ flexShrink: 0, marginTop: 2 }} />
             <span>
-              Turnover exceeds statutory ceiling of {formatINR(result.turnoverLimit)}. Section 44ADA presumptive taxation is not available; regular books of account and tax audit under Section 44AB may be mandatory.
+              Turnover exceeds statutory ceiling of {formatINR(result.turnoverLimit)}. Section 44ADA presumptive taxation is not available; regular books of account and audit under Section 44AB apply.
             </span>
           </div>
         )}
 
-        <div style={{ margin: "20px 0 10px" }}>
-          <span className="muted">Deemed Presumptive Profit (50% of Receipts)</span>
-          <div className="result-value" style={{ margin: "4px 0 16px" }}>
-            {formatINR(result.presumptiveProfit)}
-          </div>
-        </div>
-
-        {/* Regime Tabs */}
-        <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
+        {/* Minimalist Segmented Tabs */}
+        <div style={{
+          display: "flex",
+          gap: 4,
+          padding: 4,
+          background: "var(--paper-deep)",
+          borderRadius: 8,
+          marginBottom: 20
+        }}>
           <button
             type="button"
             onClick={() => setActiveTab("compare")}
             style={{
               flex: 1,
-              padding: "8px 10px",
+              padding: "7px 10px",
               borderRadius: 6,
-              fontSize: 11,
-              fontWeight: 600,
+              fontSize: 12,
+              fontWeight: activeTab === "compare" ? 700 : 500,
               border: 0,
               cursor: "pointer",
-              background: activeTab === "compare" ? "#fffdf7" : "rgba(255,255,255,0.15)",
-              color: activeTab === "compare" ? "var(--green)" : "#fff"
+              background: activeTab === "compare" ? "#ffffff" : "transparent",
+              color: activeTab === "compare" ? "var(--ink)" : "var(--muted)",
+              boxShadow: activeTab === "compare" ? "0 1px 3px rgba(15,23,42,0.08)" : "none",
+              transition: "all 0.15s ease"
             }}
           >
-            <Scale size={13} style={{ verticalAlign: "middle", marginRight: 4 }} />
-            Comparison
+            Regime Comparison
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("new")}
             style={{
               flex: 1,
-              padding: "8px 10px",
+              padding: "7px 10px",
               borderRadius: 6,
-              fontSize: 11,
-              fontWeight: 600,
+              fontSize: 12,
+              fontWeight: activeTab === "new" ? 700 : 500,
               border: 0,
               cursor: "pointer",
-              background: activeTab === "new" ? "#fffdf7" : "rgba(255,255,255,0.15)",
-              color: activeTab === "new" ? "var(--green)" : "#fff"
+              background: activeTab === "new" ? "#ffffff" : "transparent",
+              color: activeTab === "new" ? "var(--ink)" : "var(--muted)",
+              boxShadow: activeTab === "new" ? "0 1px 3px rgba(15,23,42,0.08)" : "none",
+              transition: "all 0.15s ease"
             }}
           >
             New Regime (Default)
@@ -276,155 +360,171 @@ export function CalculatorClient() {
             onClick={() => setActiveTab("old")}
             style={{
               flex: 1,
-              padding: "8px 10px",
+              padding: "7px 10px",
               borderRadius: 6,
-              fontSize: 11,
-              fontWeight: 600,
+              fontSize: 12,
+              fontWeight: activeTab === "old" ? 700 : 500,
               border: 0,
               cursor: "pointer",
-              background: activeTab === "old" ? "#fffdf7" : "rgba(255,255,255,0.15)",
-              color: activeTab === "old" ? "var(--green)" : "#fff"
+              background: activeTab === "old" ? "#ffffff" : "transparent",
+              color: activeTab === "old" ? "var(--ink)" : "var(--muted)",
+              boxShadow: activeTab === "old" ? "0 1px 3px rgba(15,23,42,0.08)" : "none",
+              transition: "all 0.15s ease"
             }}
           >
             Old Regime
           </button>
         </div>
 
-        {/* Active Tab View */}
-        {activeTab === "compare" && (
-          <div style={{ background: "rgba(255,255,255,0.08)", padding: 16, borderRadius: 8 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
-              <div style={{ borderRight: "1px solid rgba(255,255,255,0.15)", paddingRight: 10 }}>
-                <div style={{ fontSize: 11, color: "#c9d8d0" }}>New Regime Tax</div>
-                <div style={{ fontSize: 20, fontFamily: "Georgia, serif", fontWeight: 700, margin: "4px 0" }}>
-                  {formatINR(result.newRegime.totalTaxLiability)}
-                </div>
-                <small style={{ fontSize: 10, color: "#d1ded6" }}>
-                  {result.newRegime.taxableIncome <= 700000 ? "Zero tax (Sec 87A rebate)" : "Slab rates applied"}
-                </small>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, color: "#c9d8d0" }}>Old Regime Tax</div>
-                <div style={{ fontSize: 20, fontFamily: "Georgia, serif", fontWeight: 700, margin: "4px 0" }}>
-                  {formatINR(result.oldRegime.totalTaxLiability)}
-                </div>
-                <small style={{ fontSize: 10, color: "#d1ded6" }}>
-                  With {formatINR(result.oldRegime.claimedDeductions)} deductions
-                </small>
-              </div>
-            </div>
-
-            <div
-              style={{
-                padding: "10px 12px",
-                borderRadius: 6,
-                background: "rgba(255,255,255,0.12)",
-                fontSize: 12,
-                display: "flex",
-                alignItems: "center",
-                gap: 8
-              }}
-            >
-              <CheckCircle2 size={16} color="#10b981" />
-              <span>
-                <strong>Recommendation:</strong> {result.recommendedRegime === "Equal"
-                  ? "Both regimes yield identical tax for this income level."
-                  : `${result.recommendedRegime} saves you approximately ${formatINR(result.estimatedTaxDifference)}.`}
-              </span>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "new" && (
-          <div>
-            <div className="result-line">
-              <span>Taxable Deemed Income</span>
-              <strong>{formatINR(result.newRegime.taxableIncome)}</strong>
-            </div>
-            <div className="result-line">
-              <span>Base Income Tax</span>
-              <strong>{formatINR(result.newRegime.baseTax)}</strong>
-            </div>
-            {result.newRegime.rebate87A > 0 && (
-              <div className="result-line" style={{ color: "#a7f3d0" }}>
-                <span>Section 87A Rebate</span>
-                <strong>-{formatINR(result.newRegime.rebate87A)}</strong>
-              </div>
-            )}
-            <div className="result-line">
-              <span>Health &amp; Education Cess (4%)</span>
-              <strong>{formatINR(result.newRegime.cess)}</strong>
-            </div>
-            <div className="result-line" style={{ borderBottom: "2px solid #fff", fontSize: 13 }}>
-              <span>Total Tax Liability</span>
-              <strong>{formatINR(result.newRegime.totalTaxLiability)}</strong>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "old" && (
-          <div>
-            <div className="result-line">
-              <span>Presumptive Profit</span>
-              <strong>{formatINR(result.presumptiveProfit)}</strong>
-            </div>
-            <div className="result-line">
-              <span>Less: Chapter VI-A Deductions</span>
-              <strong>-{formatINR(result.oldRegime.claimedDeductions)}</strong>
-            </div>
-            <div className="result-line">
-              <span>Taxable Net Income</span>
-              <strong>{formatINR(result.oldRegime.taxableIncome)}</strong>
-            </div>
-            <div className="result-line">
-              <span>Base Tax + 4% Cess</span>
-              <strong>{formatINR(result.oldRegime.totalTaxLiability)}</strong>
-            </div>
-          </div>
-        )}
-
-        {/* TDS Credit & Net Balance Section */}
-        <div style={{ marginTop: 18, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.2)" }}>
-          <div className="result-line">
-            <span>TDS Credit Claimed</span>
-            <strong>{formatINR(result.tdsDeducted)}</strong>
-          </div>
-          <div className="result-line" style={{ fontSize: 14, fontWeight: 700 }}>
-            <span>
-              {result.newRegime.netBalancePayableOrRefund <= 0
-                ? "Estimated TDS Refund Due"
-                : "Estimated Balance Tax Payable"}
-            </span>
-            <strong style={{ color: result.newRegime.netBalancePayableOrRefund <= 0 ? "#a7f3d0" : "#fed7aa" }}>
-              {formatINR(Math.abs(result.newRegime.netBalancePayableOrRefund))}
-            </strong>
-          </div>
-        </div>
-
-        {/* Statutory Advance Tax Reminder */}
+        {/* Hero Result Banner (Clean Executive Card) */}
         <div
           style={{
-            marginTop: 16,
-            padding: "12px 14px",
-            borderRadius: 6,
-            background: "rgba(255,255,255,0.08)",
-            fontSize: 11,
-            lineHeight: 1.6,
+            padding: "20px 22px",
+            borderRadius: 12,
+            background: isRefund ? "#f0fdf4" : "#fffbeb",
+            border: isRefund ? "1px solid #bbf7d0" : "1px solid #fde68a",
+            marginBottom: 20,
             display: "flex",
-            gap: 8
+            justifyContent: "space-between",
+            alignItems: "center"
           }}
         >
-          <Calendar size={18} style={{ flexShrink: 0, marginTop: 2 }} />
           <div>
-            <strong>Advance Tax Statutory Exemption:</strong> Unlike regular taxpayers who must pay in 4 quarterly installments, professionals declaring income under Section 44ADA are permitted to pay <strong>100% of their advance tax in a single installment on or before March 15th</strong> of the financial year.
+            <span style={{
+              fontSize: 11,
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              fontWeight: 700,
+              color: isRefund ? "#166534" : "#92400e",
+              display: "block",
+              marginBottom: 4
+            }}>
+              {isRefund ? "Estimated TDS Refund Due to You" : "Estimated Balance Tax Payable"}
+            </span>
+            <div style={{
+              fontSize: 32,
+              fontWeight: 800,
+              color: "var(--ink)",
+              fontVariantNumeric: "tabular-nums",
+              lineHeight: 1.1
+            }}>
+              {formatINR(netAmount)}
+            </div>
+            <p style={{ margin: "4px 0 0", fontSize: 12, color: isRefund ? "#15803d" : "#b45309" }}>
+              {isRefund
+                ? "Directly credited to your bank account after ITR processing"
+                : "Pay on or before March 15th to avoid Sections 234B/C interest"}
+            </p>
+          </div>
+          <span style={{
+            fontSize: 11,
+            fontWeight: 700,
+            padding: "4px 10px",
+            borderRadius: 6,
+            background: isRefund ? "#dcfce7" : "#fef3c7",
+            color: isRefund ? "#166534" : "#92400e",
+            border: isRefund ? "1px solid #86efac" : "1px solid #fde68a"
+          }}>
+            {isRefund ? "Refund Due" : "Advance Tax Due"}
+          </span>
+        </div>
+
+        {/* Tabular Statement Rows */}
+        <div style={{ display: "grid", gap: 0, marginBottom: 16 }}>
+          <div className="result-line">
+            <span>Gross Professional Receipts</span>
+            <strong>{formatINR(gross)}</strong>
+          </div>
+          <div className="result-line">
+            <span>Deemed Presumptive Profit (50%)</span>
+            <strong>{formatINR(result.presumptiveProfit)}</strong>
+          </div>
+
+          {activeTab === "compare" && (
+            <>
+              <div className="result-line">
+                <span>New Regime Tax Liability</span>
+                <strong>{formatINR(result.newRegime.totalTaxLiability)}</strong>
+              </div>
+              <div className="result-line">
+                <span>Old Regime Tax Liability (with deductions)</span>
+                <strong>{formatINR(result.oldRegime.totalTaxLiability)}</strong>
+              </div>
+            </>
+          )}
+
+          {activeTab === "new" && (
+            <>
+              <div className="result-line">
+                <span>Taxable Income</span>
+                <strong>{formatINR(result.newRegime.taxableIncome)}</strong>
+              </div>
+              <div className="result-line">
+                <span>Base Tax</span>
+                <strong>{formatINR(result.newRegime.baseTax)}</strong>
+              </div>
+              {result.newRegime.rebate87A > 0 && (
+                <div className="result-line" style={{ color: "#059669" }}>
+                  <span>Section 87A Rebate</span>
+                  <strong>-{formatINR(result.newRegime.rebate87A)}</strong>
+                </div>
+              )}
+              <div className="result-line">
+                <span>Health &amp; Education Cess (4%)</span>
+                <strong>{formatINR(result.newRegime.cess)}</strong>
+              </div>
+              <div className="result-line">
+                <span>Total Tax Liability</span>
+                <strong>{formatINR(result.newRegime.totalTaxLiability)}</strong>
+              </div>
+            </>
+          )}
+
+          {activeTab === "old" && (
+            <>
+              <div className="result-line">
+                <span>Claimed Deductions (80C/80D)</span>
+                <strong>-{formatINR(result.oldRegime.claimedDeductions)}</strong>
+              </div>
+              <div className="result-line">
+                <span>Taxable Net Income</span>
+                <strong>{formatINR(result.oldRegime.taxableIncome)}</strong>
+              </div>
+              <div className="result-line">
+                <span>Total Tax Liability (with Cess)</span>
+                <strong>{formatINR(result.oldRegime.totalTaxLiability)}</strong>
+              </div>
+            </>
+          )}
+
+          <div className="result-line">
+            <span>TDS Credits Claimed (Form 26AS)</span>
+            <strong>-{formatINR(result.tdsDeducted)}</strong>
           </div>
         </div>
 
-        {/* Educational Disclaimer */}
-        <p className="source-note" style={{ marginTop: 16 }}>
-          <Info size={12} style={{ verticalAlign: "middle", marginRight: 4 }} />
-          Educational illustration only. Assumes individual tax resident under age 60 with no capital gains or lottery income. Final computation requires verifying Form 26AS/AIS, Section 44AA eligibility, and consulting a qualified Indian Chartered Accountant before return filing.
+        {/* Recommendation Statement */}
+        <div
+          style={{
+            padding: "12px 14px",
+            borderRadius: 8,
+            background: "var(--paper-deep)",
+            border: "1px solid var(--line)",
+            fontSize: 12.5,
+            color: "var(--ink-2)",
+            lineHeight: 1.6,
+            marginBottom: 14
+          }}
+        >
+          <strong>Verdict: </strong>
+          {result.recommendedRegime === "Equal"
+            ? "Both tax regimes yield identical liability for your income level."
+            : `${result.recommendedRegime} saves you approximately ${formatINR(result.estimatedTaxDifference)} in net tax.`}
+        </div>
+
+        {/* Footnote Rule */}
+        <p style={{ margin: 0, fontSize: 11.5, color: "var(--muted)", lineHeight: 1.6 }}>
+          <strong>Statutory Advance Tax Rule:</strong> Professionals declaring presumptive income under Section 44ADA are permitted to pay 100% of their advance tax in a single installment on or before March 15th, fully exempt from quarterly 234C interest penalties.
         </p>
       </div>
     </section>

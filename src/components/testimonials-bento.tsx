@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Star } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Star, TrendingDown, TrendingUp, BookOpen, CheckCircle2 } from "lucide-react";
 import {
   UpworkLogo,
   GstCertificateIcon,
-  StatutoryShieldIcon,
   TaxReceiptSlipIcon,
   FinancialCalcIcon,
 } from "./brand-and-doc-icons";
@@ -19,6 +18,8 @@ export function TestimonialsBento() {
 
   const isDimmed = (cat: CategoryTab) => activeTab !== "all" && activeTab !== cat;
   const isFocused = (cat: CategoryTab) => activeTab === cat;
+
+  const is44ada = filingMode === "44ada";
 
   return (
     <div className="testimonials-bento-root">
@@ -62,26 +63,27 @@ export function TestimonialsBento() {
           {/* Subtle Fintech Dot Matrix Overlay */}
           <div className="card-tech-grid" aria-hidden="true" />
           <div className="quote-watermark" aria-hidden="true">
-            “
+            &ldquo;
           </div>
 
           <div className="bento-card-inner">
+            {/* Non-AI Editorial Header Row */}
             <div className="bento-header-row">
               <div className="bento-tag-wrap">
-                <span className="bento-pill cobalt">
-                  <StatutoryShieldIcon size={12} />
-                  Verified Case Study
+                <span className="bento-case-meta">
+                  <span className="filing-status-dot" />
+                  AY 2025-26 Filed Return
                 </span>
-                <span className="bento-pill platform" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span className="bento-platform-pill">
                   <UpworkLogo size={13} />
                   Upwork Top Rated Plus
                 </span>
               </div>
 
-              {/* Tax Savings Metric Highlight (Replaced AI sparkles with Tax Receipt Slip) */}
-              <div className="savings-badge">
-                <TaxReceiptSlipIcon size={13} className="text-gold" />
-                <span>Saved <strong>₹54,600</strong> in Tax</span>
+              {/* Authentic Financial Stat Chip */}
+              <div className="bento-savings-pill">
+                <span className="savings-lbl">Verified Saving:</span>
+                <strong>₹54,600</strong>
               </div>
             </div>
 
@@ -93,55 +95,107 @@ export function TestimonialsBento() {
               </p>
             </div>
 
-            {/* Creative Interactive Tax Filing Comparison Ledger */}
-            <div className="interactive-ledger-slip" aria-label="Interactive Tax Comparison Ledger">
-              <div className="ledger-top-bar">
-                <div className="ledger-title-group">
-                  <FinancialCalcIcon size={14} className="text-cobalt" />
-                  <span>Statutory Filing Comparison (Gross: ₹24,00,000)</span>
+            {/* ── Premium Animated Fintech Comparison Panel ── */}
+            <div className="ledger-panel" aria-label="Interactive Tax Comparison">
+              {/* Header with segmented control */}
+              <div className="ledger-panel-header">
+                <div className="ledger-panel-title">
+                  <FinancialCalcIcon size={13} className="text-cobalt" />
+                  <span>Statutory Filing Comparison · Gross ₹24,00,000</span>
                 </div>
-                <div className="ledger-toggle-switch" role="group" aria-label="Select filing method">
-                  <button
-                    type="button"
-                    className={`ledger-switch-btn ${filingMode === "44ada" ? "active" : ""}`}
-                    onClick={() => setFilingMode("44ada")}
-                  >
-                    Sec 44ADA
-                  </button>
-                  <button
-                    type="button"
-                    className={`ledger-switch-btn ${filingMode === "itr3" ? "active" : ""}`}
-                    onClick={() => setFilingMode("itr3")}
-                  >
-                    Regular ITR-3
-                  </button>
+                <div className="ledger-seg-control" role="group" aria-label="Select filing method">
+                  {(["44ada", "itr3"] as const).map((mode) => (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => setFilingMode(mode)}
+                      className={`ledger-seg-btn ${filingMode === mode ? "active" : ""}`}
+                    >
+                      {mode === "44ada" ? "Sec 44ADA" : "Regular ITR-3"}
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              <div className="ledger-data-grid">
-                <div className="ledger-data-col">
-                  <span className="ledger-data-lbl">Taxable Profit</span>
-                  <strong className={`ledger-data-val ${filingMode === "44ada" ? "highlight-emerald" : ""}`}>
-                    {filingMode === "44ada" ? "₹12,00,000 (Flat 50%)" : "₹18,50,000 (Assessed)"}
-                  </strong>
-                </div>
-                <div className="ledger-data-col">
-                  <span className="ledger-data-lbl">Final Tax Liability</span>
-                  <strong className={`ledger-data-val ${filingMode === "44ada" ? "highlight-emerald" : "strike-muted"}`}>
-                    {filingMode === "44ada" ? "₹41,600 (AY 25-26)" : "₹96,200 (Old Slabs)"}
-                  </strong>
-                </div>
-                <div className="ledger-data-col">
-                  <span className="ledger-data-lbl">Books of Accounts</span>
-                  <strong className="ledger-data-val">
-                    {filingMode === "44ada" ? "0 Required (Sec 44AA Exempt)" : "Mandatory P&L + Balance Sheet"}
-                  </strong>
-                </div>
-                <div className="ledger-data-col">
-                  <span className="ledger-data-lbl">Verified Outcome</span>
-                  <span className={`ledger-verdict-pill ${filingMode === "44ada" ? "emerald" : "amber"}`}>
-                    {filingMode === "44ada" ? "✓ 57% Tax Saved legally (₹54,600)" : "⚠ ₹54,600 Excess Tax + Audit Costs"}
-                  </span>
+              {/* Animated rows */}
+              <div className="ledger-rows">
+                {[
+                  {
+                    label: "Taxable Profit",
+                    icon: <TrendingDown size={12} />,
+                    val44: "₹12,00,000",
+                    valITR: "₹18,50,000",
+                    sub44: "Flat 50% (§44ADA)",
+                    subITR: "Fully Assessed",
+                    good: true,
+                  },
+                  {
+                    label: "Final Tax Liability",
+                    icon: <TrendingDown size={12} />,
+                    val44: "₹41,600",
+                    valITR: "₹96,200",
+                    sub44: "New Regime AY 25-26",
+                    subITR: "Old Slabs",
+                    good: true,
+                  },
+                  {
+                    label: "Books of Accounts",
+                    icon: <BookOpen size={12} />,
+                    val44: "Not Required",
+                    valITR: "Mandatory P&L",
+                    sub44: "§44AA Exempt",
+                    subITR: "+ Balance Sheet",
+                    good: true,
+                  },
+                ].map((row) => (
+                  <div key={row.label} className="ledger-row">
+                    <div className="ledger-row-label">
+                      {row.label}
+                    </div>
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.div
+                        key={filingMode + row.label}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className={`ledger-row-val ${is44ada && row.good ? "ledger-val-good" : "ledger-val-muted"}`}
+                      >
+                        <span className="ledger-val-main">
+                          {is44ada ? row.val44 : row.valITR}
+                        </span>
+                        <span className="ledger-val-sub">
+                          {is44ada ? row.sub44 : row.subITR}
+                        </span>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                ))}
+
+                {/* Verdict row */}
+                <div className="ledger-verdict-row">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={filingMode + "verdict"}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className={`ledger-verdict-badge ${is44ada ? "emerald" : "amber"}`}
+                    >
+                      {is44ada ? (
+                        <>
+                          <CheckCircle2 size={13} />
+                          57% Tax Saved Legally · ₹54,600 Back in Your Pocket
+                        </>
+                      ) : (
+                        <>
+                          <TrendingUp size={13} />
+                          ₹54,600 Extra Tax Paid + Mandatory Audit Costs
+                        </>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
@@ -153,7 +207,7 @@ export function TestimonialsBento() {
                   <span>AK</span>
                 </div>
                 <div className="author-verified-badge" title="Verified Independent Worker">
-                  <StatutoryShieldIcon size={10} />
+                  <span className="filing-status-dot" style={{ width: 6, height: 6 }} />
                 </div>
               </div>
               <div className="author-info">
@@ -176,10 +230,11 @@ export function TestimonialsBento() {
           } ${isFocused("video") ? "is-focused" : ""}`}
         >
           <div className="bento-card-inner">
+            {/* Non-AI Header */}
             <div className="bento-header-row">
-              <span className="bento-pill gold">
-                <GstCertificateIcon size={13} />
-                GST LUT · Zero IGST
+              <span className="bento-case-meta warm">
+                <span className="filing-status-dot amber" />
+                GST Form RFD-11 · LUT Active
               </span>
               <span className="bento-pill-mini">Export of Services</span>
             </div>
@@ -216,19 +271,20 @@ export function TestimonialsBento() {
           </div>
         </div>
 
-        {/* Bento Card 3: Rahul Nair (TDS 194J & Rigor) */}
+        {/* Bento Card 3: Rahul Nair (TDS 194J Rectification) */}
         <div
           className={`bento-card bento-card-compact bento-card-dark ${
             isDimmed("consulting") ? "is-dimmed" : ""
           } ${isFocused("consulting") ? "is-focused" : ""}`}
         >
           <div className="bento-card-inner">
+            {/* Non-AI Header */}
             <div className="bento-header-row">
-              <span className="bento-pill cobalt">
-                <StatutoryShieldIcon size={13} />
-                Primary Statute Citations
+              <span className="bento-case-meta">
+                <span className="filing-status-dot" />
+                Section 194J · TDS Rectification
               </span>
-              <span className="bento-pill-mini">Sec 194J &amp; 44ADA</span>
+              <span className="bento-pill-mini">Form 16A Rectified</span>
             </div>
 
             <div className="bento-quote-box compact">
@@ -263,7 +319,7 @@ export function TestimonialsBento() {
           </div>
         </div>
 
-        {/* Bento Card 4: Community Metrics & Privacy Pill */}
+        {/* Bento Card 4: Community Metrics — Proper horizontal stat grid */}
         <div className="bento-card bento-card-metrics">
           <div className="bento-card-inner">
             <div className="metrics-bento-header">
@@ -277,26 +333,22 @@ export function TestimonialsBento() {
             </div>
 
             <div className="metrics-bento-list">
-              <div className="metric-row-item">
-                <div className="metric-row-val">₹14.8 Cr+</div>
-                <div className="metric-row-text">
-                  <strong>Receipts Modeled</strong>
-                  <small>Calculated locally in browser without servers</small>
-                </div>
+              <div className="metric-stat-block">
+                <span className="metric-stat-num">₹14.8 Cr<sup>+</sup></span>
+                <span className="metric-stat-label">Receipts Modeled</span>
+                <span className="metric-stat-sub">Calculated locally · no servers</span>
               </div>
-              <div className="metric-row-item">
-                <div className="metric-row-val">0 Bytes</div>
-                <div className="metric-row-text">
-                  <strong>PAN / Income Stored</strong>
-                  <small>Zero analytics on your income numbers</small>
-                </div>
+              <div className="metric-stat-divider" />
+              <div className="metric-stat-block">
+                <span className="metric-stat-num">0 Bytes</span>
+                <span className="metric-stat-label">PAN / Income Stored</span>
+                <span className="metric-stat-sub">Zero analytics on your income</span>
               </div>
-              <div className="metric-row-item">
-                <div className="metric-row-val">100%</div>
-                <div className="metric-row-text">
-                  <strong>Statute-Backed</strong>
-                  <small>CBDT, GSTN circulars &amp; RBI directions</small>
-                </div>
+              <div className="metric-stat-divider" />
+              <div className="metric-stat-block">
+                <span className="metric-stat-num">100%</span>
+                <span className="metric-stat-label">Statute-Backed</span>
+                <span className="metric-stat-sub">CBDT, GSTN &amp; RBI directions</span>
               </div>
             </div>
           </div>

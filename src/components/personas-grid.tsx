@@ -14,7 +14,7 @@ import {
   SwiftRemittanceIcon,
   TaxReceiptSlipIcon,
   AdvanceTaxCalendarIcon,
-  StatutoryShieldIcon,
+  LegalStatuteBookIcon,
   FinancialCalcIcon,
   TerminalDevIcon,
   FilmVideoIcon,
@@ -405,7 +405,7 @@ export function PersonasGrid() {
 
               {/* CA Advisory Context Note */}
               <div className="persona-founder-callout">
-                <StatutoryShieldIcon size={15} className="founder-callout-icon text-cobalt" />
+                <LegalStatuteBookIcon size={15} className="founder-callout-icon text-cobalt" />
                 <p>{activePersona.caTip}</p>
               </div>
             </div>
@@ -425,45 +425,66 @@ export function PersonasGrid() {
               Compare standard business taxation against presumptive 44ADA for {activePersona.name}.
             </p>
 
-            <div className="editorial-memo-sheet computation">
-              <div className="computation-table">
-                <div className="comp-row">
-                  <span>Gross Annual Receipts</span>
-                  <strong>{activePersona.sampleGross}</strong>
-                </div>
-                <div className="comp-row">
-                  <span>Taxable Profit under 44ADA (50%)</span>
-                  <strong className="text-emerald">{activePersona.sampleProfit}</strong>
-                </div>
-                <div className="comp-row strike">
-                  <span>Regular ITR-3 Tax (Old Slabs)</span>
-                  <strong className="old-tax">{activePersona.regularTax}</strong>
-                </div>
-                <div className="comp-row">
-                  <span>44ADA Tax (AY 2025-26 New Slabs)</span>
-                  <strong className="text-emerald">{activePersona.presumptiveTax}</strong>
-                </div>
-                <div className="comp-row total-saving">
-                  <span>Direct Tax Saved Legally</span>
-                  <span className="saving-badge">{activePersona.savedTax}</span>
-                </div>
+            {/* Direct Statutory Savings Hero Anchor */}
+            <div className="persona-savings-hero-block">
+              <div className="savings-hero-top">
+                <span className="savings-hero-label">Direct Statutory Tax Saving</span>
+                <span className="savings-hero-badge">{activePersona.savingsPercentage}</span>
+              </div>
+              <div className="savings-hero-amount-row">
+                <span className="savings-hero-currency">₹</span>
+                <span className="savings-hero-number">
+                  {activePersona.savedTax.replace("₹", "").replace(" Saved", "")}
+                </span>
+                <span className="savings-hero-suffix">saved annually</span>
+              </div>
+              <div className="savings-hero-sub">
+                Effective Tax Rate: <strong>{activePersona.effectiveRate}</strong> under Sec 44ADA
+              </div>
+            </div>
+
+            {/* 3-Column Comparative Fintech Ledger Matrix */}
+            <div className="fintech-comparison-ledger" role="table" aria-label="Tax Comparison Schedule">
+              <div className="ledger-matrix-header" role="row">
+                <span role="columnheader">Tax Parameter</span>
+                <span role="columnheader" className="regular">Regular ITR-3</span>
+                <span role="columnheader" className="presumptive">Sec 44ADA</span>
               </div>
 
-              {/* Advance Tax Proviso - Real Calendar Icon (No AI Sparkles) */}
-              <div className="advance-tax-note">
-                <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
-                  <AdvanceTaxCalendarIcon size={14} className="text-emerald" />
-                  <strong>Advance Tax: Single March 15th Deadline</strong>
-                </div>
-                <span>{activePersona.advanceTaxRule}</span>
+              <div className="ledger-matrix-row" role="row">
+                <span className="matrix-row-lbl">Gross Receipts</span>
+                <span className="matrix-row-val">{activePersona.sampleGross}</span>
+                <span className="matrix-row-val highlight">{activePersona.sampleGross}</span>
               </div>
 
-              {/* Effective Rate Pill */}
-              <div className="effective-rate-pill">
-                <span>{activePersona.savingsPercentage}</span>
-                <span className="rate-divider">·</span>
-                <strong className="text-emerald">{activePersona.effectiveRate}</strong>
+              <div className="ledger-matrix-row" role="row">
+                <span className="matrix-row-lbl">Taxable Profit Base</span>
+                <span className="matrix-row-val strike-tax">100% Assessed</span>
+                <span className="matrix-row-val highlight">
+                  {activePersona.sampleProfit} <small>(50%)</small>
+                </span>
               </div>
+
+              <div className="ledger-matrix-row" role="row">
+                <span className="matrix-row-lbl">Books of Accounts</span>
+                <span className="matrix-row-val text-red">Mandatory P&amp;L</span>
+                <span className="matrix-row-val highlight-badge">Exempt (§ 44AA)</span>
+              </div>
+
+              <div className="ledger-matrix-row matrix-total-row" role="row">
+                <span className="matrix-row-lbl">Final Tax Payable</span>
+                <span className="matrix-row-val strike-tax">{activePersona.regularTax}</span>
+                <span className="matrix-row-val final-tax">{activePersona.presumptiveTax}</span>
+              </div>
+            </div>
+
+            {/* Advance Tax Proviso - Real Calendar Icon (No AI Sparkles) */}
+            <div className="advance-tax-note">
+              <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
+                <AdvanceTaxCalendarIcon size={14} className="text-emerald" />
+                <strong>Advance Tax: Single March 15th Deadline</strong>
+              </div>
+              <span>{activePersona.advanceTaxRule}</span>
             </div>
           </div>
 
@@ -525,7 +546,7 @@ export function PersonasGrid() {
                 </Link>
 
                 <Link href={activePersona.guideAction.href} className="cert-guide-link-btn">
-                  <StatutoryShieldIcon size={14} />
+                  <LegalStatuteBookIcon size={14} />
                   <span>{activePersona.guideAction.label}</span>
                   <ArrowUpRight size={13} style={{ marginLeft: "auto" }} />
                 </Link>

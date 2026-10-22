@@ -1,128 +1,46 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  Calculator,
-  FileCheck2,
-  CalendarDays,
-  Globe2,
-  ArrowUpRight,
-  ShieldCheck
-} from "lucide-react";
+import { ToolsHubView } from "@/components/tools-hub-view";
+import { ShieldCheck, FileCheck, Calculator, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Tax Calculators & Compliance Tools for Indian Freelancers",
-  description: "Explore free financial tools for Indian creators: Section 44ADA calculator, New vs Old regime comparison, GST LUT requirements, and remittance purpose codes.",
+  title: "Tax Calculators & Legal Templates for Indian Freelancers | CreatorTax India",
+  description: "Explore free financial tools and copyable legal templates: Section 44ADA calculator, Section 194J TDS dispute letters, Rule 46 export LUT invoices, and RBI purpose code lookups.",
   alternates: { canonical: "/tools" }
 };
-
-const tools = [
-  {
-    title: "Section 44ADA Presumptive Calculator",
-    desc: "Calculate presumptive profit (50%), compare New vs Old tax regimes for AY 2025-26, test the ₹75 Lakh digital turnover limit, and compute TDS refund or balance tax payable.",
-    href: "/tools/44ada-calculator",
-    icon: Calculator,
-    tag: "Interactive Tool",
-    statusBadge: "Active (AY 2025-26)",
-    featured: true
-  },
-  {
-    title: "GST LUT & Export Zero-Rating Guide",
-    desc: "Verify whether your cross-border services qualify for zero-rated export of service without paying 18% IGST upfront under Rule 96A.",
-    href: "/guides/renew-gst-lut-online",
-    icon: ShieldCheck,
-    tag: "Interactive Guide",
-    statusBadge: "Available"
-  },
-  {
-    title: "RBI Remittance Purpose Code Directory",
-    desc: "Look up correct RBI purpose codes (P0802, P1007, P0902) to ensure Wise, Stripe, and PayPal remittances receive legitimate e-FIRAs.",
-    href: "/guides/paypal-wise-stripe-firc-guide",
-    icon: Globe2,
-    tag: "Reference Library",
-    statusBadge: "Available"
-  },
-  {
-    title: "Advance Tax Calendar & Penalty Estimator",
-    desc: "Never miss the March 15th statutory 44ADA deadline or quarterly installments to avoid 1% monthly interest under Sections 234B and 234C.",
-    href: "/guides/advance-tax-deadlines-penalties",
-    icon: CalendarDays,
-    tag: "Compliance Calendar",
-    statusBadge: "Available"
-  },
-  {
-    title: "Freelancer Contract & Invoicing Checklist",
-    desc: "Standard checklist of mandatory clauses, IP assignment upon full payment, and Rule 46 GST invoice declarations.",
-    href: "/guides/freelancer-contract-tax-records",
-    icon: FileCheck2,
-    tag: "Checklist",
-    statusBadge: "Available"
-  }
-];
 
 export default function ToolsPage() {
   return (
     <main>
       <section className="page-hero">
         <div className="container">
-          <span className="eyebrow">Useful by design</span>
+          <span className="eyebrow">Statutory Blueprints &amp; Tools</span>
           <h1 className="serif">
-            Tools to simplify<br />your freelance finances.
+            Financial tools &amp; legal templates<br />for India&apos;s independent workforce.
           </h1>
           <p>
-            Practical tools and interactive checklists designed to make Indian tax law, GST compliance, and international remittances transparent, predictable, and stress-free.
+            Production-ready tax calculators, copyable Section 194J dispute emails, zero-rated GST export invoice declarations, and RBI remittance compliance kits. Verified for AY 2025-26 under the Income Tax Act &amp; CGST Rules.
           </p>
+
+          {/* Hero Trust Badges Strip */}
+          <div className="page-hero-meta-strip">
+            <span className="page-hero-pill">
+              <ShieldCheck size={14} color="#10b981" /> AY 2025-26 &amp; Finance Act 2025 Verified
+            </span>
+            <span className="page-hero-pill">
+              <FileCheck size={14} color="#2563eb" /> 5 Copyable Dispute &amp; Invoicing Templates
+            </span>
+            <span className="page-hero-pill">
+              <Calculator size={14} color="#2563eb" /> Section 44ADA Presumptive Engine
+            </span>
+            <span className="page-hero-pill">
+              <Sparkles size={14} color="#f59e0b" /> 100% Free · No Sign-up Required
+            </span>
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="guide-grid">
-            {tools.map(({ title, desc, href, icon: Icon, tag, statusBadge, featured }) => (
-              <article
-                className="guide-card"
-                key={title}
-                style={featured ? { border: "1.5px solid var(--green)", boxShadow: "var(--shadow)" } : undefined}
-              >
-                <div className="guide-body">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-                    <div
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 8,
-                        background: featured ? "var(--green)" : "#f2ece1",
-                        display: "grid",
-                        placeItems: "center"
-                      }}
-                    >
-                      <Icon size={22} color={featured ? "#f6f2e9" : "var(--terracotta)"} />
-                    </div>
-                    <span className="tag" style={featured ? { background: "#d1e4d9", color: "var(--green)" } : undefined}>
-                      {statusBadge}
-                    </span>
-                  </div>
-
-                  <span style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--muted)", fontWeight: 600 }}>
-                    {tag}
-                  </span>
-
-                  <h3 style={{ margin: "8px 0 10px" }}>{title}</h3>
-                  <p style={{ minHeight: 66 }}>{desc}</p>
-
-                  <div style={{ marginTop: 20 }}>
-                    <Link
-                      className={`btn ${featured ? "" : "secondary"}`}
-                      href={href}
-                      style={{ width: "100%", fontSize: 12 }}
-                    >
-                      Open tool <ArrowUpRight size={14} />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+      <section className="container">
+        <ToolsHubView />
       </section>
     </main>
   );

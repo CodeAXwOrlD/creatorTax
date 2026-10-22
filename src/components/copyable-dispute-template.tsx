@@ -59,26 +59,26 @@ PAN: ${panNo}`;
   return (
     <div className="copyable-template-container" style={{
       margin: "24px 0",
-      background: "#fffdf9",
+      background: "var(--paper-card)",
       border: "1.5px solid var(--line)",
-      borderRadius: 12,
+      borderRadius: 14,
       overflow: "hidden",
-      boxShadow: "0 4px 16px rgba(18, 61, 52, 0.05)"
+      boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)"
     }}>
       {/* Template Header */}
       <div style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "14px 18px",
+        padding: "14px 20px",
         background: "var(--paper-deep)",
         borderBottom: "1px solid var(--line)",
         flexWrap: "wrap",
         gap: 10
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Mail size={16} color="var(--green)" />
-          <strong style={{ fontSize: 13, color: "var(--ink)" }}>
+          <Mail size={16} color="var(--cobalt)" />
+          <strong style={{ fontSize: 13.5, color: "var(--ink)", fontWeight: 700 }}>
             Section 194J 10% Deduction Dispute Email Template
           </strong>
         </div>
@@ -90,11 +90,11 @@ PAN: ${panNo}`;
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
-            padding: "6px 14px",
-            borderRadius: 6,
-            background: copied ? "#dcfce7" : "var(--green)",
+            padding: "7px 15px",
+            borderRadius: 8,
+            background: copied ? "#dcfce7" : "var(--cobalt)",
             color: copied ? "#15803d" : "#fff",
-            border: copied ? "1px solid #86efac" : "1px solid var(--green)",
+            border: copied ? "1.5px solid #86efac" : "1.5px solid var(--cobalt)",
             fontSize: 12,
             fontWeight: 700,
             cursor: "pointer",
@@ -115,45 +115,46 @@ PAN: ${panNo}`;
 
       {/* Subject Line */}
       <div style={{
-        padding: "10px 18px",
-        background: "#faf7f0",
+        padding: "12px 20px",
+        background: "#f8fafc",
         borderBottom: "1px dashed var(--line)",
         fontSize: 12.5,
         color: "var(--ink-2)"
       }}>
         <strong>Subject: </strong>
-        <span style={{ color: "var(--green)", fontFamily: "monospace" }}>{emailSubject}</span>
+        <span style={{ color: "var(--cobalt)", fontFamily: "monospace", fontWeight: 600 }}>{emailSubject}</span>
       </div>
 
       {/* Body Content */}
       <div style={{
-        padding: "16px 18px",
+        padding: "18px 20px",
         fontSize: 13,
-        lineHeight: 1.7,
+        lineHeight: 1.75,
         color: "var(--ink-2)",
         whiteSpace: "pre-line",
         fontFamily: "var(--font-sans)",
-        maxHeight: 320,
+        maxHeight: 340,
         overflowY: "auto",
-        background: "#fff"
+        background: "#ffffff"
       }}>
         {emailBody}
       </div>
 
       {/* Advice Notice */}
       <div style={{
-        padding: "10px 16px",
-        background: "#fef9ec",
-        borderTop: "1px solid #fde68a",
+        padding: "12px 20px",
+        background: "#eff6ff",
+        borderTop: "1px solid #dbeafe",
         display: "flex",
         alignItems: "center",
         gap: 8,
         fontSize: 11.5,
-        color: "#92400e"
+        color: "#1e40af",
+        lineHeight: 1.5
       }}>
-        <ShieldAlert size={14} color="#b45309" style={{ flexShrink: 0 }} />
+        <ShieldAlert size={15} color="#2563eb" style={{ flexShrink: 0 }} />
         <span>
-          Tip: Always send this within the same quarter so the client&apos;s finance team can adjust their Form 26Q quarterly filing before the TRACES deadline.
+          <strong>Filing Tip:</strong> Send this within the ongoing calendar quarter so the client&apos;s finance team can adjust their Form 26Q quarterly return before the quarterly TRACES cut-off date.
         </span>
       </div>
     </div>
