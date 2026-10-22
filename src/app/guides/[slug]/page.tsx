@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { articles, getArticle } from "@/lib/articles";
 import {
   ArrowLeft,
@@ -179,9 +180,9 @@ export default async function ArticlePage({
           </nav>
 
           <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
-            <span className="tag">{article.category}</span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 10px", borderRadius: 999, background: "var(--emerald-light)", color: "var(--emerald-hover)", fontSize: 11, fontWeight: 700 }}>
-              <CheckCircle2 size={12} color="#059669" /> AY 2025-26 &amp; Finance Act 2025 Verified
+            <span className="tag" style={{ background: "rgba(36, 54, 75, 0.08)", color: "var(--brand-primary)", borderColor: "var(--line)" }}>{article.category}</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 10px", borderRadius: 999, background: "rgba(184, 117, 82, 0.1)", color: "var(--brand-accent)", fontSize: 11, fontWeight: 700 }}>
+              <CheckCircle2 size={12} color="var(--brand-accent)" /> AY 2025–26 &amp; Finance Act 2025 Verified
             </span>
           </div>
 
@@ -196,13 +197,13 @@ export default async function ArticlePage({
           {/* Meta & Share Actions Bar */}
           <div className="guide-hero-meta-bar">
             <span className="guide-hero-meta-pill">
-              <CalendarDays size={14} color="var(--cobalt)" /> Updated {article.date}
+              <CalendarDays size={14} color="var(--brand-primary)" /> Updated {article.date}
             </span>
             <span className="guide-hero-meta-pill">
-              <Clock3 size={14} color="var(--cobalt)" /> {article.readTime}
+              <Clock3 size={14} color="var(--brand-primary)" /> {article.readTime}
             </span>
             <span className="guide-hero-meta-pill">
-              <UserCheck size={14} color="var(--cobalt)" /> {article.reviewer}
+              <UserCheck size={14} color="var(--brand-primary)" /> {article.reviewer}
             </span>
             <GuideShareButton title={article.title} />
           </div>
@@ -212,14 +213,28 @@ export default async function ArticlePage({
       {/* Main Content Layout */}
       <div className="container article-layout">
         <article className="article-content">
+          {/* Featured Article Imagery */}
+          {article.image && (
+            <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9", borderRadius: 14, overflow: "hidden", marginBottom: 32, border: "1px solid var(--line)", background: "var(--paper-deep)" }}>
+              <Image
+                src={article.image}
+                alt={article.imageAlt || article.title}
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 840px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
+
           {/* Quick Summary AEO Definition Block */}
           <div className="quick-summary quick-answer" data-aeo="direct-answer" style={{ marginBottom: 32 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
-              <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--cobalt)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                <FileCheck size={14} /> Quick Summary (AEO Direct Answer)
+              <strong style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--brand-primary)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                <FileCheck size={14} /> Quick Summary (Statutory Direct Answer)
               </strong>
-              <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "var(--cobalt-light)", color: "var(--cobalt)", letterSpacing: "0.02em" }}>
-                40-Word Direct Answer
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "rgba(36, 54, 75, 0.08)", color: "var(--brand-primary)", letterSpacing: "0.02em" }}>
+                Direct Answer
               </span>
             </div>
             <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.8, color: "var(--ink)", fontWeight: 450 }}>
@@ -241,7 +256,7 @@ export default async function ArticlePage({
             }}
           >
             <div>
-              <strong style={{ fontSize: 12, color: "var(--emerald-hover)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+              <strong style={{ fontSize: 12, color: "var(--brand-accent)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
                 <UserCheck size={14} /> Who This Applies To
               </strong>
               <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>
@@ -250,7 +265,7 @@ export default async function ArticlePage({
             </div>
             {article.statutoryLimits && (
               <div>
-                <strong style={{ fontSize: 12, color: "var(--cobalt)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+                <strong style={{ fontSize: 12, color: "var(--brand-primary)", display: "flex", alignItems: "center", gap: 6, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
                   <Scale size={14} /> Statutory Limits &amp; Rules
                 </strong>
                 <p style={{ fontSize: 13.5, color: "var(--ink)", margin: 0, lineHeight: 1.65 }}>

@@ -93,7 +93,14 @@ export function CalculatorClient() {
             />
           </div>
 
-          {/* Preset Buttons (Clean Monochrome Slate) */}
+          {/* Validation message for negative or invalid numbers */}
+          {Number(grossInput) < 0 && (
+            <div role="alert" style={{ display: "flex", alignItems: "center", gap: 6, color: "#c0392b", fontSize: 12, marginTop: 8 }}>
+              <AlertCircle size={14} /> Gross receipts cannot be negative.
+            </div>
+          )}
+
+          {/* Preset Buttons */}
           <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
             {[1000000, 1800000, 2500000, 5000000, 7500000].map((val) => {
               const active = gross === val;
@@ -107,8 +114,8 @@ export function CalculatorClient() {
                     fontWeight: active ? 700 : 500,
                     padding: "4px 11px",
                     borderRadius: 6,
-                    border: active ? "1px solid #0f172a" : "1px solid var(--line)",
-                    background: active ? "#0f172a" : "#ffffff",
+                    border: active ? "1px solid var(--brand-primary)" : "1px solid var(--line)",
+                    background: active ? "var(--brand-primary)" : "#ffffff",
                     color: active ? "#ffffff" : "var(--ink-2)",
                     cursor: "pointer",
                     transition: "all 0.15s ease"
@@ -240,8 +247,8 @@ export function CalculatorClient() {
                     fontWeight: active ? 700 : 500,
                     padding: "4px 10px",
                     borderRadius: 6,
-                    border: active ? "1px solid #0f172a" : "1px solid var(--line)",
-                    background: active ? "#0f172a" : "#ffffff",
+                    border: active ? "1px solid var(--brand-primary)" : "1px solid var(--line)",
+                    background: active ? "var(--brand-primary)" : "#ffffff",
                     color: active ? "#ffffff" : "var(--ink-2)",
                     cursor: "pointer"
                   }}

@@ -14,12 +14,12 @@ export default function GuidesPage() {
     <main>
       <section className="page-hero" style={{ paddingBottom: 48 }}>
         <div className="container">
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "5px 12px", borderRadius: 999, background: "#e8f5ee", color: "var(--green)", fontSize: 11.5, fontWeight: 700, marginBottom: 14 }}>
-            <BookOpen size={12} color="#059669" /> The CreatorTax Knowledge Library
-          </div>
+          <span className="eyebrow" style={{ color: "var(--brand-accent)" }}>
+            Statutory Knowledge Archive
+          </span>
 
-          <h1 className="serif" style={{ fontSize: "clamp(32px, 4.5vw, 48px)", lineHeight: 1.15, maxWidth: 880, margin: "0 0 16px" }}>
-            Statutory tax, GST &amp; remittance guides for independent Indian professionals.
+          <h1 className="serif" style={{ fontSize: "clamp(32px, 4.5vw, 48px)", lineHeight: 1.15, maxWidth: 880, margin: "8px 0 16px" }}>
+            Tax, GST &amp; remittance blueprints for India&apos;s independent professionals.
           </h1>
 
           <p style={{ maxWidth: 760, fontSize: 16, lineHeight: 1.75, color: "var(--muted)", margin: "0 0 28px" }}>
@@ -37,19 +37,19 @@ export default function GuidesPage() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--ink-2)" }}>
-              <ShieldCheck size={16} color="var(--green)" />
-              <span>AY 2025-26 &amp; Finance Act 2025</span>
+              <ShieldCheck size={16} color="var(--brand-primary)" />
+              <span>AY 2025–26 &amp; Finance Act 2025</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--ink-2)" }}>
-              <Percent size={16} color="var(--green)" />
+              <Percent size={16} color="var(--brand-primary)" />
               <span>Section 44ADA 50% Presumptive</span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--green)" }}>
-              <FileCheck size={16} color="var(--green)" />
+            <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--brand-primary)" }}>
+              <FileCheck size={16} color="var(--brand-primary)" />
               <span>Zero-Rated GST Export Rules</span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--green)" }}>
-              <BookOpen size={16} color="var(--green)" />
+            <div style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12.5, fontWeight: 600, color: "var(--brand-primary)" }}>
+              <BookOpen size={16} color="var(--brand-primary)" />
               <span>8 Comprehensive Guides (100% Free)</span>
             </div>
           </div>

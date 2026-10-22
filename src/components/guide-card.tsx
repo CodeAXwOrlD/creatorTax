@@ -1,59 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Article } from "@/lib/articles";
-import {
-  ArrowUpRight,
-  Clock,
-  Percent,
-  FileText,
-  Globe2,
-  Wallet,
-  Scale,
-  FileCheck
-} from "lucide-react";
-import { TiltCard } from "./tilt-card";
+import { ArrowUpRight, Clock, FileCheck } from "lucide-react";
 
-function getStatuteTag(article: Article): { tag: string; iconColor: string } {
-  if (article.slug.includes("lut")) {
-    return { tag: "Form RFD-11 · Rule 96A", iconColor: "#d97706" };
-  }
-  if (article.slug.includes("44ada")) {
-    return { tag: "IT Act § 44ADA · 50% Profit", iconColor: "#059669" };
-  }
-  if (article.slug.includes("firc") || article.slug.includes("wise") || article.slug.includes("remittance")) {
-    return { tag: "RBI Code P0802 · e-FIRA", iconColor: "#0284c7" };
-  }
-  if (article.slug.includes("tds")) {
-    return { tag: "Sec 194J(1)(ba) · 2% vs 10%", iconColor: "#059669" };
-  }
-  if (article.slug.includes("expenses") || article.slug.includes("rent")) {
-    return { tag: "Sec 30-38 · Deductions", iconColor: "#c16b43" };
-  }
-  if (article.slug.includes("contract")) {
-    return { tag: "Indian Contract Act · IP", iconColor: "#7c3aed" };
-  }
-  if (article.slug.includes("advance-tax")) {
-    return { tag: "Sec 211 & 234C · Mar 15", iconColor: "#059669" };
-  }
-  if (article.slug.includes("new-vs-old")) {
-    return { tag: "Sec 115BAC · ₹7L Rebate", iconColor: "#059669" };
-  }
-  return { tag: "Statutory Law", iconColor: "#059669" };
-}
-
-function getCategoryIcon(category: string) {
-  switch (category) {
-    case "GST & Invoicing":
-      return FileText;
-    case "USD & Remittances":
-      return Globe2;
-    case "Expenses & Deductions":
-      return Wallet;
-    case "Legal & Compliance":
-      return Scale;
-    case "Income Tax":
-    default:
-      return Percent;
-  }
+function getStatuteTag(article: Article): string {
+  if (article.slug.includes("lut")) return "Form RFD-11 · CGST Rule 96A";
+  if (article.slug.includes("44ada")) return "IT Act § 44ADA · 50% Profit";
+  if (article.slug.includes("firc") || article.slug.includes("wise") || article.slug.includes("remittance")) return "RBI Code P0802 · e-FIRA";
+  if (article.slug.includes("tds")) return "Sec 194J(1)(ba) · 2% vs 10%";
+  if (article.slug.includes("expenses") || article.slug.includes("rent")) return "Sec 30–38 · Deductions";
+  if (article.slug.includes("contract")) return "Indian Contract Act · IP";
+  if (article.slug.includes("advance-tax")) return "Sec 211 & 234C · Single Mar 15";
+  if (article.slug.includes("new-vs-old")) return "Sec 115BAC · ₹7L Rebate";
+  return "Statutory Framework";
 }
 
 export function GuideCard({
@@ -62,41 +21,50 @@ export function GuideCard({
   article: Article;
   index?: number;
 }) {
-  const { tag, iconColor } = getStatuteTag(article);
-  const Icon = getCategoryIcon(article.category);
+  const statuteTag = getStatuteTag(article);
 
   return (
-    <TiltCard glowColor={`${iconColor}20`} scale={1.015}>
-      <Link href={`/guides/${article.slug}`} className="directory-guide-card">
-        <div className="card-top-row">
-          <div
-            className="category-icon-box"
-            style={{ background: `${iconColor}15`, color: iconColor }}
-          >
-            <Icon size={18} />
-          </div>
-          <span className="statute-badge">{tag}</span>
-          <span className="read-time-pill">
-            <Clock size={11} /> {article.readTime}
-          </span>
-        </div>
-
-        <h3>{article.title}</h3>
-        <p>{article.description}</p>
-
-        {article.howTo && (
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 700, color: "var(--cobalt)", marginBottom: 14 }}>
-            <FileCheck size={12} color="#2563eb" /> Includes Step-by-Step Rich HowTo
+    <article className="directory-editorial-card">
+      <Link href={`/guides/${article.slug}`} className="directory-card-link">
+        {article.image && (
+          <div className="directory-card-image-wrap">
+            <Image
+              src={article.image}
+              alt={article.imageAlt || article.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="directory-card-image"
+            />
+            <span className="directory-category-badge">{article.category}</span>
           </div>
         )}
 
-        <div className="card-footer-row">
-          <span className="category-tag-pill">{article.category}</span>
-          <span className="action-link">
-            Read Guide <ArrowUpRight size={13} />
-          </span>
+        <div className="directory-card-content">
+          <div className="directory-card-meta">
+            <span className="directory-statute-tag">{statuteTag}</span>
+            <span className="directory-read-time">
+              <Clock size={11} /> {article.readTime}
+            </span>
+          </div>
+
+          <h3 className="serif directory-card-title">{article.title}</h3>
+
+          <p className="directory-card-summary">{article.description}</p>
+
+          {article.howTo && (
+            <div className="directory-card-howto-badge">
+              <FileCheck size={12} color="var(--brand-primary)" /> Includes Step-by-Step Portal Navigation
+            </div>
+          )}
+
+          <div className="directory-card-footer">
+            <span className="directory-read-cta">
+              Read Guide <ArrowUpRight size={13} />
+            </span>
+            <span className="directory-date-note">{article.date}</span>
+          </div>
         </div>
       </Link>
-    </TiltCard>
+    </article>
   );
 }

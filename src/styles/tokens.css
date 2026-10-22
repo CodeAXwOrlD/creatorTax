@@ -238,6 +238,12 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 .mobile-nav { display: none; gap: 8px; align-items: center; }
 .mobile-nav .btn { min-height: 38px; padding: 0 13px; font-size: 11.5px; }
 
+@media (max-width: 860px) {
+  .nav-links { display: none !important; }
+  .desktop-cta { display: none !important; }
+  .mobile-nav { display: flex !important; }
+}
+
 /* ─── Refined Title Emphasis ───────────────────────────────────────── */
 .gradient-text-shimmer {
   color: var(--ink);

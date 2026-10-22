@@ -44,6 +44,8 @@ export interface Article {
   quickAnswer: string;
   whoItAppliesTo: string;
   statutoryLimits?: string;
+  image?: string;
+  imageAlt?: string;
   sections: ArticleSection[];
   commonTraps: string[];
   primarySources: ArticleSource[];
@@ -58,6 +60,8 @@ export const articles: Article[] = [
     category: "GST & Invoicing",
     title: "How to Renew GST LUT (Form RFD-11) Online for Financial Year 2025-26",
     description: "A complete step-by-step guide to filing and renewing your Letter of Undertaking online so you can export freelance services with zero IGST.",
+    image: "/images/guide-gst-lut.jpg",
+    imageAlt: "GST Form RFD-11 LUT documentation on wooden freelancer desk with brass stamp",
     date: "2026-10-18",
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
@@ -188,6 +192,8 @@ export const articles: Article[] = [
     category: "Income Tax",
     title: "Section 44ADA Presumptive Taxation: The Complete Guide for Indian Creators & Freelancers",
     description: "Understand the ₹75 Lakh digital limit, 50% profit assumption, specified profession eligibility, and how to save lakhs legally under Section 44ADA.",
+    image: "/images/hero-landscape.jpg",
+    imageAlt: "Indian freelancer workspace overlooking mountain landscape and lake with laptop",
     date: "2026-10-18",
     readTime: "11 min read",
     author: "CreatorTax Editorial Team",
@@ -269,6 +275,8 @@ export const articles: Article[] = [
     category: "USD & Remittances",
     title: "International Remittances for Indian Freelancers: PayPal, Wise, Stripe & e-FIRA/FIRC Guide",
     description: "How to reconcile foreign client payments, obtain valid Foreign Inward Remittance Certificates, verify RBI purpose codes, and prove zero-rated GST export compliance.",
+    image: "/images/guide-firc-remittance.jpg",
+    imageAlt: "Laptop displaying international inward remittance transaction and purpose code details",
     date: "2026-10-17",
     readTime: "9 min read",
     author: "CreatorTax Editorial Team",
@@ -418,6 +426,8 @@ export const articles: Article[] = [
     category: "Income Tax",
     title: "How Indian Freelancers Can Reconcile 26AS/AIS and Claim a Full TDS Refund",
     description: "A practical guide to checking Form 26AS, resolving client TDS mismatches under Section 194J/194C, and claiming your excess tax refund during ITR filing.",
+    image: "/images/guide-tds-refund.jpg",
+    imageAlt: "Income tax calculation sheet with Section 194J TDS deductions and desk calculator",
     date: "2026-10-17",
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
@@ -535,6 +545,8 @@ export const articles: Article[] = [
     category: "Expenses & Deductions",
     title: "Can Indian Freelancers Claim Rent, Laptops, Software & Electricity as Business Expenses?",
     description: "Understand the strict rules behind claiming home office rent, hardware depreciation, and SaaS subscriptions under regular ITR-3 versus Section 44ADA.",
+    image: "/images/guide-business-expenses.jpg",
+    imageAlt: "Modern freelancer home office studio with indoor plants, desk laptop, and utility expense records",
     date: "2026-10-16",
     readTime: "8 min read",
     author: "CreatorTax Editorial Team",
@@ -600,6 +612,8 @@ export const articles: Article[] = [
     category: "Legal & Compliance",
     title: "Written Client Contracts & Invoicing Rules for Indian Freelancers",
     description: "Essential contract clauses, IP transfer protections, GST invoice requirements, and legal documentation that shield independent creators from disputes.",
+    image: "/images/guide-freelance-contract.jpg",
+    imageAlt: "Independent consulting service contract agreement being signed with fountain pen",
     date: "2026-10-16",
     readTime: "7 min read",
     author: "CreatorTax Editorial Team",
@@ -651,6 +665,8 @@ export const articles: Article[] = [
     category: "Income Tax",
     title: "Advance Tax Deadlines & Section 234B/234C Penalties: Freelancer Compliance Guide",
     description: "Learn how to compute quarterly advance tax installments, avoid 1% monthly interest penalties, and leverage the March 15th single installment rule.",
+    image: "/images/guide-tds-refund.jpg",
+    imageAlt: "Advance tax calculation worksheets and calendar notes on desk",
     date: "2026-10-18",
     readTime: "9 min read",
     author: "CreatorTax Editorial Team",
@@ -719,6 +735,8 @@ export const articles: Article[] = [
     category: "Income Tax",
     title: "New vs Old Tax Regime: Which Saves More Tax for Indian Freelancers in AY 2025-26?",
     description: "A data-backed comparison of Section 115BAC versus the Old Tax Regime for independent professionals, including the ₹7 Lakh rebate and Chapter VI-A deductions.",
+    image: "/images/guide-business-expenses.jpg",
+    imageAlt: "Freelance creator analyzing tax regime comparison charts on workstation",
     date: "2026-10-18",
     readTime: "10 min read",
     author: "CreatorTax Editorial Team",
