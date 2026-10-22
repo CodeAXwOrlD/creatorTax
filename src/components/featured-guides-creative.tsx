@@ -130,19 +130,19 @@ export function FeaturedGuidesCreative() {
                 Icon = FileText;
                 statuteTag = "CGST Rule 96A";
               } else if (guide.category === "USD & Remittances") {
-                iconColor = "#38bdf8";
+                iconColor = "#2F435C";
                 Icon = Globe2;
                 statuteTag = "RBI Purpose P0802";
               } else if (guide.category === "Expenses & Deductions") {
-                iconColor = "#c16b43";
+                iconColor = "#B87552";
                 Icon = Wallet;
                 statuteTag = "IT Act § 32 Depreciation";
               } else if (guide.category === "Income Tax") {
-                iconColor = "#10b981";
+                iconColor = "#24364B";
                 Icon = Percent;
                 statuteTag = "Sec 194J & 44ADA";
               } else if (guide.category === "Legal & Compliance") {
-                iconColor = "#8b5cf6";
+                iconColor = "#24364B";
                 Icon = ShieldCheck;
                 statuteTag = "Contract Act · IP Shield";
               }

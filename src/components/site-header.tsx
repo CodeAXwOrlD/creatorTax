@@ -66,7 +66,7 @@ export function SiteHeader() {
 
         {/* Desktop CTA */}
         <Link className="btn desktop-cta" href="/tools/44ada-calculator">
-          Try 44ADA Calculator <ArrowUpRight size={15} />
+          Try Tax Calculator <ArrowUpRight size={15} />
         </Link>
 
         {/* Mobile hamburger */}
@@ -103,9 +103,9 @@ export function SiteHeader() {
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             style={{
               overflow: "hidden",
-              background: "rgba(255, 255, 255, 0.98)",
+              background: "rgba(246, 242, 233, 0.98)",
               borderTop: "1px solid var(--line)",
-              boxShadow: "0 12px 32px rgba(15, 23, 42, 0.08)",
+              boxShadow: "0 12px 32px rgba(18, 61, 52, 0.08)",
               backdropFilter: "blur(20px)"
             }}
           >
@@ -124,7 +124,7 @@ export function SiteHeader() {
                       padding: "13px 16px",
                       fontSize: 14.5,
                       fontWeight: active ? 700 : 500,
-                      color: active ? "#0f172a" : "var(--ink-2)",
+                      color: active ? "var(--brand-primary)" : "var(--ink-2)",
                       background: active ? "var(--paper-deep)" : "transparent",
                       borderRadius: 8,
                       marginBottom: 4,
@@ -132,7 +132,7 @@ export function SiteHeader() {
                     }}
                   >
                     <span>{label}</span>
-                    {active && <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#0f172a" }} />}
+                    {active && <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--brand-primary)" }} />}
                   </Link>
                 );
               })}

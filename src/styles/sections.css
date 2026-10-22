@@ -2,16 +2,16 @@
 .ticker-wrapper {
   position: relative;
   overflow: hidden;
-  background: var(--paper-card);
-  border-bottom: 1px solid var(--line);
-  padding: 14px 0;
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+  padding: 15px 0;
   display: flex;
 }
 .ticker-track {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: tickerScroll 40s linear infinite;
+  animation: tickerScroll 42s linear infinite;
 }
 .ticker-track:hover {
   animation-play-state: paused;
@@ -24,39 +24,39 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 90px;
   z-index: 2;
   pointer-events: none;
 }
 .ticker-fade.left {
   left: 0;
-  background: linear-gradient(90deg, var(--paper-card), transparent);
+  background: linear-gradient(90deg, var(--paper), transparent);
 }
 .ticker-fade.right {
   right: 0;
-  background: linear-gradient(270deg, var(--paper-card), transparent);
+  background: linear-gradient(270deg, var(--paper), transparent);
 }
 .ticker-item {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 0 20px;
-  font-size: 11.5px;
+  padding: 0 22px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.18s;
 }
 .ticker-item:hover {
-  color: var(--cobalt);
+  color: var(--brand-primary);
 }
-.ticker-icon { color: var(--cobalt); flex-shrink: 0; }
-.ticker-dot { margin-left: 14px; opacity: 0.35; font-size: 16px; }
+.ticker-icon { color: var(--brand-accent); flex-shrink: 0; }
+.ticker-dot { margin-left: 14px; opacity: 0.35; font-size: 16px; color: var(--muted-2); }
 
 /* ─── Topic strip ───────────────────────────────────────────────────── */
 .topic-strip {
-  border-block: 1px solid var(--line);
-  background: var(--paper-card);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
 .topic-grid {
   display: grid;
@@ -66,27 +66,35 @@
   display: flex;
   gap: 13px;
   align-items: flex-start;
-  padding: 22px 16px;
+  padding: 24px 18px;
   border-right: 1px solid var(--line);
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
   text-decoration: none;
 }
 .topic:first-child { padding-left: 0; }
 .topic:last-child { border: 0; }
-.topic:hover { background: var(--cobalt-light); }
+.topic:hover {
+  background: rgba(36, 54, 75, 0.03);
+}
 .topic-icon-wrap {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 8px;
-  background: rgba(37, 99, 235, 0.1);
+  background: rgba(36, 54, 75, 0.07);
   flex-shrink: 0;
   margin-top: 2px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
-.topic-icon { color: var(--cobalt); }
-.topic strong { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); }
-.topic small { display: block; margin-top: 4px; color: var(--muted); font-size: 10.5px; line-height: 1.4; }
+.topic:hover .topic-icon-wrap {
+  background: rgba(184, 117, 82, 0.12);
+  transform: translateY(-1px);
+}
+.topic-icon { color: var(--brand-primary); transition: color 0.2s; }
+.topic:hover .topic-icon { color: var(--brand-accent); }
+.topic strong { display: block; font-size: 13px; font-weight: 700; color: var(--ink); }
+.topic small { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.45; }
 
 /* ─── Sections Head ─────────────────────────────────────────────────── */
 .section { padding: 108px 0; }
@@ -500,13 +508,13 @@
 .bento-tabs-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 .bento-tabs-nav {
   display: inline-flex;
-  background: rgba(15, 23, 42, 0.05);
-  padding: 5px;
-  border-radius: 999px;
+  background: var(--paper-deep);
+  padding: 4px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   gap: 4px;
 }
@@ -514,28 +522,22 @@
   position: relative;
   border: none;
   background: transparent;
-  padding: 9px 20px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
   color: var(--muted);
   cursor: pointer;
-  transition: color 0.2s ease;
-  z-index: 1;
+  transition: all 0.15s ease;
 }
 .bento-tab-btn:hover {
   color: var(--ink);
 }
 .bento-tab-btn.active {
-  color: var(--cobalt);
-}
-.bento-tab-pill-indicator {
-  position: absolute;
-  inset: 0;
-  background: var(--paper-card);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
-  z-index: -1;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
 /* Bento Grid Layout */
@@ -1916,9 +1918,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 /* ─── Footer ────────────────────────────────────────────────────────── */
 .footer {
   padding: 68px 0 28px;
-  background: #0A0F1D;
-  color: #94a3b8;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--navy-deep);
+  color: var(--muted-2);
+  border-top: 1px solid rgba(154, 167, 180, 0.14);
 }
 .footer-grid {
   display: grid;
@@ -1926,7 +1928,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   gap: 36px;
 }
 .footer p, .footer-links a {
-  color: #94a3b8;
+  color: var(--muted-2);
   font-size: 12.5px;
   line-height: 1.85;
 }
@@ -1936,7 +1938,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   transition: color 0.18s;
   text-decoration: none;
 }
-.footer-links a:hover { color: #ffffff; }
+.footer-links a:hover { color: var(--brand-accent); }
 .footer h4 {
   font-size: 11px;
   letter-spacing: 0.15em;

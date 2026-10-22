@@ -34,7 +34,7 @@ export default function ContactPage() {
 
           <div style={{ display: "grid", gap: 18, marginTop: 20 }}>
             <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-              <FileCheck size={20} color="#123d34" style={{ flexShrink: 0, marginTop: 3 }} />
+              <FileCheck size={20} color="#24364B" style={{ flexShrink: 0, marginTop: 3 }} />
               <div>
                 <strong style={{ fontSize: 13, display: "block" }}>For Content Corrections</strong>
                 <p style={{ color: "var(--muted)", fontSize: 12, lineHeight: 1.6, margin: "4px 0 0" }}>
@@ -44,7 +44,7 @@ export default function ContactPage() {
             </div>
 
             <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-              <ShieldCheck size={20} color="#123d34" style={{ flexShrink: 0, marginTop: 3 }} />
+              <ShieldCheck size={20} color="#24364B" style={{ flexShrink: 0, marginTop: 3 }} />
               <div>
                 <strong style={{ fontSize: 13, display: "block" }}>Privacy Notice</strong>
                 <p style={{ color: "var(--muted)", fontSize: 12, lineHeight: 1.6, margin: "4px 0 0" }}>
@@ -54,11 +54,11 @@ export default function ContactPage() {
             </div>
 
             <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-              <Mail size={20} color="#123d34" style={{ flexShrink: 0, marginTop: 3 }} />
+              <Mail size={20} color="#24364B" style={{ flexShrink: 0, marginTop: 3 }} />
               <div>
                 <strong style={{ fontSize: 13, display: "block" }}>Direct Editorial Desk</strong>
                 <p style={{ color: "var(--muted)", fontSize: 12, lineHeight: 1.6, margin: "4px 0 0" }}>
-                  Editorial inquiries: <a href="mailto:hello@creatortax.in" style={{ color: "var(--green)", fontWeight: 600 }}>hello@creatortax.in</a>
+                  Editorial inquiries: <a href="mailto:hello@creatortax.in" style={{ color: "var(--brand-primary)", fontWeight: 600 }}>hello@creatortax.in</a>
                 </p>
               </div>
             </div>

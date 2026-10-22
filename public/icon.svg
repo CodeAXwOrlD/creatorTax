@@ -1,5 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="16" fill="#123d34"/>
-  <circle cx="32" cy="32" r="26" fill="none" stroke="#d5e0d7" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.4"/>
-  <text x="32" y="44" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#f6f2e9" text-anchor="middle">c</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Rounded Ink Blue App Icon Canvas (#24364B) -->
+  <rect width="64" height="64" rx="16" fill="#24364B"/>
+
+  <!-- Muted Copper Sunrise Rays (#B87552) -->
+  <g stroke="#B87552" stroke-width="2.6" stroke-linecap="round">
+    <line x1="14" y1="23" x2="10" y2="20" />
+    <line x1="18" y1="16" x2="15" y2="12" />
+    <line x1="25" y1="12" x2="24" y2="7" />
+    <line x1="33" y1="11" x2="34" y2="6" />
+    <line x1="41" y1="13" x2="44" y2="8" />
+    <line x1="48" y1="17" x2="52" y2="13" />
+  </g>
+
+  <!-- Sunrise Arc (#B87552) -->
+  <path
+    d="M 14 32 A 18 18 0 0 1 47 18"
+    stroke="#B87552"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <!-- Document Sheet in Warm Ivory (#F6F1E8) -->
+  <path
+    d="M 24 19 C 24 17 25.5 15.5 27.5 15.5 L 42 15.5 C 44 15.5 45.5 17 45.5 19 L 45.5 43 C 45.5 47 43 50.5 39 51.5 L 27.5 51.5 C 24.5 50 24 47.5 24 44 Z"
+    fill="#F6F1E8"
+    stroke="#182432"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Horizontal Document Lines -->
+  <g stroke="#24364B" stroke-width="2" stroke-linecap="round">
+    <line x1="28.5" y1="23" x2="40.5" y2="23" />
+    <line x1="28.5" y1="28" x2="40.5" y2="28" />
+    <line x1="28.5" y1="33" x2="38" y2="33" />
+    <line x1="28.5" y1="38" x2="35" y2="38" />
+  </g>
+
+  <!-- Upward Growth Arrow in White (#FFFFFF) -->
+  <path
+    d="M 28 51.5 C 34 51.5 44 47.5 47 32 L 48 27"
+    stroke="#FFFFFF"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+  <polygon points="48,20 54,30 43,29" fill="#FFFFFF" />
+
+  <!-- Botanical Leaves in Mist Blue-Grey (#9AA7B4) -->
+  <path
+    d="M 17 49 C 13 41 17 33 24 32 C 24 38 22 47 17 49 Z"
+    fill="#9AA7B4"
+  />
+  <path
+    d="M 18 46 C 20 41 21.5 37 23 35"
+    stroke="#F6F1E8"
+    stroke-width="1.2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 21 52 C 18 48 20 42 26 40 C 26 45 25 50 21 52 Z"
+    fill="#9AA7B4"
+  />
 </svg>

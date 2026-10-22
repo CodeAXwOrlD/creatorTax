@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  ArrowUpRight,
   FileText,
   ChartNoAxesColumnIncreasing,
   Percent,
@@ -10,21 +9,17 @@ import {
   ShieldCheck,
   BookOpen,
   Calculator,
-  CheckCircle2,
   ChevronDown,
   Users,
   TrendingUp,
-  Clock,
-  Zap,
 } from "lucide-react";
 import { articles } from "@/lib/articles";
 import { Reveal } from "@/components/reveal";
 import { TaxPreview } from "@/components/tax-preview";
-import { HeroAurora } from "@/components/hero-aurora";
+import { HeroEditorial } from "@/components/hero-editorial";
 import { InfiniteTicker } from "@/components/infinite-ticker";
 import { TestimonialsBento } from "@/components/testimonials-bento";
 import { PersonasGrid } from "@/components/personas-grid";
-import { HeroArtInteractive } from "@/components/hero-art-interactive";
 import { TiltCard } from "@/components/tilt-card";
 import { FeaturedGuidesCreative } from "@/components/featured-guides-creative";
 import { ComplianceWorkflow } from "@/components/compliance-workflow";
@@ -88,77 +83,14 @@ const FAQS = [
 export default function HomePage() {
   return (
     <main>
-      {/* ── Hero ────────────────────────────────────────────────── */}
-      <section className="hero">
-        {/* Ambient Cloud Shader Atmosphere */}
-        <HeroAurora />
-
-        <div className="container hero-grid" style={{ position: "relative", zIndex: 2 }}>
-          <div>
-            {/* Live badge */}
-            <div className="animate-fade-up" style={{ marginBottom: 18 }}>
-              <span className="badge">
-                <span className="badge-dot" />
-                Updated · AY 2025-26 · Finance Act Compliant
-              </span>
-            </div>
-
-            <span className="eyebrow animate-fade-up delay-1" style={{ display: "block", marginBottom: 14 }}>
-              Financial clarity for India&apos;s independent workforce
-            </span>
-
-            <h1 className="serif animate-fade-up delay-2">
-              Make sense of your money.<br />
-              Keep more <span className="gradient-text-shimmer">of what you earn.</span>
-            </h1>
-
-            <p className="hero-copy animate-fade-up delay-3">
-              Practical, source-cited Indian income tax, Section 44ADA, GST LUT, and international
-              payment guides for software engineers, video editors, designers, and digital creators.
-            </p>
-
-            <div className="hero-actions animate-fade-up delay-4">
-              <Link className="btn" href="/guides">
-                Explore the Knowledge Base <ArrowRight size={16} />
-              </Link>
-              <Link className="btn secondary" href="/tools/44ada-calculator">
-                Try 44ADA Calculator <ArrowUpRight size={16} />
-              </Link>
-            </div>
-
-            <div className="trust-pills animate-fade-up delay-5">
-              {[
-                { icon: CheckCircle2, label: "8 Comprehensive Guides" },
-                { icon: ShieldCheck, label: "Primary-Source Cited" },
-                { icon: Zap, label: "100% Free & Private" },
-                { icon: Clock, label: "Updated Feb 2025" },
-              ].map(({ icon: Icon, label }) => (
-                <span key={label} className="trust-pill">
-                  <Icon size={12} className="trust-pill-icon" />
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Interactive Hero Art with 4 Satellite Motion Chips & Auto-Simulation */}
-          <HeroArtInteractive />
-        </div>
-
-        {/* Wave divider */}
-        <div style={{
-          position: "absolute", left: 0, right: 0, bottom: 0, height: 56,
-          opacity: .3, pointerEvents: "none",
-          background: "repeating-radial-gradient(ellipse at 60% 130%, transparent 0 17px, #7b9b8d 18px 19px, transparent 20px 29px)",
-          maskImage: "linear-gradient(transparent,#000)"
-        }} />
-      </section>
+      {/* ── Cinematic Editorial Hero ─────────────────────────────── */}
+      <HeroEditorial />
 
       {/* ── Infinite Ecosystem & Statutory Ticker ──────────────── */}
       <InfiniteTicker />
 
       {/* ── Popular Topics Strip (Multi-directional slide reveals) ── */}
-      <section className="topic-strip" aria-label="Essential topics">
+      <section className="topic-strip" id="topics" aria-label="Essential topics">
         <div className="container topic-grid">
           {TOPICS.map(({ title, desc, href, icon: Icon }, i) => (
             <Reveal key={title} direction={i % 2 === 0 ? "left" : "right"} distance={24} delay={i * 0.05} spring={true}>
@@ -247,7 +179,7 @@ export default function HomePage() {
         <div className="container feature-grid">
           <Reveal direction="left" distance={45} spring={true}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
-              <span className="eyebrow" style={{ color: "#93c5fd", margin: 0 }}>
+              <span className="eyebrow" style={{ color: "#94a3b8", margin: 0 }}>
                 Interactive Tax Estimator
               </span>
             </div>
@@ -262,14 +194,14 @@ export default function HomePage() {
               impact your net take-home income.
             </p>
 
-            <ul style={{ listStyle: "none", padding: 0, margin: "20px 0 28px", display: "grid", gap: 10 }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: "20px 0 28px", display: "grid", gap: 11 }}>
               {[
                 "Zero tax up to ₹7L presumptive profit via 87A rebate",
                 "Single March 15th advance tax for 44ADA professionals",
                 "New regime default from AY 2024-25 onwards",
               ].map((point) => (
-                <li key={point} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13.5, color: "#94a3b8" }}>
-                  <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0, marginTop: 2 }} />
+                <li key={point} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13.5, color: "#cbd5e1" }}>
+                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#94a3b8", flexShrink: 0, marginTop: 8 }} />
                   {point}
                 </li>
               ))}
@@ -309,10 +241,10 @@ export default function HomePage() {
           <div className="trust-grid">
             {TRUST.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} direction="scale" delay={i * 0.08} spring={true}>
-                <TiltCard glowColor="rgba(18, 61, 52, 0.14)" scale={1.03}>
+                <TiltCard glowColor="rgba(36, 54, 75, 0.14)" scale={1.03}>
                   <div className="trust-item">
                     <div className="trust-icon-wrap">
-                      <Icon size={22} color="var(--green)" />
+                      <Icon size={22} color="var(--brand-primary)" />
                     </div>
                     <strong>{title}</strong>
                     <p>{body}</p>
@@ -417,9 +349,9 @@ export default function HomePage() {
                 padding: "6px 16px", borderRadius: 999,
                 border: "1px solid rgba(255,255,255,.18)",
                 background: "rgba(255,255,255,.08)", fontSize: 11.5,
-                color: "#94a3b8", fontWeight: 700, letterSpacing: ".06em"
+                color: "var(--brand-paper)", fontWeight: 700, letterSpacing: ".06em"
               }}>
-                <Users size={13} color="#2563EB" /> 1,000+ Indian freelancers trust this resource
+                <Users size={13} color="var(--brand-accent)" /> 1,000+ Indian freelancers trust this resource
               </span>
             </div>
             <h2 className="serif">
@@ -432,7 +364,7 @@ export default function HomePage() {
             <div className="cta-actions">
               <Link
                 className="btn"
-                style={{ background: "#2563EB", color: "#ffffff", borderColor: "#2563EB", minHeight: 52, fontSize: 15, boxShadow: "0 8px 25px rgba(37,99,235,0.35)" }}
+                style={{ background: "var(--brand-primary)", color: "#ffffff", borderColor: "rgba(255,255,255,0.2)", minHeight: 52, fontSize: 15, boxShadow: "0 8px 25px rgba(0,0,0,0.3)" }}
                 href="/tools/44ada-calculator"
               >
                 <TrendingUp size={18} />

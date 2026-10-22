@@ -3,25 +3,15 @@
 import { useState, type ComponentType } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  AlertTriangle,
-} from "lucide-react";
-import {
-  PlatformBadge,
-  GstCertificateIcon,
-  SwiftRemittanceIcon,
-  TaxReceiptSlipIcon,
-  AdvanceTaxCalendarIcon,
-  LegalStatuteBookIcon,
-  FinancialCalcIcon,
   TerminalDevIcon,
   FilmVideoIcon,
   VectorDesignIcon,
   BroadcastMediaIcon,
   SecurityServerIcon,
 } from "./brand-and-doc-icons";
+
 
 export interface PersonaProfile {
   id: string;
@@ -356,201 +346,207 @@ export function PersonasGrid() {
       <AnimatePresence mode="wait">
         <motion.div
           key={activePersona.id}
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.22, ease: "easeOut" }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           className="persona-dossier-grid"
         >
           {/* Card 01: Statutory Scope & Eligibility */}
           <div className="workflow-card persona-dossier-card">
-            <div className="card-top-header">
-              <span className="step-numeral">01</span>
-              <div className="step-tag-block">
-                <span className="statute-label">{activePersona.statuteCitation}</span>
-                <h3 className="card-editorial-title">Eligibility &amp; Scope</h3>
+            <div>
+              <div className="card-top-header">
+                <span className="step-numeral">01</span>
+                <div className="step-tag-block">
+                  <span className="statute-label">{activePersona.statuteCitation}</span>
+                  <h3 className="card-editorial-title">Eligibility &amp; Scope</h3>
+                </div>
               </div>
+
+              <p className="card-editorial-desc">{activePersona.tagline}</p>
+
+              {/* Invoicing Platform Tags */}
+              <div className="persona-platform-wrap" style={{ marginBottom: 18 }}>
+                <span className="platform-label" style={{ fontSize: 11, fontWeight: 700, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 8 }}>
+                  Verified Invoicing Channels
+                </span>
+                <div className="platform-tags" style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {activePersona.platforms.map((plat) => (
+                    <span
+                      key={plat}
+                      style={{
+                        fontSize: 11.5,
+                        fontWeight: 600,
+                        padding: "3px 9px",
+                        borderRadius: 6,
+                        background: "var(--paper-deep)",
+                        border: "1px solid var(--line)",
+                        color: "var(--ink-2)"
+                      }}
+                    >
+                      {plat}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Statutory Specification Rows */}
+              <div className="workflow-spec-list">
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Gross Receipts Cap</span>
+                  <strong className="spec-val">{activePersona.turnoverLimit}</strong>
+                </div>
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Presumptive Profit</span>
+                  <strong className="spec-val">{activePersona.deemedProfitRatio}</strong>
+                </div>
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Books of Accounts</span>
+                  <strong className="spec-val">{activePersona.booksRule}</strong>
+                </div>
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Tax Audit Requirement</span>
+                  <strong className="spec-val">{activePersona.auditRule}</strong>
+                </div>
+              </div>
+
+              <p className="workflow-card-note" style={{ minHeight: "auto", margin: "16px 0 0" }}>
+                {activePersona.caTip}
+              </p>
             </div>
 
-            <p className="card-editorial-desc">{activePersona.tagline}</p>
-
-            {/* Invoicing Platform Tags with Authentic Brand Logos */}
-            <div className="persona-platform-wrap">
-              <span className="platform-label">Verified Invoicing Channels</span>
-              <div className="platform-tags">
-                {activePersona.platforms.map((plat) => (
-                  <PlatformBadge key={plat} name={plat} />
-                ))}
-              </div>
-            </div>
-
-            {/* Statutory Memo Schedule */}
-            <div className="editorial-memo-sheet">
-              <div className="memo-line-item">
-                <span className="memo-key">Gross Receipts Cap</span>
-                <strong className="memo-val">{activePersona.turnoverLimit}</strong>
-              </div>
-              <div className="memo-line-item">
-                <span className="memo-key">Flat Presumptive Profit</span>
-                <strong className="memo-val text-emerald">{activePersona.deemedProfitRatio}</strong>
-              </div>
-              <div className="memo-line-item">
-                <span className="memo-key">Books of Accounts (§ 44AA)</span>
-                <strong className="memo-val">{activePersona.booksRule}</strong>
-              </div>
-              <div className="memo-line-item">
-                <span className="memo-key">Tax Audit Status (§ 44AB)</span>
-                <span className="memo-val badge">{activePersona.auditRule}</span>
-              </div>
-
-              {/* CA Advisory Context Note */}
-              <div className="persona-founder-callout">
-                <LegalStatuteBookIcon size={15} className="founder-callout-icon text-cobalt" />
-                <p>{activePersona.caTip}</p>
-              </div>
+            <div className="workflow-card-footer">
+              <Link href={activePersona.guideAction.href} className="workflow-action-link">
+                <span>View Discipline Guidelines</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
 
           {/* Card 02: AY 2025-26 Tax Comparison Schedule */}
           <div className="workflow-card persona-dossier-card">
-            <div className="card-top-header">
-              <span className="step-numeral">02</span>
-              <div className="step-tag-block">
-                <span className="statute-label">AY 2025-26 TAX COMPARISON</span>
-                <h3 className="card-editorial-title">Section 44ADA vs ITR-3</h3>
+            <div>
+              <div className="card-top-header">
+                <span className="step-numeral">02</span>
+                <div className="step-tag-block">
+                  <span className="statute-label">AY 2025–26 Tax Assessment</span>
+                  <h3 className="card-editorial-title">Section 44ADA vs ITR-3</h3>
+                </div>
               </div>
+
+              <p className="card-editorial-desc">
+                Compare regular business taxation against presumptive Section 44ADA for {activePersona.name}.
+              </p>
+
+              {/* Direct Statutory Savings Hero Anchor */}
+              <div style={{
+                background: "var(--paper-deep)",
+                border: "1px solid var(--line)",
+                borderRadius: 10,
+                padding: "16px 18px",
+                marginBottom: 18
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--muted)" }}>
+                    Statutory Tax Difference
+                  </span>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: "var(--ink)", background: "#ffffff", border: "1px solid var(--line)", padding: "2px 8px", borderRadius: 4 }}>
+                    {activePersona.savingsPercentage}
+                  </span>
+                </div>
+                <div style={{ fontSize: 26, fontWeight: 800, color: "var(--ink)", fontVariantNumeric: "tabular-nums" }}>
+                  {activePersona.savedTax}
+                </div>
+                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4 }}>
+                  Effective rate under 44ADA: <strong>{activePersona.effectiveRate}</strong>
+                </div>
+              </div>
+
+              {/* Comparative Ledger Matrix */}
+              <div className="workflow-spec-list">
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Gross Turnover</span>
+                  <strong className="spec-val">{activePersona.sampleGross}</strong>
+                </div>
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Deemed Profit Base (50%)</span>
+                  <strong className="spec-val">{activePersona.sampleProfit}</strong>
+                </div>
+                <div className="workflow-spec-row">
+                  <span className="spec-label">Regular ITR-3 Tax</span>
+                  <span style={{ textDecoration: "line-through", color: "var(--muted)", fontVariantNumeric: "tabular-nums" }}>
+                    {activePersona.regularTax}
+                  </span>
+                </div>
+                <div className="workflow-spec-row" style={{ borderBottom: "none" }}>
+                  <span className="spec-label" style={{ fontWeight: 600, color: "var(--ink)" }}>44ADA Net Tax Liability</span>
+                  <strong className="spec-val" style={{ fontSize: 15 }}>{activePersona.presumptiveTax}</strong>
+                </div>
+              </div>
+
+              <p className="workflow-card-note" style={{ minHeight: "auto", margin: "14px 0 0" }}>
+                <strong>Advance Tax Rule:</strong> {activePersona.advanceTaxRule}
+              </p>
             </div>
 
-            <p className="card-editorial-desc">
-              Compare standard business taxation against presumptive 44ADA for {activePersona.name}.
-            </p>
-
-            {/* Direct Statutory Savings Hero Anchor */}
-            <div className="persona-savings-hero-block">
-              <div className="savings-hero-top">
-                <span className="savings-hero-label">Direct Statutory Tax Saving</span>
-                <span className="savings-hero-badge">{activePersona.savingsPercentage}</span>
-              </div>
-              <div className="savings-hero-amount-row">
-                <span className="savings-hero-currency">₹</span>
-                <span className="savings-hero-number">
-                  {activePersona.savedTax.replace("₹", "").replace(" Saved", "")}
-                </span>
-                <span className="savings-hero-suffix">saved annually</span>
-              </div>
-              <div className="savings-hero-sub">
-                Effective Tax Rate: <strong>{activePersona.effectiveRate}</strong> under Sec 44ADA
-              </div>
-            </div>
-
-            {/* 3-Column Comparative Fintech Ledger Matrix */}
-            <div className="fintech-comparison-ledger" role="table" aria-label="Tax Comparison Schedule">
-              <div className="ledger-matrix-header" role="row">
-                <span role="columnheader">Tax Parameter</span>
-                <span role="columnheader" className="regular">Regular ITR-3</span>
-                <span role="columnheader" className="presumptive">Sec 44ADA</span>
-              </div>
-
-              <div className="ledger-matrix-row" role="row">
-                <span className="matrix-row-lbl">Gross Receipts</span>
-                <span className="matrix-row-val">{activePersona.sampleGross}</span>
-                <span className="matrix-row-val highlight">{activePersona.sampleGross}</span>
-              </div>
-
-              <div className="ledger-matrix-row" role="row">
-                <span className="matrix-row-lbl">Taxable Profit Base</span>
-                <span className="matrix-row-val strike-tax">100% Assessed</span>
-                <span className="matrix-row-val highlight">
-                  {activePersona.sampleProfit} <small>(50%)</small>
-                </span>
-              </div>
-
-              <div className="ledger-matrix-row" role="row">
-                <span className="matrix-row-lbl">Books of Accounts</span>
-                <span className="matrix-row-val text-red">Mandatory P&amp;L</span>
-                <span className="matrix-row-val highlight-badge">Exempt (§ 44AA)</span>
-              </div>
-
-              <div className="ledger-matrix-row matrix-total-row" role="row">
-                <span className="matrix-row-lbl">Final Tax Payable</span>
-                <span className="matrix-row-val strike-tax">{activePersona.regularTax}</span>
-                <span className="matrix-row-val final-tax">{activePersona.presumptiveTax}</span>
-              </div>
-            </div>
-
-            {/* Advance Tax Proviso - Real Calendar Icon (No AI Sparkles) */}
-            <div className="advance-tax-note">
-              <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
-                <AdvanceTaxCalendarIcon size={14} className="text-emerald" />
-                <strong>Advance Tax: Single March 15th Deadline</strong>
-              </div>
-              <span>{activePersona.advanceTaxRule}</span>
+            <div className="workflow-card-footer">
+              <Link href="/tools/44ada-calculator" className="workflow-action-link">
+                <span>Run Calculation for Your Revenue</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
 
           {/* Card 03: Compliance Shield & Action Launchpad */}
           <div className="workflow-card persona-dossier-card">
-            <div className="card-top-header">
-              <span className="step-numeral">03</span>
-              <div className="step-tag-block">
-                <span className="statute-label">MANDATORY REGULATORY SAFEGUARDS</span>
-                <h3 className="card-editorial-title">Required Documents</h3>
+            <div>
+              <div className="card-top-header">
+                <span className="step-numeral">03</span>
+                <div className="step-tag-block">
+                  <span className="statute-label">Mandatory Safeguards</span>
+                  <h3 className="card-editorial-title">Required Filings</h3>
+                </div>
               </div>
+
+              <p className="card-editorial-desc">
+                Essential compliance paperwork required to retain 0% GST export status and claim TDS credits.
+              </p>
+
+              {/* Clean Document List */}
+              <div style={{ display: "grid", gap: 10, margin: "14px 0 16px" }}>
+                {activePersona.documents.map((doc) => (
+                  <div
+                    key={doc.title}
+                    style={{
+                      padding: "12px 14px",
+                      background: "var(--paper-deep)",
+                      borderRadius: 8,
+                      border: "1px solid var(--line)"
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+                      <strong style={{ fontSize: 13, color: "var(--ink)" }}>{doc.title}</strong>
+                      <span style={{ fontSize: 10.5, fontWeight: 700, color: "var(--muted)", background: "#ffffff", padding: "1px 6px", borderRadius: 4, border: "1px solid var(--line)" }}>
+                        {doc.code}
+                      </span>
+                    </div>
+                    <span style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5, display: "block" }}>
+                      {doc.desc}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="workflow-card-note" style={{ minHeight: "auto", margin: "12px 0 0" }}>
+                <strong>Statutory Retention:</strong> Retain digital copies of e-FIRAs with authorized RBI purpose codes for 6 years for GST audit records.
+              </p>
             </div>
 
-            <p className="card-editorial-desc">
-              Essential compliance paperwork required to retain 0% GST export status and claim TDS credits.
-            </p>
-
-            <div className="editorial-memo-sheet certificate">
-              {/* Document Badges with Official Distinct SVGs */}
-              <div className="persona-docs-list">
-                {activePersona.documents.map((doc) => {
-                  const renderDocIcon = () => {
-                    if (doc.iconType === "gst") return <GstCertificateIcon size={15} />;
-                    if (doc.iconType === "swift") return <SwiftRemittanceIcon size={15} />;
-                    return <TaxReceiptSlipIcon size={15} />;
-                  };
-
-                  return (
-                    <div key={doc.title} className="persona-doc-item">
-                      <div className="doc-icon-seal">
-                        {renderDocIcon()}
-                      </div>
-                      <div className="doc-meta">
-                        <div className="doc-title-row">
-                          <strong className="doc-title">{doc.title}</strong>
-                          <span className="doc-code-badge">{doc.code}</span>
-                        </div>
-                        <span className="doc-desc">{doc.desc}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* FEMA Compliance Notice */}
-              <div className="persona-audit-warning">
-                <AlertTriangle size={14} className="warning-icon" />
-                <span>
-                  Retain digital copies of e-FIRAs with authorized RBI purpose codes for 6 years to satisfy GST audit inquiries.
-                </span>
-              </div>
-
-              {/* High-Impact Actions */}
-              <div className="persona-actions-stack">
-                <Link href={activePersona.primaryAction.href} className="comp-cta-btn">
-                  <FinancialCalcIcon size={15} />
-                  <span>{activePersona.primaryAction.label}</span>
-                  <ArrowRight size={14} style={{ marginLeft: "auto" }} />
-                </Link>
-
-                <Link href={activePersona.guideAction.href} className="cert-guide-link-btn">
-                  <LegalStatuteBookIcon size={14} />
-                  <span>{activePersona.guideAction.label}</span>
-                  <ArrowUpRight size={13} style={{ marginLeft: "auto" }} />
-                </Link>
-              </div>
+            <div className="workflow-card-footer" style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+              <Link href={activePersona.primaryAction.href} className="btn" style={{ flex: 1, fontSize: 12.5, minHeight: 38 }}>
+                <span>{activePersona.primaryAction.label}</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
         </motion.div>

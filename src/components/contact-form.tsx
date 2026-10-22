@@ -49,7 +49,7 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="panel" style={{ padding: "36px 28px", textAlign: "center" }}>
-        <CheckCircle2 size={44} color="#123d34" style={{ margin: "0 auto 16px" }} />
+        <CheckCircle2 size={44} color="#24364B" style={{ margin: "0 auto 16px" }} />
         <h3 className="serif" style={{ fontSize: 26, margin: "0 0 10px" }}>Message Received</h3>
         <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7, maxWidth: 440, margin: "0 auto 20px" }}>
           Thank you for reaching out. We carefully review all feedback, corrections, and inquiries within 24–48 business hours.

@@ -62,11 +62,11 @@ export function SiteFooter() {
             <div
               style={{
                 marginTop: 24, display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "9px 14px", border: "1px solid rgba(255,255,255,.1)",
-                borderRadius: 8, fontSize: 11, color: "#8aac9e", background: "rgba(255,255,255,.04)"
+                padding: "9px 14px", border: "1px solid rgba(154, 167, 180, 0.18)",
+                borderRadius: 8, fontSize: 11, color: "var(--brand-secondary)", background: "rgba(255,255,255,.04)"
               }}
             >
-              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#5be0a0", display: "inline-block" }} />
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--brand-accent)", display: "inline-block" }} />
               Finance Act 2025 · Updated AY 2025-26
             </div>
           </div>

@@ -1,67 +1,74 @@
-/* ─── Compliance Workflow (Bespoke Editorial & Financial Dossier) ───── */
+/* ─── Compliance Workflow (Executive Clean Equal-Height System) ────── */
 .compliance-workflow-root {
-  margin-top: 64px;
+  margin-top: 48px;
 }
 .workflow-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 24px;
+  align-items: stretch;
 }
 @media (max-width: 1024px) {
   .workflow-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 }
 
-/* Individual Workflow Card (Warm Ivory Paper Aesthetic) */
+/* Individual Workflow Card (Equal Height & Clean Hairline) */
 .workflow-card {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 40px 32px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s var(--ease-out), box-shadow 0.25s, border-color 0.25s;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s, border-color 0.2s;
 }
 .workflow-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(37, 99, 235, 0.3);
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+  border-color: var(--line-2);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
-/* Header with Elegant Serif Step Numeral */
+/* Header with Crisp Step Numeral */
 .card-top-header {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 .step-numeral {
   font-family: var(--font-sans);
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
-  line-height: 1;
-  color: var(--cobalt);
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
   flex-shrink: 0;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 .step-tag-block {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 .statute-label {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--cobalt);
+  color: var(--muted);
 }
 .card-editorial-title {
   font-family: var(--font-serif);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.25;
   color: var(--ink);
@@ -70,22 +77,23 @@
 .card-editorial-desc {
   font-size: 13.5px;
   color: var(--muted);
-  line-height: 1.7;
-  margin: 0 0 24px;
+  line-height: 1.65;
+  margin: 0 0 18px;
+  min-height: 44px;
 }
 
-/* Clean Editorial Tabs (Warm Linen Pills, Not Dark Crypto Buttons) */
+/* Clean Editorial Tabs */
 .editorial-tabs-row {
   display: flex;
-  gap: 8px;
-  margin-bottom: 22px;
+  gap: 6px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
 }
 .editorial-tab {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: 6px;
   background: var(--paper-deep);
   border: 1px solid var(--line);
@@ -93,174 +101,96 @@
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  transition: all 0.15s ease;
 }
 .editorial-tab:hover {
-  background: #e4ded0;
+  background: #e2e8f0;
   color: var(--ink);
 }
 .editorial-tab.selected {
-  background: var(--green);
-  border-color: var(--green);
-  color: #fffdf7;
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
 }
 
-/* Editorial Memo Sheet (Simulating an Authentic Tax Advisory Slip) */
-.editorial-memo-sheet {
-  background: var(--paper);
-  border: 1px solid rgba(222, 216, 202, 0.9);
-  border-radius: 12px;
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
+/* Workflow Specification Ledger */
+.workflow-spec-list {
+  margin: 16px 0 14px;
+  border-top: 1px solid var(--line);
 }
-.memo-line-item {
+.workflow-spec-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
   font-size: 12.5px;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed rgba(222, 216, 202, 0.8);
 }
-.memo-key {
+.spec-label {
   color: var(--muted);
   font-weight: 500;
 }
-.memo-value {
+.spec-val {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
-.memo-value.text-emerald {
-  color: #0f766e;
+.workflow-card-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 14px 0 0;
+  min-height: 48px;
 }
-.memo-badge {
-  font-size: 10.5px;
-  font-weight: 700;
-  color: #0f766e;
-  background: #e6f4ea;
-  padding: 2px 7px;
-  border-radius: 4px;
-  border: 1px solid #b7e1cd;
-}
-.memo-verdict-box {
+.workflow-card-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  min-height: 48px;
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 10px 12px;
-  background: #fffdf7;
-  border-radius: 8px;
-  border-left: 3px solid var(--green);
-  margin-top: 4px;
+  align-items: center;
 }
-.verdict-icon {
-  color: var(--green);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.memo-verdict-box p {
-  margin: 0;
-  font-size: 11.5px;
-  color: var(--ink-2);
-  line-height: 1.5;
-}
-.memo-action-link {
+.workflow-action-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--green);
-  text-decoration: none;
-  margin-top: 6px;
-}
-.memo-action-link:hover {
-  text-decoration: underline;
-}
-
-/* Card 2: Certificate Sheet */
-.editorial-memo-sheet.certificate {
-  gap: 12px;
-}
-.certificate-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.certificate-seal {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--green-light);
-  color: var(--green);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.cert-heading {
-  display: block;
-  font-size: 11.5px;
+  gap: 6px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s;
 }
-.cert-sub {
-  display: block;
-  font-size: 10px;
-  color: var(--muted);
-}
-.arn-status-badge {
-  padding: 6px 10px;
-  background: #fffdf7;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  font-family: monospace;
-  font-size: 10.5px;
-  font-weight: 600;
+.workflow-action-link:hover {
   color: var(--ink-2);
+  text-decoration: underline;
 }
-.cert-summary-text {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.55;
-  margin: 0;
-}
-.cert-footer-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding-top: 6px;
-}
-.cert-copy-btn {
+.workflow-copy-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
   border-radius: 6px;
-  background: #fffdf7;
+  background: var(--paper-deep);
   border: 1px solid var(--line);
-  color: var(--green);
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.18s, border-color 0.18s;
-}
-.cert-copy-btn:hover {
-  background: var(--green-light);
-  border-color: var(--green);
-}
-.cert-guide-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
+  color: var(--ink-2);
   font-size: 11.5px;
-  font-weight: 700;
-  color: var(--muted);
-  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
-.cert-guide-link:hover {
-  color: var(--green);
+.workflow-copy-btn:hover {
+  background: #e2e8f0;
+  color: var(--ink);
+}
+.workflow-benchmark-tag {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--paper-deep);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
 }
 
 /* Card 02 Top: Savings Hero Block */
@@ -287,9 +217,9 @@
 .savings-hero-badge {
   font-size: 10px;
   font-weight: 800;
-  color: #059669;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--brand-accent);
+  background: rgba(184, 117, 82, 0.12);
+  border: 1px solid rgba(184, 117, 82, 0.28);
   padding: 2px 7px;
   border-radius: 4px;
 }
@@ -302,13 +232,13 @@
   font-family: var(--font-serif);
   font-size: 17px;
   font-weight: 700;
-  color: #059669;
+  color: var(--brand-accent);
 }
 .savings-hero-number {
   font-family: var(--font-serif);
   font-size: 25px;
   font-weight: 800;
-  color: #047857;
+  color: var(--brand-accent);
   letter-spacing: -0.02em;
 }
 .savings-hero-suffix {
@@ -322,7 +252,7 @@
   margin-top: 2px;
 }
 .savings-hero-sub strong {
-  color: #059669;
+  color: var(--brand-accent);
 }
 
 /* 3-Column Comparative Financial Ledger */
@@ -376,16 +306,16 @@
   font-weight: 600;
 }
 .matrix-row-val.highlight {
-  color: #059669;
+  color: var(--brand-accent);
   font-weight: 700;
 }
 .matrix-row-val.strike-tax {
   text-decoration: line-through;
-  color: #94a3b8;
+  color: var(--muted-2);
   font-size: 11px;
 }
 .matrix-row-val.final-tax {
-  color: #059669;
+  color: var(--brand-primary);
   font-weight: 800;
   font-size: 12.5px;
 }
@@ -395,18 +325,18 @@
   font-weight: 600;
 }
 .matrix-row-val.highlight-badge {
-  color: #059669;
+  color: var(--brand-accent);
   font-size: 10px;
   font-weight: 700;
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(184, 117, 82, 0.12);
   padding: 1px 5px;
   border-radius: 4px;
   display: inline-block;
   white-space: nowrap;
 }
 .matrix-total-row {
-  background: rgba(16, 185, 129, 0.07);
-  border-top: 1px solid rgba(16, 185, 129, 0.22);
+  background: rgba(36, 54, 75, 0.05);
+  border-top: 1px solid rgba(36, 54, 75, 0.14);
   padding-block: 8px;
 }
 .matrix-total-row .matrix-row-lbl {

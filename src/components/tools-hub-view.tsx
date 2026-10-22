@@ -4,8 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   Calculator,
-  FileText,
-  Mail,
   ShieldCheck,
   Globe2,
   CalendarDays,
@@ -358,19 +356,19 @@ export function ToolsHubView() {
 
             <div className="spotlight-features">
               <div className="spotlight-feature-item">
-                <Check size={15} color="#059669" />
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--ink-2)", flexShrink: 0 }} />
                 <span>50% Deemed Profit (Zero Bookkeeping)</span>
               </div>
               <div className="spotlight-feature-item">
-                <Check size={15} color="#059669" />
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--ink-2)", flexShrink: 0 }} />
                 <span>₹75 Lakh Limit (&le;5% Cash Receipts)</span>
               </div>
               <div className="spotlight-feature-item">
-                <Check size={15} color="#059669" />
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--ink-2)", flexShrink: 0 }} />
                 <span>New vs Old Regime Slab Comparison</span>
               </div>
               <div className="spotlight-feature-item">
-                <Check size={15} color="#059669" />
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--ink-2)", flexShrink: 0 }} />
                 <span>Single Advance Tax Due: March 15th</span>
               </div>
             </div>
@@ -399,7 +397,7 @@ export function ToolsHubView() {
               <span style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--muted)", fontWeight: 700 }}>
                 Sample Presumptive Calculation
               </span>
-              <span style={{ fontSize: 11, background: "#ecfdf5", color: "#065f46", border: "1px solid #a7f3d0", padding: "2px 8px", borderRadius: 4, fontWeight: 600 }}>
+              <span style={{ fontSize: 11, background: "var(--paper-deep)", color: "var(--ink-2)", border: "1px solid var(--line)", padding: "2px 8px", borderRadius: 4, fontWeight: 600 }}>
                 AY 2025–26
               </span>
             </div>
@@ -427,24 +425,24 @@ export function ToolsHubView() {
               style={{
                 marginTop: 18,
                 padding: "14px 16px",
-                background: "#f0fdf4",
-                border: "1px solid #bbf7d0",
-                borderRadius: 10,
+                background: "var(--paper-deep)",
+                border: "1px solid var(--line)",
+                borderRadius: 8,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between"
               }}
             >
               <div>
-                <span style={{ fontSize: 11, color: "#166534", display: "block", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                <span style={{ fontSize: 11, color: "var(--muted)", display: "block", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>
                   Estimated TDS Refund Due
                 </span>
                 <strong style={{ fontSize: 24, color: "var(--ink)", fontVariantNumeric: "tabular-nums" }}>
                   ₹48,400
                 </strong>
               </div>
-              <span style={{ fontSize: 11, fontWeight: 600, color: "#166534", background: "#ffffff", padding: "4px 8px", borderRadius: 4, border: "1px solid #86efac" }}>
-                Direct to Bank
+              <span style={{ fontSize: 11, fontWeight: 600, color: "var(--ink-2)", background: "#ffffff", padding: "4px 8px", borderRadius: 4, border: "1px solid var(--line)" }}>
+                Direct Bank Credit
               </span>
             </div>
           </div>
@@ -642,8 +640,8 @@ export function ToolsHubView() {
 
                     <div style={{ display: "grid", gap: 6, marginBottom: 20 }}>
                       {tool.highlights.map((item) => (
-                        <div key={item} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12, color: "var(--ink-2)", fontWeight: 500 }}>
-                          <Check size={13} color="#059669" />
+                        <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "var(--ink-2)", fontWeight: 500 }}>
+                          <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--muted)", flexShrink: 0 }} />
                           <span>{item}</span>
                         </div>
                       ))}
