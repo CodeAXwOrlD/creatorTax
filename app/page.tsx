@@ -7,7 +7,7 @@ import ComplianceCalendar from '@/components/ComplianceCalendar';
 import Calculator from '@/components/Calculator';
 import About from '@/components/About';
 import FAQ from '@/components/FAQ';
-import ThreeAccent from '@/components/ThreeAccent';
+import ClearerPath from '@/components/ClearerPath';
 
 export default function HomePage() {
   return (
@@ -21,7 +21,7 @@ export default function HomePage() {
       <Calculator />
       <About />
       <FAQ />
-      <ThreeAccent />
+      <ClearerPath />
     </main>
   );
 }

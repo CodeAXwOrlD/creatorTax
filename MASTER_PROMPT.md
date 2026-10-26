@@ -56,6 +56,7 @@ The project is guided by four distinct visual references provided by the author:
 
 The homepage is deliberately long-form, deep, and narrative-driven. Do not compress it:
 
+0. **Scroll-Transforming Multi-State Navigation:** Full editorial header in State A (Hero/Top), smooth morphing into floating pill capsule in State C, direction-aware auto-hide with 14px hysteresis in State D, and comprehensive 4-column directory modal in State E.
 1. **Editorial Hero:** Sunlit workspace photo, masked staggered typography, live status dot, tactile circular stamp (`LESS GUESSWORK ↗`), and quick anchors.
 2. **Moving Topic Ribbon (Marquee):** Smooth ticker displaying foundational themes.
 3. **Atmospheric Introduction:** Cloud-wash backdrop with oversized typography introducing the self-made economy.
@@ -76,7 +77,7 @@ The homepage is deliberately long-form, deep, and narrative-driven. Do not compr
    - Clear educational disclaimers.
 10. **About & Editorial Manifesto:** Transparent E-E-A-T credentials, Chartered Accountant review board, and statutory citations.
 11. **FAQ Section:** 8 comprehensive accordion questions with rich schema and keyboard accessibility.
-12. **Three.js Study in Clarity:** Ambient 3D torus knot reacting subtly to mouse position with warm amber lighting.
+12. **A Clearer Path Through Creator Taxes:** Connected four-stage tax journey with horizontal desktop timeline, vertical mobile timeline, bespoke SVG architecture schematics, and GSAP ScrollTrigger progress reveal.
 13. **Comprehensive Footer:** Full field guide directory, legal links, official portal references (CBDT, GST, TRACES, RBI), and copyright.
 
 ---

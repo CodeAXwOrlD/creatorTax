@@ -27,15 +27,16 @@ export default function Guides() {
     <section id="guides" className="guides-section" aria-label="CreatorTax Knowledge Shelf">
       <div className="section-heading">
         <div>
-          <div className="section-kicker">04 / THE KNOWLEDGE SHELF</div>
+          <div className="section-kicker">04 / THE KNOWLEDGE SHELF · FIELD GUIDES</div>
           <h2>
             Small-business details.<br />
             <em>Big-picture clarity.</em>
           </h2>
         </div>
         <p>
-          Substantial, plain-English tax manuals and operational playbooks for India&apos;s
-          independent creators, engineers, and digital consultants.
+          Substantial, statute-cited operational playbooks and tax manuals designed specifically for India&apos;s
+          independent software engineers, video editors, designers, and creative consultants. Each guide translates dense
+          statutory provisions into clear step-by-step checklists, real numerical examples, and audit-ready filing workflows.
         </p>
       </div>
 
@@ -63,7 +64,7 @@ export default function Guides() {
       <div className="article-grid">
         {filtered.map((a, i) => (
           <Reveal key={a.id} delay={i * 0.08} className="article-wrap">
-            <Link href={`/guides/${a.id}`} className="article-card">
+            <Link href={`/guides/${a.id}`} className="article-card" aria-label={`Read manual: ${a.title}`}>
               <div className={`article-art art-${i % 4}`}>
                 <span className="article-tag">{a.tag}</span>
 
@@ -114,7 +115,7 @@ export default function Guides() {
 
               <div className="article-card-footer">
                 <span className="author-micro-tag">
-                  <BookmarkCheck size={13} /> Verified by CA
+                  <BookmarkCheck size={13} /> Statute Verified · AY 2025-26
                 </span>
                 <span className="round-arrow">
                   <ArrowUpRight size={17} />
@@ -126,9 +127,10 @@ export default function Guides() {
       </div>
 
       <div className="guides-bottom">
-        <span>Made for real independent work, not just March panic.</span>
+        <span>Curated for continuous operational clarity, not last-minute July panic.</span>
         <Link href="#calculator">
-          Start with your numbers <ArrowRight size={15} />
+          <span>Start with your numbers</span>
+          <ArrowRight size={15} />
         </Link>
       </div>
     </section>

@@ -58,7 +58,7 @@ export default function FAQ() {
   return (
     <section className="faq-section" aria-label="Frequently Asked Questions">
       <div className="faq-heading-pane">
-        <div className="section-kicker">07 / THE FINE PRINT, CLARIFIED</div>
+        <div className="section-kicker">08 / THE FINE PRINT, CLARIFIED · COMMON QUESTIONS</div>
         <h2>
           Good questions<br />
           <em>are a good start.</em>

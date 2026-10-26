@@ -1,7 +1,6 @@
 'use client';
 
-import { Calendar, ChevronRight, Clock, ShieldCheck } from 'lucide-react';
-import Link from 'next/link';
+import { Calendar, Clock } from 'lucide-react';
 import Reveal from './Reveal';
 
 export default function ComplianceCalendar() {
@@ -10,49 +9,49 @@ export default function ComplianceCalendar() {
       quarter: 'Q1',
       date: 'June 15',
       title: 'First Advance Tax Installment (15%)',
-      desc: 'Pay 15% of estimated income tax if filing regular P&L. (Section 44ADA filers are exempt until March 15). Also download updated Form 16A certificates.',
+      desc: 'Pay 15% of estimated net annual tax liability if filing regular accounting (ITR-3). Presumptive filers under Section 44ADA are exempt until March 15. Cross-check updated Form 16A certificates from clients.',
       tag: 'ADVANCE TAX',
-      penalty: 'Interest under Section 234C if missed.',
+      penalty: 'Interest under Section 234C (1% per month) if missed.',
     },
     {
       quarter: 'Q2',
       date: 'July 31',
-      title: 'Individual ITR Filing Deadline',
-      desc: 'Statutory deadline to submit ITR-3 or ITR-4 on incometax.gov.in for all non-audit individuals, freelancers, and proprietary firms.',
+      title: 'Annual Income Tax Return (ITR) Deadline',
+      desc: 'Statutory deadline to submit ITR-3 or ITR-4 on incometax.gov.in for all non-audit individuals, independent professionals, and proprietary firms. Pre-validate your bank account to avoid refund dispatch delays.',
       tag: 'ANNUAL ITR',
-      penalty: 'Late fee up to ₹5,000 under Section 234F + 1%/mo interest under 234A.',
+      penalty: 'Late fee up to ₹5,000 under Section 234F + 1%/month interest under 234A.',
     },
     {
       quarter: 'Q2',
       date: 'Sept 15',
       title: 'Second Advance Tax Installment (45%)',
-      desc: 'Cumulative 45% of estimated annual tax liability must be deposited via challan ITNS 280.',
+      desc: 'Cumulative 45% of estimated annual tax liability must be deposited via challan ITNS 280 (under Major Head 0021 / Minor Head 100). Essential checkpoint for freelancers experiencing mid-year revenue growth.',
       tag: 'ADVANCE TAX',
-      penalty: 'Interest under Section 234C if missed.',
+      penalty: 'Interest under Section 234C if installment is delayed.',
     },
     {
       quarter: 'Q3',
       date: 'Dec 15',
       title: 'Third Advance Tax Installment (75%)',
-      desc: 'Cumulative 75% of tax payable for regular taxpayers. Review mid-year revenue growth from foreign clients.',
+      desc: 'Cumulative 75% of tax liability payable for regular taxpayers. Review foreign inward remittances (Stripe, PayPal, Wise) and ensure FIRAs are reconciled before calendar year-end.',
       tag: 'ADVANCE TAX',
-      penalty: 'Interest under Section 234C if missed.',
+      penalty: 'Interest under Section 234C if shortfall exceeds 25%.',
     },
     {
       quarter: 'Q4',
       date: 'March 15',
-      title: '100% Advance Tax (Critical for 44ADA)',
-      desc: 'Crucial deadline for presumptive taxpayers! Under Section 211, all eligible professionals using Section 44ADA must deposit 100% of their advance tax.',
-      tag: 'MANDATORY FOR 44ADA',
-      penalty: 'Avoid penal interest under Section 234B & 234C.',
+      title: '100% Advance Tax (Mandatory for Section 44ADA)',
+      desc: 'The single most critical deadline for presumptive taxpayers! Under the proviso to Section 211, professionals declaring 50% deemed profit under Section 44ADA must pay 100% of their estimated tax in a single tranche.',
+      tag: 'CRITICAL FOR 44ADA',
+      penalty: 'Penal interest under Sections 234B & 234C applies on unpaid tax.',
     },
     {
       quarter: 'Q4',
       date: 'March 31',
-      title: 'GST LUT Annual Renewal Deadline',
-      desc: 'File Form GST RFD-11 on the GST portal before April 1st to ensure your international client invoices remain zero-rated without paying 18% IGST.',
+      title: 'GST Letter of Undertaking (LUT) Annual Renewal',
+      desc: 'File Form GST RFD-11 on gst.gov.in before April 1st to ensure your international client invoices remain zero-rated without paying 18% IGST upfront throughout the upcoming financial year.',
       tag: 'GST EXPORT',
-      penalty: 'Loss of zero-rated invoicing coverage for April exports.',
+      penalty: 'Loss of zero-rated export status for invoices issued in April.',
     },
   ];
 
@@ -60,15 +59,16 @@ export default function ComplianceCalendar() {
     <section className="calendar-section" aria-label="Tax Compliance Calendar">
       <div className="section-heading">
         <div>
-          <div className="section-kicker">03 / COMPLIANCE RHYTHM</div>
+          <div className="section-kicker">05 / ANNUAL STATUTORY TIMELINE · COMPLIANCE RHYTHM</div>
           <h2>
             The Independent Tax Calendar.<br />
             <em>Never pay late fees.</em>
           </h2>
         </div>
         <p>
-          Six non-negotiable milestones every Indian freelancer, consultant, and creator must keep on
-          their calendar to avoid automatic Section 234 interest penalties.
+          Six non-negotiable statutory milestones every Indian freelancer, consultant, and creator must keep on
+          their operational calendar. Timely advance tax installments and annual filings eliminate automatic interest
+          penalties under Sections 234A, 234B, and 234C of the Income Tax Act, while preserving 0% IGST export status.
         </p>
       </div>
 
@@ -96,16 +96,6 @@ export default function ComplianceCalendar() {
             </div>
           </Reveal>
         ))}
-      </div>
-
-      <div className="calendar-footer-bar">
-        <div className="cal-footer-note">
-          <ShieldCheck size={18} />
-          <span>Dates apply to Assessment Year 2025-26 and Financial Year 2024-25. Always check for CBDT extensions.</span>
-        </div>
-        <Link href="/#calculator" className="cal-cta-link">
-          Calculate your advance tax obligation <ChevronRight size={14} />
-        </Link>
       </div>
     </section>
   );

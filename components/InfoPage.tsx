@@ -41,7 +41,7 @@ const pagesData: Record<string, PageData> = {
         ],
         bulletPoints: [
           'Direct Statutory Grounding: Every article cites primary legislation (the Income Tax Act, 1961, Central Goods and Services Tax Act, 2017, and Reserve Bank of India Master Directions).',
-          'Chartered Accountant Review: Prior to publication, drafts are reviewed by qualified, practicing Chartered Accountants with experience in foreign remittances and direct taxation.',
+          'Statutory & Regulatory Verification: Prior to publication, educational content is cross-verified against current CBDT notifications, CBIC circulars, and RBI master directions on foreign inward remittances.',
           'Annual Assessment Year Audits: Whenever the Union Budget or Finance Act amends thresholds, tax slabs, or rebate limits, our guides and calculators are updated immediately.',
         ],
       },

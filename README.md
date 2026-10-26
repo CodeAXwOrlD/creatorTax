@@ -53,28 +53,32 @@ npm start
 
 ## Key Features & Page Structure
 
-1. **Editorial Hero Section:**
+1. **Scroll-Transforming Multi-State Navigation:**
+   - Multi-state interaction: State A (Hero/Top full bar), State B (Smooth morphing transition), State C (Centered floating capsule with quick links), State D (Direction-aware auto-hide on deep scroll with 14px hysteresis), and State E (Expanded 4-column floating directory modal).
+   - IntersectionObserver and scroll tracking to detect hero boundaries without layout shifts or content jitter.
+   - Comprehensive directory panel organized by Field Guides, Interactive Tools, By Profession playbooks, and Governance.
+2. **Editorial Hero Section:**
    - Visual desk reference with subtle rotation, typography entrance masks, live status dot, and floating tactile stamp (`LESS GUESSWORK ↗`).
-2. **Atmospheric Introduction & Story Chapters:**
+3. **Atmospheric Introduction & Story Chapters:**
    - Sculptural monochrome cloud transition (`/images/reference-clouds.png`).
    - Three wide image-led chapters: Sunbeams through canopy (`reference-sunrays.png`), golden water (`reference-golden-water.png`), and backlit flower (`reference-sunflower-light.png`).
-3. **Pinned Horizontal Workflow Sequence (Earn → Invoice → Record → Reconcile):**
+4. **Pinned Horizontal Workflow Sequence (Earn → Invoice → Record → Reconcile):**
    - Driven by vertical scroll on desktop; responsive native card flow on mobile via `gsap.matchMedia()`.
-4. **Chaotic Route vs. Systematic Workflow Matrix:**
+5. **Chaotic Route vs. Systematic Workflow Matrix:**
    - Practical operational comparison of common freelancer pitfalls vs CreatorTax workflows.
-5. **Knowledge Shelf (Field Guides):**
-   - 6 in-depth, long-form guides covering GST LUT renewal, PayPal & Stripe FIRA/e-BRC, Section 44ADA presumptive slabs, TDS refund recovery, home office deductions, and creator contracts.
-   - Live category filtering and CA review credentials.
-6. **The Freelancer's Desk (Interactive Tax Estimator):**
+6. **Knowledge Shelf (Field Guides):**
+   - 7 in-depth, long-form guides covering GST LUT renewal, PayPal & Stripe FIRA/e-BRC, Section 44ADA presumptive slabs, TDS refund recovery, home office deductions, creator contracts, and ITR-3 vs ITR-4 roadmap.
+   - Live category filtering and statutory verification for AY 2025-26 & AY 2026-27.
+7. **The Freelancer's Desk (Interactive Tax Estimator):**
    - Section 44ADA 50% deemed profit toggle vs itemized actual business expenses.
    - Dual-regime side-by-side calculation: New Tax Regime (Section 115BAC with Section 87A rebate) vs Old Tax Regime.
    - Instant TDS credit offset calculating net tax payable or direct NACH refund claim.
-7. **Annual Compliance Calendar:**
-   - 6 critical statutory milestones (Advance Tax quarters, ITR filing July 31, and LUT renewal March 31).
-8. **Interactive 3D Study in Clarity:**
-   - Lightweight Three.js Torus Knot responding subtly to cursor position, auto-paused when off-screen.
-9. **Legal & Transparency Suite:**
-   - Dedicated `/about`, `/contact`, `/privacy`, and `/disclaimer` pages adhering to the Digital Personal Data Protection Act (DPDPA 2023) and Google AdSense policies.
+8. **Annual Compliance Calendar:**
+   - Critical statutory milestones (Advance Tax quarters, ITR filing July 31, and LUT renewal March 31) with penalty provisions (Sections 234A, 234B, 234C, 234F).
+9. **A Clearer Path Through Creator Taxes:**
+   - Four-stage connected tax-education journey with horizontal timeline on desktop, vertical timeline on mobile, custom SVG architecture schematics, and GSAP ScrollTrigger progress reveal.
+10. **Legal & Transparency Suite:**
+   - Dedicated `/about`, `/contact`, `/editorial-policy`, `/privacy`, and `/disclaimer` pages adhering to the Digital Personal Data Protection Act (DPDPA 2023) and primary statutory sourcing standards.
 
 ---
 

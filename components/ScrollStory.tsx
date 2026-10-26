@@ -15,7 +15,7 @@ const chapters = [
     eyebrow: 'THE INDEPENDENT CREATIVE ECONOMY',
     title: 'Your work is creative.',
     line: 'The admin can be clear.',
-    copy: 'You turn raw thoughts into edits, products, software, stories, and services. Your money administration should protect and empower that craft — not become an exhausting second full-time job. With presumptive taxation and zero-rated invoicing, the administrative path becomes transparent.',
+    copy: 'You turn raw thoughts into edits, products, software, stories, and services. Your money administration should protect and empower that craft — not become an exhausting second full-time job. With presumptive taxation under Section 44ADA and zero-rated export invoicing, the administrative path becomes transparent and predictable.',
     img: '/images/reference-sunrays.png',
     alt: 'Golden shafts of morning sunlight filtering through an organic canopy of trees',
     tag: 'CLEAR SPACE FOR THE WORK',
@@ -26,7 +26,7 @@ const chapters = [
     eyebrow: 'MONEY CROSSES GLOBAL BORDERS',
     title: 'A global payment arrives.',
     line: 'The paper trail protects you.',
-    copy: 'Foreign client invoices, platform remittance statements (PayPal, Stripe, Wise), bank credits, and FIRAs tell one unified story under FEMA and GST. When each document connects seamlessly, tax scrutiny transforms from a nightmare into a routine 5-minute formality.',
+    copy: 'Foreign client invoices, platform remittance statements (PayPal, Stripe, Wise), bank credits, and FIRAs tell one unified story under FEMA and GST. When each document connects seamlessly with proper RBI Purpose Codes, tax scrutiny transforms from an intimidating mystery into a routine five-minute formality.',
     img: '/images/reference-golden-water.png',
     alt: 'Sunlight glittering gold across the rippling surface of water',
     tag: 'FOLLOW THE REMITTANCE TRAIL',
@@ -37,11 +37,11 @@ const chapters = [
     eyebrow: 'SMALL SYSTEMS, MASSIVE RELIEF',
     title: 'One systematic next step.',
     line: 'Then another.',
-    copy: 'Understand the primary rules, maintain an ironclad Statement of Work, reconcile Form 26AS quarterly, and collaborate with a qualified CA who understands the digital economy. Long-term peace of mind isn’t built on risky shortcuts — it grows from a repeatable operational system.',
+    copy: 'Understand the primary statutes, maintain a written Statement of Work, reconcile Form 26AS quarterly, and collaborate with a qualified CA who understands the digital economy. Long-term peace of mind isn’t built on risky shortcuts — it grows from a repeatable, documented operational system.',
     img: '/images/reference-sunflower-light.png',
     alt: 'A delicate flower illuminated in warm, translucent late-afternoon backlight',
     tag: 'CLARITY OVER JARGON',
-    stat: '100% PEACE OF MIND',
+    stat: '100% AUDIT READINESS',
   },
 ];
 
@@ -99,8 +99,8 @@ export default function ScrollStory() {
 
     mm.add(
       {
-        isDesktop: '(min-width: 900px)',
-        isMobile: '(max-width: 899px)',
+        isDesktop: '(min-width: 992px)',
+        isMobile: '(max-width: 991px)',
       },
       (context) => {
         const { isDesktop } = context.conditions as { isDesktop: boolean; isMobile: boolean };
@@ -148,15 +148,15 @@ export default function ScrollStory() {
           if (copy) {
             gsap.fromTo(
               copy,
-              { y: 35, autoAlpha: 0 },
+              { y: 30, autoAlpha: 0 },
               {
                 y: 0,
                 autoAlpha: 1,
                 ease: 'power2.out',
                 scrollTrigger: {
                   trigger: chapter,
-                  start: 'top 70%',
-                  end: 'top 35%',
+                  start: 'top 75%',
+                  end: 'top 40%',
                   scrub: 0.8,
                 },
               }
@@ -166,22 +166,41 @@ export default function ScrollStory() {
 
         // Desktop pinned horizontal storytelling
         if (isDesktop) {
-          const track = document.querySelector('.horizontal-track') as HTMLElement;
-          if (track) {
-            const scrollDistance = track.scrollWidth - window.innerWidth;
+          const track = el.querySelector('.horizontal-track') as HTMLElement;
+          const container = el.querySelector('.horizontal-story') as HTMLElement;
+          if (track && container) {
             gsap.to(track, {
-              x: -scrollDistance,
+              x: () => -(track.scrollWidth - window.innerWidth),
               ease: 'none',
               scrollTrigger: {
-                trigger: '.horizontal-story',
+                trigger: container,
                 pin: true,
                 scrub: 1,
                 start: 'top top',
-                end: () => `+=${scrollDistance}`,
+                end: () => `+=${track.scrollWidth - window.innerWidth}`,
                 invalidateOnRefresh: true,
               },
             });
           }
+        } else {
+          // Mobile & Tablet: Vertical reveal for stacked panels
+          gsap.utils.toArray<HTMLElement>('.horizontal-panel').forEach((panel) => {
+            gsap.fromTo(
+              panel,
+              { y: 25, autoAlpha: 0.8 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: panel,
+                  start: 'top 85%',
+                  once: true,
+                },
+              }
+            );
+          });
         }
       },
       el
@@ -191,18 +210,18 @@ export default function ScrollStory() {
   }, []);
 
   return (
-    <section id="story" ref={section} className="story">
+    <section id="story" ref={section} className="story" aria-label="Independent creative economy field guide">
       {/* 01: Atmospheric Cloud Introduction */}
       <div className="story-intro">
-        <div className="section-kicker">A FIELD GUIDE FOR THE SELF-MADE</div>
+        <div className="section-kicker">02 / A FIELD GUIDE FOR THE SELF-MADE</div>
         <h2 className="story-intro-title">
           You built the work.<br />
           <em>Let’s untangle the rest.</em>
         </h2>
         <p>
-          Running an independent creative or tech business brings a thousand moving pieces.
-          Here is how to transform the administrative maze into a clean, repeatable engine that
-          protects your earnings.
+          Running an independent creative or tech enterprise in India involves a dozen interconnected requirements:
+          cross-border invoicing, RBI purpose codes, bank certificates, advance tax schedules, and GST declarations.
+          Here is how to transform the administrative maze into a predictable, low-stress operational engine that protects your craft and cashflow.
         </p>
         <a href="#story-chapters" className="story-scroll-cue">
           STEP INTO THE CHAPTERS <ArrowDownRight size={16} />
@@ -213,7 +232,7 @@ export default function ScrollStory() {
       {/* 02: Three Large Image-Led Chapters */}
       <div id="story-chapters" className="story-chapters">
         {chapters.map((c) => (
-          <article className={`story-chapter chapter-${c.n}`} key={c.n}>
+          <article className={`story-chapter chapter-${c.n}`} key={c.n} aria-labelledby={`ch-${c.n}-title`}>
             <div className="chapter-image">
               <div className="chapter-image-inner">
                 <Image
@@ -230,49 +249,54 @@ export default function ScrollStory() {
             </div>
 
             <div className="chapter-copy">
-              <span className="chapter-eyebrow">{c.eyebrow}</span>
-              <h3>
+              <span className="chapter-eyebrow section-kicker">{c.eyebrow}</span>
+              <h3 id={`ch-${c.n}-title`}>
                 {c.title}<br />
                 <em>{c.line}</em>
               </h3>
               <p>{c.copy}</p>
-              <Link href="#guides" className="chapter-link">
-                Explore the field guides <ArrowUpRight size={16} />
+
+              <Link href="/learn" className="chapter-link">
+                <span>Explore the field guides</span>
+                <ArrowUpRight size={16} />
               </Link>
             </div>
           </article>
         ))}
       </div>
 
-      {/* 03: Pinned Horizontal Storytelling Track */}
-      <div className="horizontal-story" aria-label="Independent workflow steps">
+      {/* 03: Horizontal Track (Pinned on Desktop, Vertically Stacked on Mobile) */}
+      <div className="horizontal-story" aria-label="The four-step independent workflow">
         <div className="horizontal-top">
           <div>
             <span className="section-kicker">THE 4-STEP INDEPENDENT WORKFLOW</span>
-            <h3 className="horizontal-heading">From First Brief to Clean Tax Refund</h3>
+            <h3 className="horizontal-heading">From First Client Brief to Direct Tax Refund</h3>
           </div>
-          <span className="horizontal-hint">SCROLL VERTICALLY TO PROGRESS ↔</span>
+          <span className="horizontal-hint">
+            <span className="desktop-hint">SCROLL VERTICALLY TO PROGRESS ↔</span>
+            <span className="mobile-hint">FOUR CONNECTED OPERATIONAL STAGES ↓</span>
+          </span>
         </div>
 
         <div className="horizontal-track">
           {horizontalSteps.map((p) => (
-            <article className={`horizontal-panel ${p.tone}`} key={p.n}>
+            <article className={`horizontal-panel ${p.tone}`} key={p.n} aria-labelledby={`h-step-${p.n}-heading`}>
               <div className="h-panel-top">
                 <span className="h-panel-step-index">{p.n} / THE 4 STEPS</span>
                 <span className="h-panel-pill">{p.highlight}</span>
               </div>
 
-              <div className="h-panel-graphic">
+              <div className="h-panel-graphic" aria-hidden="true">
                 <span>{p.word}</span>
                 <i>{p.iconSymbol}</i>
               </div>
 
               <div className="h-panel-copy">
                 <div className="h-panel-sub">{p.stepName}</div>
-                <h3>
+                <h4 id={`h-step-${p.n}-heading`}>
                   {p.title}
                   <span>.</span>
-                </h3>
+                </h4>
                 <p>{p.copy}</p>
               </div>
             </article>

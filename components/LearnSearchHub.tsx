@@ -195,7 +195,7 @@ export default function LearnSearchHub({ initialArticles }: { initialArticles: A
 
                   <div className="article-card-footer">
                     <span className="author-micro-tag">
-                      <GraduationCap size={13} /> Verified by CA
+                      <GraduationCap size={13} /> Statute Verified · AY 2025-26
                     </span>
                     <span className="round-arrow">
                       <ArrowUpRight size={17} />

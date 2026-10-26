@@ -97,7 +97,7 @@ export default function Calculator() {
         <span className="kicker-icon">
           <CalcIcon size={16} />
         </span>{' '}
-        05 / THE FREELANCER&apos;S DESK · ESTIMATOR
+        06 / INTERACTIVE TAX ESTIMATOR · AY 2025-26 &amp; AY 2026-27
       </div>
 
       <div className="calc-layout">

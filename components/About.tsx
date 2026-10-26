@@ -22,7 +22,7 @@ export default function About() {
       </Reveal>
 
       <Reveal delay={0.12} className="about-copy">
-        <div className="section-kicker">06 / WHY WE&apos;RE HERE · OUR EDITORIAL MANIFESTO</div>
+        <div className="section-kicker">07 / WHY WE&apos;RE HERE · OUR EDITORIAL MANIFESTO</div>
         <h2>
           Good work deserves<br />
           <em>clear paperwork.</em>
