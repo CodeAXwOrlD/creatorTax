@@ -49,21 +49,21 @@ export default function Header() {
     if (panelOpen) {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      if ((window as any).__lenis) {
-        (window as any).__lenis.stop();
+      if (typeof window !== 'undefined' && window.__lenis) {
+        window.__lenis.stop();
       }
     } else {
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      if ((window as any).__lenis) {
-        (window as any).__lenis.start();
+      if (typeof window !== 'undefined' && window.__lenis) {
+        window.__lenis.start();
       }
     }
     return () => {
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      if ((window as any).__lenis) {
-        (window as any).__lenis.start();
+      if (typeof window !== 'undefined' && window.__lenis) {
+        window.__lenis.start();
       }
     };
   }, [panelOpen]);

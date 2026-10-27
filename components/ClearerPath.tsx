@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
@@ -15,12 +14,10 @@ import {
   ChevronRight,
   Compass,
   FileCheck2,
-  FileText,
   Layers,
   LayoutGrid,
   Scale,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);

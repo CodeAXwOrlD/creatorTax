@@ -29,14 +29,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       },
     });
 
-    (window as any).__lenis = lenis;
+    window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      delete (window as any).__lenis;
+      delete window.__lenis;
       gsap.ticker.remove(tick);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -45,8 +45,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    if ((window as any).__lenis) {
-      (window as any).__lenis.scrollTo(0, { immediate: true });
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
     }
   }, [pathname]);
 
