@@ -8,16 +8,16 @@ export default function About() {
     <section id="about" className="about-section" aria-label="About CreatorTax India">
       <Reveal className="about-image">
         <Image
-          src="/images/reference-sunrays.png"
-          alt="Morning sunlight streaming through a lush forest canopy"
+          src="/images/creator-studio.jpg"
+          alt="Creator production workspace in India with documentation, camera rig, and tax compliance records"
           width={736}
           height={1104}
           sizes="(max-width: 640px) 90vw, 45vw"
           className="about-photo"
         />
         <div className="image-caption">
-          <span>THE EDITORIAL STANDARD / 2026</span>
-          <b>MORE LIGHT ON THE FINE PRINT</b>
+          <span>THE EDITORIAL STANDARD · FY 2025–26</span>
+          <b>STATUTORY ACCURACY OVER CASUAL FORUM RUMORS</b>
         </div>
       </Reveal>
 

@@ -1,3 +1,5 @@
 Image notes:
-- sunlit-workspace.png was generated for this project and is used in the homepage hero.
-- clouds.jpg, golden-water.jpg, sunflower.jpg and sunrays.jpg were supplied by the project owner as visual mood references. sunrays.jpg is used in the About section; other references are included for future art direction.
+- hero-workspace.jpg is used in the homepage hero and freelancer playbook.
+- clouds.jpg is used for the atmospheric cloud transition in globals.css.
+- chapter-creative-work.jpg, chapter-global-payment.jpg, and tools-workbench.jpg are used in ScrollStory chapters.
+- creator-studio.jpg, designer-desk.jpg, developer-desk.jpg, and video-editor-suite.jpg are used in discipline playbooks and about pages.

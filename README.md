@@ -60,8 +60,8 @@ npm start
 2. **Editorial Hero Section:**
    - Visual desk reference with subtle rotation, typography entrance masks, live status dot, and floating tactile stamp (`LESS GUESSWORK ↗`).
 3. **Atmospheric Introduction & Story Chapters:**
-   - Sculptural monochrome cloud transition (`/images/reference-clouds.png`).
-   - Three wide image-led chapters: Sunbeams through canopy (`reference-sunrays.png`), golden water (`reference-golden-water.png`), and backlit flower (`reference-sunflower-light.png`).
+   - Sculptural monochrome cloud transition (`/images/clouds.jpg`).
+   - Three wide image-led chapters: Creative Director & Studio (`chapter-creative-work.jpg`), Cross-Border Remittance & FIRA (`chapter-global-payment.jpg`), and Tax Ledger & Advance Tax Workbench (`tools-workbench.jpg`).
 4. **Pinned Horizontal Workflow Sequence (Earn → Invoice → Record → Reconcile):**
    - Driven by vertical scroll on desktop; responsive native card flow on mobile via `gsap.matchMedia()`.
 5. **Chaotic Route vs. Systematic Workflow Matrix:**

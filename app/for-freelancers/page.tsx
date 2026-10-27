@@ -53,7 +53,7 @@ export default function ForFreelancersPage() {
           <div className="prof-hero-visual">
             <div className="prof-image-frame">
               <Image
-                src="/images/sunlit-workspace.png"
+                src="/images/hero-workspace.jpg"
                 alt="Calm, sunlit independent freelancer working desk with laptop, notebook, and warm natural morning light"
                 fill
                 priority

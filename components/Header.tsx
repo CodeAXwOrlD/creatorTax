@@ -6,12 +6,17 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowUpRight,
   BookOpen,
+  Briefcase,
   Calculator,
   ChevronDown,
+  Code,
   Compass,
+  Film,
+  Layers,
   Scale,
   ShieldCheck,
   UserCheck,
+  Video,
   X,
 } from 'lucide-react';
 
@@ -42,12 +47,24 @@ export default function Header() {
   // Lock background scroll when expanded directory menu is open
   useEffect(() => {
     if (panelOpen) {
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
+      if ((window as any).__lenis) {
+        (window as any).__lenis.stop();
+      }
     } else {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
+      if ((window as any).__lenis) {
+        (window as any).__lenis.start();
+      }
     }
     return () => {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
+      if ((window as any).__lenis) {
+        (window as any).__lenis.start();
+      }
     };
   }, [panelOpen]);
 
@@ -132,11 +149,11 @@ export default function Header() {
   ];
 
   const professions = [
-    { label: 'For Software Developers', desc: 'SaaS retainers, Section 44ADA & zero-rated LUT exports', href: '/for-developers' },
-    { label: 'For Video Editors & Animators', desc: 'Hardware depreciation, multi-revision contracts & GST', href: '/for-video-editors' },
-    { label: 'For Creators & Influencers', desc: 'Sponsorship TDS under 194R, barter deals & brand SOWs', href: '/for-creators' },
-    { label: 'For UI/UX Designers', desc: 'Remote overseas clients, design tool write-offs & FIRA', href: '/for-designers' },
-    { label: 'For General Freelancers', desc: 'Presumptive taxation, advance tax & bank reconciliation', href: '/for-freelancers' },
+    { label: 'Software Developers & SaaS', desc: 'SaaS retainers, Section 44ADA & zero-rated LUT exports', href: '/for-developers', icon: Code, badge: 'Sec 44ADA' },
+    { label: 'Video Editors & Animators', desc: 'Hardware depreciation, multi-revision contracts & GST', href: '/for-video-editors', icon: Film, badge: '40% WDV' },
+    { label: 'Creators & Influencers', desc: 'Sponsorship TDS under 194R, barter deals & brand SOWs', href: '/for-creators', icon: Video, badge: 'Sec 194R' },
+    { label: 'UI/UX & Product Designers', desc: 'Remote overseas clients, design tool write-offs & FIRA', href: '/for-designers', icon: Layers, badge: 'Figma & IP' },
+    { label: 'General Freelancers', desc: 'Presumptive taxation, advance tax & bank reconciliation', href: '/for-freelancers', icon: Briefcase, badge: 'Roadmap' },
   ];
 
   const allGuides = [
@@ -217,17 +234,35 @@ export default function Header() {
 
             {professionsOpen && (
               <div className="professions-dropdown-menu" role="menu">
-                {professions.map((p) => (
-                  <Link
-                    key={p.href}
-                    href={p.href}
-                    className={`prof-menu-item ${pathname === p.href ? 'item-active' : ''}`}
-                    role="menuitem"
-                    onClick={() => setProfessionsOpen(false)}
-                  >
-                    {p.label}
-                  </Link>
-                ))}
+                <div className="professions-menu-header">
+                  <span>DISCIPLINE PLAYBOOKS</span>
+                </div>
+                <div className="professions-menu-list">
+                  {professions.map((p) => {
+                    const Icon = p.icon;
+                    return (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        className={`prof-menu-item ${pathname === p.href ? 'item-active' : ''}`}
+                        role="menuitem"
+                        onClick={() => setProfessionsOpen(false)}
+                      >
+                        <div className="prof-item-icon-box">
+                          <Icon size={16} />
+                        </div>
+                        <div className="prof-item-content">
+                          <div className="prof-item-title-row">
+                            <strong className="prof-item-title">{p.label}</strong>
+                            <span className="prof-item-badge">{p.badge}</span>
+                          </div>
+                          <span className="prof-item-desc">{p.desc}</span>
+                        </div>
+                        <ArrowUpRight size={13} className="prof-item-arrow" />
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
@@ -305,6 +340,7 @@ export default function Header() {
           onClick={(e) => {
             if (e.target === e.currentTarget) setPanelOpen(false);
           }}
+          onWheel={(e) => e.stopPropagation()}
           role="presentation"
         >
           <div
@@ -313,6 +349,7 @@ export default function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="CreatorTax India Directory Menu"
+            onWheel={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div className="menu-panel-header">
